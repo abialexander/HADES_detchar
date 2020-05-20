@@ -110,3 +110,25 @@ Traceback (most recent call last):
   File "/home/extern/aalexander/miniconda3/lib/python3.7/site-packages/matplotlib/cbook/__init__.py", line 403, in to_filehandle
     fh = open(fname, flag, encoding=encoding)
 FileNotFoundError: [Errno 2] No such file or directory: 'plots/e_ftp.png'
+Traceback (most recent call last):
+  File "/lfs/l1/legend/users/aalexander/HADES_detchar/Ba133_analysis/Ba133_analysis.py", line 89, in <module>
+    main()
+  File "/lfs/l1/legend/users/aalexander/HADES_detchar/Ba133_analysis/Ba133_analysis.py", line 17, in main
+    keys, data = read_all_t2(t2_folder)
+  File "/lfs/l1/legend/users/aalexander/HADES_detchar/Ba133_analysis/Ba133_analysis.py", line 61, in read_all_t2
+    df = pd.read_hdf(filename, "data")
+  File "/lfs/l1/legend/software/miniconda3/lib/python3.7/site-packages/pandas/io/pytables.py", line 397, in read_hdf
+    store = HDFStore(path_or_buf, mode=mode, errors=errors, **kwargs)
+  File "/lfs/l1/legend/software/miniconda3/lib/python3.7/site-packages/pandas/io/pytables.py", line 518, in __init__
+    tables = import_optional_dependency("tables")
+  File "/lfs/l1/legend/software/miniconda3/lib/python3.7/site-packages/pandas/compat/_optional.py", line 92, in import_optional_dependency
+    raise ImportError(msg) from None
+ImportError: Missing optional dependency 'tables'.  Use pip or conda to install tables.
+Traceback (most recent call last):
+  File "/lfs/l1/legend/users/aalexander/HADES_detchar/Ba133_analysis/Ba133_analysis.py", line 153, in <module>
+    print("p: ", p_value)
+  File "/lfs/l1/legend/users/aalexander/HADES_detchar/Ba133_analysis/Ba133_analysis.py", line 54, in main
+    mu_ep, sigma_ep, mu_err_ep, sigma_err_ep = fit_peak("Energy (KeV)", bins_cal, counts, xmin_356, xmax_356)
+  File "/lfs/l1/legend/users/aalexander/HADES_detchar/Ba133_analysis/Ba133_analysis.py", line 129, in fit_peak
+    y_exp_i = sqrt_curve(x_obs, *popt)
+NameError: name 'gaussian' is not defined

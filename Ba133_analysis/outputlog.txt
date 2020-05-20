@@ -36,3 +36,17 @@ max    1.028350e+04  1.028300e+04  ...        inf  4.570567e-01
 4  10209.0  10209  10209        0  ...     -0.582022  -0.613739       inf  0.000198
 
 [5 rows x 37 columns]
+
+356 KeV peak: 
+
+356 KeV peak: 
+chisq with errors:
+chisq:  780.9247776193475
+dof:  767
+p:  0.35554323285782374
+
+356 KeV peak: 
+chisq with errors:
+chisq:  480077.8576707674
+dof:  2558
+p:  0.0
