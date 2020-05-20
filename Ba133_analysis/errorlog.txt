@@ -1,0 +1,112 @@
+Traceback (most recent call last):
+  File "/lfs/l1/legend/users/aalexander/HADES_detchar/Ba133_analysis/Ba133_analysis.py", line 48, in <module>
+    main()
+  File "/lfs/l1/legend/users/aalexander/HADES_detchar/Ba133_analysis/Ba133_analysis.py", line 17, in main
+    keys, data = read_all_t2(t2_folder)
+  File "/lfs/l1/legend/users/aalexander/HADES_detchar/Ba133_analysis/Ba133_analysis.py", line 27, in read_all_t2
+    run1_files = glob.glob(directorypath_t2 + "/*run0001*.h5")
+NameError: name 'directorypath_t2' is not defined
+Traceback (most recent call last):
+  File "/lfs/l1/legend/users/aalexander/HADES_detchar/Ba133_analysis/Ba133_analysis.py", line 48, in <module>
+    main()
+  File "/lfs/l1/legend/users/aalexander/HADES_detchar/Ba133_analysis/Ba133_analysis.py", line 17, in main
+    keys, data = read_all_t2(t2_folder)
+  File "/lfs/l1/legend/users/aalexander/HADES_detchar/Ba133_analysis/Ba133_analysis.py", line 31, in read_all_t2
+    df = pd.read_hdf(filename, "data")
+  File "/lfs/l1/legend/software/miniconda3/lib/python3.7/site-packages/pandas/io/pytables.py", line 397, in read_hdf
+    store = HDFStore(path_or_buf, mode=mode, errors=errors, **kwargs)
+  File "/lfs/l1/legend/software/miniconda3/lib/python3.7/site-packages/pandas/io/pytables.py", line 518, in __init__
+    tables = import_optional_dependency("tables")
+  File "/lfs/l1/legend/software/miniconda3/lib/python3.7/site-packages/pandas/compat/_optional.py", line 92, in import_optional_dependency
+    raise ImportError(msg) from None
+ImportError: Missing optional dependency 'tables'.  Use pip or conda to install tables.
+Traceback (most recent call last):
+  File "/lfs/l1/legend/users/aalexander/HADES_detchar/Ba133_analysis/Ba133_analysis.py", line 48, in <module>
+    main()
+  File "/lfs/l1/legend/users/aalexander/HADES_detchar/Ba133_analysis/Ba133_analysis.py", line 17, in main
+    keys, data = read_all_t2(t2_folder)
+  File "/lfs/l1/legend/users/aalexander/HADES_detchar/Ba133_analysis/Ba133_analysis.py", line 31, in read_all_t2
+    df = pd.read_hdf(filename, "data")
+  File "/lfs/l1/legend/software/miniconda3/lib/python3.7/site-packages/pandas/io/pytables.py", line 397, in read_hdf
+    store = HDFStore(path_or_buf, mode=mode, errors=errors, **kwargs)
+  File "/lfs/l1/legend/software/miniconda3/lib/python3.7/site-packages/pandas/io/pytables.py", line 518, in __init__
+    tables = import_optional_dependency("tables")
+  File "/lfs/l1/legend/software/miniconda3/lib/python3.7/site-packages/pandas/compat/_optional.py", line 92, in import_optional_dependency
+    raise ImportError(msg) from None
+ImportError: Missing optional dependency 'tables'.  Use pip or conda to install tables.
+Traceback (most recent call last):
+  File "/lfs/l1/legend/users/aalexander/HADES_detchar/Ba133_analysis/Ba133_analysis.py", line 48, in <module>
+    main()
+  File "/lfs/l1/legend/users/aalexander/HADES_detchar/Ba133_analysis/Ba133_analysis.py", line 17, in main
+    keys, data = read_all_t2(t2_folder)
+  File "/lfs/l1/legend/users/aalexander/HADES_detchar/Ba133_analysis/Ba133_analysis.py", line 31, in read_all_t2
+    df = pd.read_hdf(filename, "data")
+  File "/lfs/l1/legend/software/miniconda3/lib/python3.7/site-packages/pandas/io/pytables.py", line 397, in read_hdf
+    store = HDFStore(path_or_buf, mode=mode, errors=errors, **kwargs)
+  File "/lfs/l1/legend/software/miniconda3/lib/python3.7/site-packages/pandas/io/pytables.py", line 518, in __init__
+    tables = import_optional_dependency("tables")
+  File "/lfs/l1/legend/software/miniconda3/lib/python3.7/site-packages/pandas/compat/_optional.py", line 92, in import_optional_dependency
+    raise ImportError(msg) from None
+ImportError: Missing optional dependency 'tables'.  Use pip or conda to install tables.
+Traceback (most recent call last):
+  File "/lfs/l1/legend/users/aalexander/HADES_detchar/Ba133_analysis/Ba133_analysis.py", line 48, in <module>
+    main()
+  File "/lfs/l1/legend/users/aalexander/HADES_detchar/Ba133_analysis/Ba133_analysis.py", line 17, in main
+    keys, data = read_all_t2(t2_folder)
+  File "/lfs/l1/legend/users/aalexander/HADES_detchar/Ba133_analysis/Ba133_analysis.py", line 31, in read_all_t2
+    df = pd.read_hdf(filename, "data")
+  File "/lfs/l1/legend/software/miniconda3/lib/python3.7/site-packages/pandas/io/pytables.py", line 397, in read_hdf
+    store = HDFStore(path_or_buf, mode=mode, errors=errors, **kwargs)
+  File "/lfs/l1/legend/software/miniconda3/lib/python3.7/site-packages/pandas/io/pytables.py", line 518, in __init__
+    tables = import_optional_dependency("tables")
+  File "/lfs/l1/legend/software/miniconda3/lib/python3.7/site-packages/pandas/compat/_optional.py", line 92, in import_optional_dependency
+    raise ImportError(msg) from None
+ImportError: Missing optional dependency 'tables'.  Use pip or conda to install tables.
+Traceback (most recent call last):
+  File "/lfs/l1/legend/users/aalexander/HADES_detchar/Ba133_analysis/Ba133_analysis.py", line 48, in <module>
+    main()
+  File "/lfs/l1/legend/users/aalexander/HADES_detchar/Ba133_analysis/Ba133_analysis.py", line 17, in main
+    keys, data = read_all_t2(t2_folder)
+  File "/lfs/l1/legend/users/aalexander/HADES_detchar/Ba133_analysis/Ba133_analysis.py", line 31, in read_all_t2
+    df = pd.read_hdf(filename, "data")
+  File "/lfs/l1/legend/software/miniconda3/lib/python3.7/site-packages/pandas/io/pytables.py", line 397, in read_hdf
+    store = HDFStore(path_or_buf, mode=mode, errors=errors, **kwargs)
+  File "/lfs/l1/legend/software/miniconda3/lib/python3.7/site-packages/pandas/io/pytables.py", line 518, in __init__
+    tables = import_optional_dependency("tables")
+  File "/lfs/l1/legend/software/miniconda3/lib/python3.7/site-packages/pandas/compat/_optional.py", line 92, in import_optional_dependency
+    raise ImportError(msg) from None
+ImportError: Missing optional dependency 'tables'.  Use pip or conda to install tables.
+Traceback (most recent call last):
+  File "/lfs/l1/legend/users/aalexander/HADES_detchar/Ba133_analysis/Ba133_analysis.py", line 3, in <module>
+    import h5py
+ModuleNotFoundError: No module named 'h5py'
+Traceback (most recent call last):
+  File "/lfs/l1/legend/users/aalexander/HADES_detchar/Ba133_analysis/Ba133_analysis.py", line 5, in <module>
+    import matplotlib.pyplot as plt
+ModuleNotFoundError: No module named 'matplotlib'
+Traceback (most recent call last):
+  File "/lfs/l1/legend/users/aalexander/HADES_detchar/Ba133_analysis/Ba133_analysis.py", line 10, in <module>
+    import pygama
+ModuleNotFoundError: No module named 'pygama'
+Traceback (most recent call last):
+  File "/lfs/l1/legend/users/aalexander/HADES_detchar/Ba133_analysis/Ba133_analysis.py", line 48, in <module>
+    main()
+  File "/lfs/l1/legend/users/aalexander/HADES_detchar/Ba133_analysis/Ba133_analysis.py", line 17, in main
+    keys, data = read_all_t2(t2_folder)
+  File "/lfs/l1/legend/users/aalexander/HADES_detchar/Ba133_analysis/Ba133_analysis.py", line 43, in read_all_t2
+    plt.savefig("plots/e_ftp.png")
+  File "/home/extern/aalexander/miniconda3/lib/python3.7/site-packages/matplotlib/pyplot.py", line 723, in savefig
+    res = fig.savefig(*args, **kwargs)
+  File "/home/extern/aalexander/miniconda3/lib/python3.7/site-packages/matplotlib/figure.py", line 2203, in savefig
+    self.canvas.print_figure(fname, **kwargs)
+  File "/home/extern/aalexander/miniconda3/lib/python3.7/site-packages/matplotlib/backend_bases.py", line 2105, in print_figure
+    **kwargs)
+  File "/home/extern/aalexander/miniconda3/lib/python3.7/site-packages/matplotlib/backends/backend_agg.py", line 535, in print_png
+    with cbook.open_file_cm(filename_or_obj, "wb") as fh:
+  File "/home/extern/aalexander/miniconda3/lib/python3.7/contextlib.py", line 112, in __enter__
+    return next(self.gen)
+  File "/home/extern/aalexander/miniconda3/lib/python3.7/site-packages/matplotlib/cbook/__init__.py", line 418, in open_file_cm
+    fh, opened = to_filehandle(path_or_file, mode, True, encoding)
+  File "/home/extern/aalexander/miniconda3/lib/python3.7/site-packages/matplotlib/cbook/__init__.py", line 403, in to_filehandle
+    fh = open(fname, flag, encoding=encoding)
+FileNotFoundError: [Errno 2] No such file or directory: 'plots/e_ftp.png'
