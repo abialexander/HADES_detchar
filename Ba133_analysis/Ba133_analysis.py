@@ -30,6 +30,26 @@ def main():
     plt.xlim(0, 40000)
     plt.savefig("/lfs/l1/legend/users/aalexander/HADES_detchar/Ba133_analysis/plots/e_ftp.png")
 
+    plt.figure()
+    counts, bins, bars = plt.hist(key_data, bins=100000)
+    plt.yscale("log")
+    plt.xlabel("e_ftp")
+    plt.ylabel("Frequency")
+    plt.xlim(0, 7000)
+    plt.savefig("/lfs/l1/legend/users/aalexander/HADES_detchar/Ba133_analysis/plots/e_ftp_zoom.png")
+
+
+    #Calibrate via known peaks
+
+    #356 keV
+    xmin_356, xmax_356 = 5625, 5750
+    plt.figure()
+    mu_ep, sigma_ep, mu_err_ep, sigma_err_ep = fit_peak(key, bins, counts, xmin_356, xmax_356)
+    plt.title("356 keV peak")
+    plt.savefig("/lfs/l1/legend/users/aalexander/HADES_detchar/Ba133_analysis/plots/356keV_peak.png")
+
+
+
 
     #Calibrate - use linear calibration coefficients from previous work
     m, m_err = 15.786, 0.007
@@ -57,12 +77,12 @@ def main():
 
     #fit peaks for dlt observable
 
-    print("")
-    print("356 KeV peak: ")
-    xmin_356, xmax_356 = 300., 400. #by inspection
-    mu_ep, sigma_ep, mu_err_ep, sigma_err_ep = fit_peak("Energy (KeV)", bins_cal, counts, xmin_356, xmax_356)
-    plt.title("356 keV peak")
-    plt.savefig("/lfs/l1/legend/users/aalexander/HADES_detchar/Ba133_analysis/plots/356keV_peak.png")
+    # print("")
+    # print("356 KeV peak: ")
+    # xmin_356, xmax_356 = 300., 400. #by inspection  #380-390
+    # mu_ep, sigma_ep, mu_err_ep, sigma_err_ep = fit_peak("Energy (KeV)", bins_cal, counts, xmin_356, xmax_356)
+    # plt.title("356 keV peak")
+    # plt.savefig("/lfs/l1/legend/users/aalexander/HADES_detchar/Ba133_analysis/plots/356keV_peak.png")
 
 
 
