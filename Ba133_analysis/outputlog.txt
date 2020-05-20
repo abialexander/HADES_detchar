@@ -50,3 +50,9 @@ chisq with errors:
 chisq:  480077.8576707674
 dof:  2558
 p:  0.0
+
+356 KeV peak: 
+chisq with errors:
+chisq:  480077.8576707674
+dof:  2558
+p:  0.0

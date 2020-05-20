@@ -45,6 +45,11 @@ def main():
     plt.savefig("/lfs/l1/legend/users/aalexander/HADES_detchar/Ba133_analysis/plots/calibrated_energy.png") 
 
     #plot zoomed in
+    plt.figure()
+    ounts, bins_cal, bars = plt.hist(calibrated_energy, bins=100000)
+    plt.xlabel("Energy (KeV)")
+    plt.ylabel("Frequency")
+    plt.yscale("log")
     plt.xlim(0,450)
     plt.savefig("/lfs/l1/legend/users/aalexander/HADES_detchar/Ba133_analysis/plots/calibrated_energy_zoom.png") 
 
