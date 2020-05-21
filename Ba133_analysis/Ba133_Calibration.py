@@ -25,7 +25,7 @@ def main():
     key = "e_ftp"
     key_data = obtain_key_data(data, keys, key, no_events)
 
-    no_bins = 10000 #7722
+    no_bins = 50000
 
     plt.figure()
     counts, bins, bars = plt.hist(key_data, bins=no_bins)
@@ -40,20 +40,18 @@ def main():
     plt.yscale("log")
     plt.xlabel("e_ftp")
     plt.ylabel("Counts")
-    plt.xlim(0, 7000) 
+    plt.xlim(0, 7000)
     plt.savefig("/lfs/l1/legend/users/aalexander/HADES_detchar/Ba133_analysis/plots/e_ftp_zoom.png")
 
 
     #___________Calibration__________
     print("Calibrating...")
 
-    print("Calibration peaks:")
-
     #Fit known calibration peaks from: 
     #https://www.ezag.com/fileadmin/ezag/user-uploads/isotopes/isotopes/Isotrak/isotrak-pdf/Decay_Schema_Data/Ba-133.pdf
 
     truth_energies = np.array([81.0, 276.40,302.85,356.02,383.85]) #keV
-    peak_lims_guess = [[1275, 1315], [4380, 4450], [4805,4870], [5645,5725], [6090,6170]] #rough guess on peak window
+    peak_lims_guess = [[1280, 1305], [4380, 4450], [4805,4870], [5645,5725], [6090,6170]] #rough guess on peak window
 
     mu_peaks = []
     sigma_peaks = []
@@ -123,42 +121,29 @@ def main():
     with open("calibration_coef.json", "w") as outfile: 
         json.dump(calibration_coef_dict, outfile)
 
-    #Linearly calibrated data:
-    print("")
-    print("Linearly calibrate energy...")
+    # #Linearly calibrated data:
+    # print("")
+    # print("Linearly calibrate energy...")
 
-    calibrated_energy = (key_data-c)/m
+    # #bin_width = 0.5 #0.5 kev = resolution
 
-    bin_width = 0.5 #0.5 kev = resolution
-    no_bins_ideal = int(max(calibrated_energy/bin_width))
-    #print("ideal no bins: ", no_bins_ideal) #=7722
+    # calibrated_energy = (key_data-c)/m
+    # plt.figure()
+    # counts, bins_cal, bars = plt.hist(calibrated_energy, bins=no_bins)
+    # plt.xlabel("Energy (KeV)")
+    # plt.ylabel("Frequency")
+    # plt.xlim(0, 2500)
+    # plt.yscale("log")
+    # plt.savefig("/lfs/l1/legend/users/aalexander/HADES_detchar/Ba133_analysis/plots/calibrated_energy.png") 
 
-    plt.figure()
-    counts, bins_cal, bars = plt.hist(calibrated_energy, bins=no_bins)
-    plt.xlabel("Energy (KeV)")
-    plt.ylabel("Frequency")
-    plt.xlim(0, 2500)
-    plt.yscale("log")
-    plt.savefig("/lfs/l1/legend/users/aalexander/HADES_detchar/Ba133_analysis/plots/calibrated_energy.png") 
-
-    #plot zoomed in
-    plt.figure()
-    ounts, bins_cal, bars = plt.hist(calibrated_energy, bins=100000)
-    plt.xlabel("Energy (KeV)")
-    plt.ylabel("Frequency")
-    plt.yscale("log")
-    plt.xlim(0,450)
-    plt.savefig("/lfs/l1/legend/users/aalexander/HADES_detchar/Ba133_analysis/plots/calibrated_energy_zoom.png") 
-    
-    #__________CALIBRATED___________
-
-
-
-
-    # #Calibrate - use linear calibration coefficients from previous work
-    # m, m_err = 15.786, 0.007
-    # c, c_err = -387.802, 11.591
-
+    # #plot zoomed in
+    # plt.figure()
+    # ounts, bins_cal, bars = plt.hist(calibrated_energy, bins=100000)
+    # plt.xlabel("Energy (KeV)")
+    # plt.ylabel("Frequency")
+    # plt.yscale("log")
+    # plt.xlim(0,450)
+    # plt.savefig("/lfs/l1/legend/users/aalexander/HADES_detchar/Ba133_analysis/plots/calibrated_energy_zoom.png") 
 
 
 def read_all_t2(t2_folder):
@@ -199,11 +184,6 @@ def gaussian(x,a,b,c,d):
     "gaussian function with offset d"
     f = a*np.exp(-((x-b)**2.0/(2.0*c**2.0))) +d
     return f
-
-# def gaussian_cdf_bkg(x,a,b,c,d):
-
-#     gaussian = a*np.exp(-((x-b)**2.0/(2.0*c**2.0))) +d
-#     cdf_bkg = 
 
 def linear_fit(x, m, c):
     "linear function"
@@ -357,7 +337,7 @@ def calibration(data, data_err, truth, fittype):
         plt.legend(loc = 4)
 
         chi_sq, p_value, residuals, dof = chi_sq_calc(xdata, ydata, yerr, "quadratic", popt)
-
+        
         props = dict(boxstyle='round', facecolor='wheat', alpha=0.5)
         info_str = '\n'.join((r'$a = %.3g \pm %.3g$' % (a, a_err, ), r'$b = %.3f \pm %.3f$' % (b, b_err,), r'$c = %.3f \pm %.3f$' % (c, c_err,),  r'$\chi^2/dof=%.0f/%.0f$'%(chi_sq, dof))) #, r'$p = %.3g$'%(p_value)))
         ax.text(0.05, 0.95, info_str, transform=ax.transAxes, fontsize=10,verticalalignment='top', bbox=props)
