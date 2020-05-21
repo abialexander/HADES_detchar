@@ -72,3 +72,11 @@ chisq with errors:
 chisq:  3445.833814647364
 dof:  486
 p:  0.0
+chisq with errors:
+chisq:  3445.833814647364
+dof:  486
+p:  0.0
+chisq with errors:
+chisq:  634.7658873143431
+dof:  201
+p:  0.0
