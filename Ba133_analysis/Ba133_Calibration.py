@@ -12,6 +12,7 @@ from pygama.analysis import histograms
 from pygama.analysis import peak_fitting
 import json
 
+"Script to calibrate Ba spectrum from known peaks and output coefficients into json file"
 
 def main():
 
@@ -25,7 +26,7 @@ def main():
     key = "e_ftp"
     key_data = obtain_key_data(data, keys, key, no_events)
 
-    no_bins = 50000
+    no_bins = 10000 #7722
 
     plt.figure()
     counts, bins, bars = plt.hist(key_data, bins=no_bins)
@@ -40,18 +41,20 @@ def main():
     plt.yscale("log")
     plt.xlabel("e_ftp")
     plt.ylabel("Counts")
-    plt.xlim(0, 7000)
+    plt.xlim(0, 7000) 
     plt.savefig("/lfs/l1/legend/users/aalexander/HADES_detchar/Ba133_analysis/plots/e_ftp_zoom.png")
 
 
     #___________Calibration__________
     print("Calibrating...")
 
+    print("Calibration peaks:")
+
     #Fit known calibration peaks from: 
     #https://www.ezag.com/fileadmin/ezag/user-uploads/isotopes/isotopes/Isotrak/isotrak-pdf/Decay_Schema_Data/Ba-133.pdf
 
     truth_energies = np.array([81.0, 276.40,302.85,356.02,383.85]) #keV
-    peak_lims_guess = [[1280, 1305], [4380, 4450], [4805,4870], [5645,5725], [6090,6170]] #rough guess on peak window
+    peak_lims_guess = [[1275, 1315], [4380, 4450], [4805,4870], [5645,5725], [6090,6170]] #rough guess on peak window
 
     mu_peaks = []
     sigma_peaks = []
@@ -62,7 +65,7 @@ def main():
         truth_str = str(int(truth))
         print("fitting peak: ", truth_str, " keV")
         xmin, xmax = peak_lims_guess[index][0], peak_lims_guess[index][1]
-        print(xmin, " , ", xmax)
+        print("rough peak boundaries: ", xmin, " , ", xmax)
         plt.figure()
         mu, sigma, mu_err, sigma_err = fit_peak(key, bins, counts, xmin, xmax)
         mu_peaks.append(mu)
@@ -70,15 +73,15 @@ def main():
         mu_err_peaks.append(mu_err)
         sigma_err_peaks.append(sigma_err)
         counts, bins, bars = plt.hist(key_data, bins=no_bins, histtype='step', color='grey')
-        plt.xlim(xmin, xmax)
-        plt.title(truth_str+" keV peak")
+        plt.xlim(xmin, xmax)        
+        plt.ylim(10, 10**6)
+        plt.title(truth_str+" keV peak [Uncalibrated]")
         plt.yscale("log")
         plt.savefig("/lfs/l1/legend/users/aalexander/HADES_detchar/Ba133_analysis/plots/"+truth_str+"keV_peak_uncal.png")
 
-
     #Plot calibration curves:
     print("")
-    print("Construct calibration curve...")
+    print("Constructing calibration curve...")
     calibration_data, calibration_data_err = np.array(mu_peaks), np.array(mu_err_peaks)
     plt.figure()
     m, c, m_err, c_err, chi_sq, p_value, residuals, dof = calibration(calibration_data, calibration_data_err, truth_energies, fittype="linear_fit")
@@ -87,7 +90,7 @@ def main():
         plt.annotate(truth_str, (x,y), textcoords="offset points", xytext=(-5,5), ha='center') # horizontal alignment can be left, right or center
     plt.savefig("/lfs/l1/legend/users/aalexander/HADES_detchar/Ba133_analysis/plots/calibration_curve_linear.png")
 
-    #plot residuals
+    #plot linear residuals
     plt.figure()
     residuals_err = [1.0]*len(residuals) #error on residuals is 1 by definition
     plt.errorbar(truth_energies, residuals, yerr = residuals_err, fmt ='bo') #, ms = 1.0, mew = 3.0)
@@ -100,7 +103,6 @@ def main():
     plt.axhline(linewidth=2, color='black', dashes = (5,2,1,2))
     plt.savefig("/lfs/l1/legend/users/aalexander/HADES_detchar/Ba133_analysis/plots/calibration_residuals.png")
 
-
     #try non-linear calibration
     plt.figure()
     a, b, c_quad, a_err, b_err, c_quad_err, chi_sq, p_value, residuals, dof = calibration(calibration_data, calibration_data_err, truth_energies, fittype="quadratic_fit")
@@ -108,8 +110,6 @@ def main():
         truth_str = str(int(x))
         plt.annotate(truth_str, (x,y), textcoords="offset points", xytext=(-5,5), ha='center') 
     plt.savefig("/lfs/l1/legend/users/aalexander/HADES_detchar/Ba133_analysis/plots/calibration_curve_quadratic.png")
-
-
 
     #Save calibration coefficients to json file
     calibration_coef_dict = {
@@ -121,30 +121,106 @@ def main():
     with open("calibration_coef.json", "w") as outfile: 
         json.dump(calibration_coef_dict, outfile)
 
-    # #Linearly calibrated data:
+
+    # #__________Old Resolution Plot__________
     # print("")
-    # print("Linearly calibrate energy...")
+    # print("Constructing old resolution plot...") #incorrect for some reason
 
-    # #bin_width = 0.5 #0.5 kev = resolution
+    # energies, energies_err = (np.array(mu_peaks)-c)/m, (np.array(mu_err_peaks))/m #error propagation - differentiate, so dont use -c
+    # sigmas, sigmas_err = (np.array(sigma_peaks)-c)/m, (np.array(sigma_err_peaks))/m
+    # FWHM, FWHM_err = 2*np.sqrt(2*np.log(2))*(np.array(sigmas)), 2*np.sqrt(2*np.log(2))*(np.array(sigmas_err)) #~2.35*sigma
+    # print("energies: ", energies)
+    # print("energies err: ", energies_err)
+    # print("FWHM: ", FWHM)
+    # print("FWHM ERR: ", FWHM_err)
 
-    # calibrated_energy = (key_data-c)/m
-    # plt.figure()
-    # counts, bins_cal, bars = plt.hist(calibrated_energy, bins=no_bins)
-    # plt.xlabel("Energy (KeV)")
-    # plt.ylabel("Frequency")
-    # plt.xlim(0, 2500)
-    # plt.yscale("log")
-    # plt.savefig("/lfs/l1/legend/users/aalexander/HADES_detchar/Ba133_analysis/plots/calibrated_energy.png") 
+    # A, offset, A_err, offset_err, chi_sq, p_value, residuals, dof = resolution_plot(energies, energies_err, FWHM, FWHM_err)
 
-    # #plot zoomed in
-    # plt.figure()
-    # ounts, bins_cal, bars = plt.hist(calibrated_energy, bins=100000)
-    # plt.xlabel("Energy (KeV)")
-    # plt.ylabel("Frequency")
-    # plt.yscale("log")
-    # plt.xlim(0,450)
-    # plt.savefig("/lfs/l1/legend/users/aalexander/HADES_detchar/Ba133_analysis/plots/calibrated_energy_zoom.png") 
+    # for x, y in zip(energies, FWHM):
+    #     index = np.where(energies == x)[0][0]
+    #     truth_str = str(int(truth_energies[index]))
+    #     plt.annotate(truth_str, (x,y), textcoords="offset points", xytext=(-10,5), ha='center') # horizontal alignment can be left, right or center
+    # plt.savefig("/lfs/l1/legend/users/aalexander/HADES_detchar/Ba133_analysis/plots/resolution_plot_old.png")
 
+    plt.close('all') #Cant keep more than 20 figures open
+
+    #_________Replot calibrated spectra and peaks_________
+
+    #Linearly calibrated data:
+    print("")
+    print("Linearly calibrating energy...")
+
+    calibrated_energy = (key_data-c)/m
+
+    #bin_width = 0.5 #0.5 kev = resolution #plt.hist(data, bins=np.arange(min(data), max(data) + binwidth, binwidth))
+    #no_bins_ideal = int(max(calibrated_energy/bin_width))
+    #print("ideal no bins: ", no_bins_ideal) #=7722
+
+    plt.figure()
+    counts, bins_cal, bars = plt.hist(calibrated_energy, bins=no_bins)
+    plt.xlabel("Energy (KeV)")
+    plt.ylabel("Counts")
+    plt.xlim(0, 2500)
+    plt.yscale("log")
+    plt.savefig("/lfs/l1/legend/users/aalexander/HADES_detchar/Ba133_analysis/plots/calibrated_energy.png") 
+
+    #plot zoomed in
+    plt.figure()
+    counts, bins_cal, bars = plt.hist(calibrated_energy, bins=no_bins)
+    plt.xlabel("Energy (KeV)")
+    plt.ylabel("Counts")
+    plt.yscale("log")
+    plt.xlim(0,450)
+    plt.savefig("/lfs/l1/legend/users/aalexander/HADES_detchar/Ba133_analysis/plots/calibrated_energy_zoom.png") 
+
+    print("")
+    print("Replotting calibrated spectra and peaks...")
+
+    #truth_energies = np.array([81.0, 276.40,302.85,356.02,383.85]) #keV
+    #peak_lims_guess_cal = (np.array(peak_lims_guess)-c)/m #[[1275, 1315], [4380, 4450], [4805,4870], [5645,5725], [6090,6170]] #rough guess on peak window
+
+    mu_cal_peaks = []
+    sigma_cal_peaks = []
+    mu_err_cal_peaks = []
+    sigma_err_cal_peaks = []
+
+    for index, truth in enumerate(truth_energies):        
+        truth_str = str(int(truth))
+        print("fitting calibrated peak: ", truth_str, " keV")
+        xmin, xmax = (peak_lims_guess[index][0]-c)/m, (peak_lims_guess[index][1]-c)/m
+        print("rough peak boundaries: ", xmin, " , ", xmax)
+        plt.figure()
+        mu, sigma, mu_err, sigma_err = fit_peak("Energy (keV)", bins_cal, counts, xmin, xmax)
+        mu_cal_peaks.append(mu)
+        sigma_cal_peaks.append(sigma)
+        mu_err_cal_peaks.append(mu_err)
+        sigma_err_cal_peaks.append(sigma_err)
+        counts, bins, bars = plt.hist(calibrated_energy, bins=no_bins, histtype='step', color='grey')
+        plt.xlim(xmin, xmax)
+        plt.ylim(10, 10**6)
+        plt.title(truth_str+" keV peak [Calibrated]")
+        plt.yscale("log")
+        plt.savefig("/lfs/l1/legend/users/aalexander/HADES_detchar/Ba133_analysis/plots/"+truth_str+"keV_peak.png")
+
+
+    #______Correct resolution plot_______
+    print("")
+    print("Constructing calibrated resolution plot...")
+
+    energies, energies_err = mu_cal_peaks, mu_err_cal_peaks
+    FWHM, FWHM_err = 2*np.sqrt(2*np.log(2))*(np.array(sigma_cal_peaks)), 2*np.sqrt(2*np.log(2))*(np.array(sigma_err_cal_peaks))
+    A, offset, A_err, offset_err, chi_sq, p_value, residuals, dof = resolution_plot(energies, energies_err, FWHM, FWHM_err)
+
+    for x, y in zip(energies, FWHM):
+        index = np.where(energies == x)[0][0]
+        truth_str = str(int(truth_energies[index]))
+        plt.annotate(truth_str, (x,y), textcoords="offset points", xytext=(-10,5), ha='center') # horizontal alignment can be left, right or center
+    plt.savefig("/lfs/l1/legend/users/aalexander/HADES_detchar/Ba133_analysis/plots/resolution_plot.png")
+
+
+    #calculate estimated resolution at qbb=2039keV
+    resolution_qbb_est = A*np.sqrt(2039 + offset)
+    print("Estimated resolution at qbb=2039 keV: ", resolution_qbb_est, " keV") #=1.87 keV, legend target = 2-3kev
 
 def read_all_t2(t2_folder):
     "get data from all tier2 files from same run within a directory"
@@ -197,7 +273,7 @@ def quadratic_fit(x,a,b,c):
 
 def sqrt_curve(x,a,c):
     "square root function with offset"
-    f = a*np.sqrt(x) +c
+    f = a*np.sqrt(x + c)
     return f
 
 def chi_sq_calc(xdata, ydata, yerr, fittype, popt):
@@ -277,7 +353,7 @@ def fit_peak(key, bins, counts, xmin, xmax): #p_guess):
     mu_err, sigma_err = np.sqrt(pcov[1][1]), np.sqrt(pcov[2][2])
     
     fig, ax = plt.subplots()
-    ax.errorbar(xdata, ydata, xerr=0, yerr =yerr, label = "Data", elinewidth = 1, fmt='x', ms = 0.75, mew = 3.0)
+    ax.errorbar(xdata, ydata, xerr=0, yerr =yerr, label = "Data", elinewidth = 1, fmt='bo', ms = 1.25, mew = 3.0)
     xfit = np.linspace(min(xdata), max(xdata), 1000)
     plt.plot(xfit, gaussian(xfit,*popt), "g", label = "Gaussian fit")
     plt.xlabel(key)
@@ -337,12 +413,45 @@ def calibration(data, data_err, truth, fittype):
         plt.legend(loc = 4)
 
         chi_sq, p_value, residuals, dof = chi_sq_calc(xdata, ydata, yerr, "quadratic", popt)
-        
+
         props = dict(boxstyle='round', facecolor='wheat', alpha=0.5)
         info_str = '\n'.join((r'$a = %.3g \pm %.3g$' % (a, a_err, ), r'$b = %.3f \pm %.3f$' % (b, b_err,), r'$c = %.3f \pm %.3f$' % (c, c_err,),  r'$\chi^2/dof=%.0f/%.0f$'%(chi_sq, dof))) #, r'$p = %.3g$'%(p_value)))
         ax.text(0.05, 0.95, info_str, transform=ax.transAxes, fontsize=10,verticalalignment='top', bbox=props)
 
         return a, b, c, a_err, b_err, c_err, chi_sq, p_value, residuals, dof
+
+
+def resolution_plot(energies, energies_err, FWHM, FWHM_err):
+    "Construct and fit resolution plot, x=energies, y =FWHM"
+    
+    Aguess = max(FWHM) - min(FWHM)
+    offset_guess = 0
+    p_guess = [Aguess, offset_guess]
+    bounds=(0, [np.inf, np.inf])
+    sigma = []
+    for index, i in enumerate(FWHM_err):    
+        if i != 0:
+            sigma.append(FWHM_err[index])
+        else:
+            sigma.append(1) #just to prevent errors...
+    sigma = np.array(sigma)
+    popt, pcov = optimize.curve_fit(sqrt_curve, energies, FWHM, p0=p_guess, sigma = sigma, maxfev = 1000000, method ="trf", bounds = bounds)
+    A, offset = popt[0], popt[1] #must be positive
+    A_err, offset_err = np.sqrt(pcov[0][0]), np.sqrt(pcov[1][1])
+
+    fig, ax = plt.subplots()
+    ax.errorbar(energies, FWHM, xerr=energies_err, yerr = FWHM_err, label = "Data", fmt='o') #, elinewidth = 1, fmt='x', ms = 1.5, mew = 4.0)
+    xfit = np.linspace(min(energies), max(energies), 1000)
+    plt.plot(xfit, sqrt_curve(xfit,*popt), "g", label = "$A*\sqrt{x +c}$ fit")
+    plt.xlabel("Energy (keV)")
+    plt.ylabel("FWHM (keV)")
+    plt.legend()
+    chi_sq, p_value, residuals, dof = chi_sq_calc(energies, FWHM, FWHM_err, "sqrt", popt)
+    props = dict(boxstyle='round', facecolor='wheat', alpha=0.5)
+    info_str = '\n'.join((r'$A=%.3f \pm %.3f$' % (A, A_err, ), r'$c=%.3f \pm %.3f$' % (offset, offset_err,), r'$\chi^2/dof=%.0f/%.0f$'%(chi_sq, dof))) #, r'$p=%.3g$'%p_value))
+    ax.text(0.70, 0.20, info_str, transform=ax.transAxes, fontsize=10,verticalalignment='top', bbox=props)
+
+    return A, offset, A_err, offset_err, chi_sq, p_value, residuals, dof
 
 
 if __name__ =="__main__":

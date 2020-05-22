@@ -143,7 +143,7 @@ def main():
 
     #plot zoomed in
     plt.figure()
-    ounts, bins_cal, bars = plt.hist(calibrated_energy, bins=100000)
+    counts, bins_cal, bars = plt.hist(calibrated_energy, bins=100000)
     plt.xlabel("Energy (KeV)")
     plt.ylabel("Frequency")
     plt.yscale("log")
