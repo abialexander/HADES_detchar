@@ -15,8 +15,9 @@ import json
 
 def main():
 
-    #read tier 2 runs for Ba data - I02160A
-    t2_folder = "/lfs/l1/legend/detector_char/enr/hades/char_data/I02160A/tier2/ba_HS4_top_dlt/pygama/"
+    #read tier 2 runs for Ba data
+    detector = "I02160A"
+    t2_folder = "/lfs/l1/legend/detector_char/enr/hades/char_data/"+detector+"/tier2/ba_HS4_top_dlt/pygama/"
     keys, data = read_all_t2(t2_folder)
 
     no_events = data.size #all events
@@ -25,7 +26,7 @@ def main():
     key = "e_ftp"
     key_data = obtain_key_data(data, keys, key, no_events)
 
-    no_bins = 10000 #7722
+    no_bins = 10000 #7722=ideal number for 0.5 kev bin width
 
     #Linearly calibrated data:
     print("")
@@ -41,23 +42,15 @@ def main():
     print("m: ", m, " , c: ", c)
 
     calibrated_energy = (key_data-c)/m
-
-    plt.figure()
     counts, bins_cal, bars = plt.hist(calibrated_energy, bins=no_bins)
-    plt.xlabel("Energy (KeV)")
-    plt.ylabel("Frequency")
-    plt.xlim(0, 2500)
-    plt.yscale("log")
-    plt.savefig("/lfs/l1/legend/users/aalexander/HADES_detchar/Ba133_analysis/plots/calibrated_energy.png") 
+    plt.close("all")
 
-    #plot zoomed in
-    plt.figure()
-    ounts, bins_cal, bars = plt.hist(calibrated_energy, bins=100000)
-    plt.xlabel("Energy (KeV)")
-    plt.ylabel("Frequency")
-    plt.yscale("log")
-    plt.xlim(0,450)
-    plt.savefig("/lfs/l1/legend/users/aalexander/HADES_detchar/Ba133_analysis/plots/calibrated_energy_zoom.png") 
+    #_________Construct dlt observable________
+    print("")
+    print("Constructing Ba133 dead layer observable...")
+
+
+
     
 
 def read_all_t2(t2_folder):
@@ -90,7 +83,16 @@ def gaussian(x,a,b,c,d):
     f = a*np.exp(-((x-b)**2.0/(2.0*c**2.0))) +d
     return f
 
-# def gaussian_cdf_bkg(x,a,b,c,d):
+def gaussian_cdf(x,e,f,g):
+    "gaussian cdf function"
+    f = g*stats.norm.cdf(x, e, f) #default e=0=mean/loc, f=1=sigma/scale
+    return f
+
+def gaussian_and_bkg(x, a, b, c, d, e, f):
+    "fit function for 356kev peak"
+    f = gaussian(x, a, b, c, d) + gaussian_cdf(x, e, f, g)
+    return f
+
 
 #     gaussian = a*np.exp(-((x-b)**2.0/(2.0*c**2.0))) +d
 #     cdf_bkg = 

@@ -16,8 +16,9 @@ import json
 
 def main():
 
-    #read tier 2 runs for Ba data - I02160A
-    t2_folder = "/lfs/l1/legend/detector_char/enr/hades/char_data/I02160A/tier2/ba_HS4_top_dlt/pygama/"
+    #read tier 2 runs for Ba data
+    detector = "I02160A"
+    t2_folder = "/lfs/l1/legend/detector_char/enr/hades/char_data/"+detector+"/tier2/ba_HS4_top_dlt/pygama/"
     keys, data = read_all_t2(t2_folder)
 
     no_events = data.size #all events
