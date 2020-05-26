@@ -316,7 +316,7 @@ def chi_sq_calc(xdata, ydata, yerr, fittype, popt):
 
 
 def fit_peak(key, bins, counts, xmin, xmax): #p_guess):
-    "fit a gaussian to a peak and return mean and FWHM range"
+    "fit a gaussian to a peak and return fit parameters"
 
     no_bins = bins.size 
 

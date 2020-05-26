@@ -19,6 +19,9 @@ def main():
     detector = "I02160A"
     t2_folder = "/lfs/l1/legend/detector_char/enr/hades/char_data/"+detector+"/tier2/ba_HS4_top_dlt/pygama/"
     keys, data = read_all_t2(t2_folder)
+    print("Available keys: " ,keys)
+
+
 
     no_events = data.size #all events
     print("No. events: ", no_events)
@@ -49,6 +52,20 @@ def main():
     print("")
     print("Constructing Ba133 dead layer observable...")
 
+    xmin_356, xmax_356 = 352, 362 #kev
+    plt.figure()
+    popt, pcov, xfit = fit_peak_356("Energy (keV)", bins_cal, counts, xmin_356, xmax_356)
+    counts, bins, bars = plt.hist(calibrated_energy, bins=no_bins, histtype='step', color='grey')
+    plt.xlim(xmin_356, xmax_356) 
+    plt.ylim(100, 10**6)
+    # plt.yscale('log')
+    # plt.savefig("/lfs/l1/legend/users/aalexander/HADES_detchar/Ba133_analysis/plots/356keV_dlt.png")
+
+    # plt.figure()
+    plt.plot(xfit, -1*popt[1]*gaussian_cdf(xfit,popt[6],popt[7]) + popt[2], "r--", label ="-b*gauss_cdf(x,g,h) + c")
+    plt.yscale("log")
+    plt.savefig("/lfs/l1/legend/users/aalexander/HADES_detchar/Ba133_analysis/plots/356keV_dlt.png")
+
 
 
     
@@ -64,6 +81,9 @@ def read_all_t2(t2_folder):
         file_list.append(df)
     
     df_total = pd.concat(file_list, axis=0, ignore_index=True)
+
+    #print(df_total['data']['e_ftp']) #this doesnt work
+
     keys = df_total.keys()
     data = df_total.to_numpy()
 
@@ -78,24 +98,20 @@ def obtain_key_data(data, keys, key, no_events):
 
     return key_data
 
-def gaussian(x,a,b,c,d):
-    "gaussian function with offset d"
-    f = a*np.exp(-((x-b)**2.0/(2.0*c**2.0))) +d
+def gaussian(x,a,b,c):
+    "gaussian function without offset"
+    f = a*np.exp(-((x-b)**2.0/(2.0*c**2.0)))
     return f
 
-def gaussian_cdf(x,e,f,g):
+def gaussian_cdf(x,a,b):
     "gaussian cdf function"
-    f = g*stats.norm.cdf(x, e, f) #default e=0=mean/loc, f=1=sigma/scale
+    f = stats.norm.cdf(x, a, b) #default e=0=mean/loc, f=1=sigma/scale
     return f
 
-def gaussian_and_bkg(x, a, b, c, d, e, f):
+def gaussian_and_bkg(x, a, b, c, d, e, f, g, h):
     "fit function for 356kev peak"
-    f = gaussian(x, a, b, c, d) + gaussian_cdf(x, e, f, g)
+    f = a*gaussian(x, d, e, f) - b*gaussian_cdf(x, g, h) + c
     return f
-
-
-#     gaussian = a*np.exp(-((x-b)**2.0/(2.0*c**2.0))) +d
-#     cdf_bkg = 
 
 def linear_fit(x, m, c):
     "linear function"
@@ -128,6 +144,8 @@ def chi_sq_calc(xdata, ydata, yerr, fittype, popt):
             y_exp_i = quadratic_fit(x_obs, *popt)
         if fittype == "sqrt":
             y_exp_i = sqrt_curve(x_obs, *popt)
+        if fittype == "gaussian_and_bkg":
+            y_exp_i = gaussian_and_bkg(x_obs, *popt)
         y_exp.append(y_exp_i)
 
     #chi_sq, p_value = stats.chisquare(y_obs, y_exp)#this is without errors
@@ -149,16 +167,15 @@ def chi_sq_calc(xdata, ydata, yerr, fittype, popt):
 
     return chi_sq, p_value, residuals, dof
 
-
-def fit_peak(key, bins, counts, xmin, xmax): #p_guess):
-    "fit a gaussian to a peak and return mean and FWHM range"
+def fit_peak_356(key, bins, counts, xmin, xmax):
+    "fit the 356 keV peak with gaussian +cdf bkg"
 
     no_bins = bins.size 
 
     xdata = []
     ydata = []
     for bin in bins:
-        bin_centre = bin + 0.5*(max(bins)-(min(bins)))/no_bins #this leads to incorrect indexing so leave out for now
+        bin_centre = bin + 0.5*(max(bins)-(min(bins)))/no_bins 
         if bin_centre < xmax and bin_centre > xmin:
             xdata.append(bin_centre)
             bin_index = np.where(bins == bin)[0][0]
@@ -169,14 +186,24 @@ def fit_peak(key, bins, counts, xmin, xmax): #p_guess):
 
     yerr = np.sqrt(ydata) #counting error
 
-    #initial rough guess of gaussian params
-    aguess = max(ydata) - min(ydata)
+    #initial rough guess of params
+    aguess = max(ydata) - min(ydata) #gauss amplitude
     aguess_index = np.where(ydata == max(ydata))[0][0]
-    bguess = xdata[aguess_index]
-    cguess = (xmax-xmin)/2
-    dguess = min(ydata)
-    p_guess = [aguess, bguess, cguess, dguess]
-    bounds=(0, [np.inf, np.inf, np.inf, np.inf])
+    bguess = min(ydata)/100 #cdf amp
+    cguess = 0 #min(ydata) #offset
+    dguess = 1 #intrinsic gauss amp
+    eguess = xdata[aguess_index] #gauss mean
+    fguess = 1 #gauss sigma
+    gguess = eguess #cdf mean
+    hguess = 1 #fguess #cdf sigma
+    # bguess = xdata[aguess_index] #gauss mean
+    # cguess = (xmax-xmin)/2 #gauss sigma
+    # dguess = min(ydata) #offset
+    # eguess = bguess #cdf mean
+    # fguess = cguess #cdf sigma
+    # gguess = aguess/100 #cdf amplitude
+    p_guess = [aguess, bguess, cguess, dguess, eguess, fguess, gguess, hguess]
+    #bounds=([0, 0, -np.inf, 0, 0, 0, 0, 0], [np.inf]*8)
     sigma = []
     for index, i in enumerate(yerr):    
         if i != 0:
@@ -184,28 +211,27 @@ def fit_peak(key, bins, counts, xmin, xmax): #p_guess):
         else:
             sigma.append(1) #just to prevent errors...
     sigma = np.array(sigma)
-    popt, pcov = optimize.curve_fit(gaussian, xdata, ydata, p0=p_guess, sigma = sigma, maxfev = 1000000, method ="trf", bounds = bounds)
-    mu, sigma = np.abs(popt[1]), np.abs(popt[2]) #must be positive
-    mu_err, sigma_err = np.sqrt(pcov[1][1]), np.sqrt(pcov[2][2])
+    popt, pcov = optimize.curve_fit(gaussian_and_bkg, xdata, ydata, p0=p_guess, sigma = sigma, maxfev = 1000000, method ="trf") #, bounds = bounds)
     
+    a,b,c,d,e,f,g,h = popt[0],popt[1],[2],popt[3],popt[4],popt[5],popt[6],popt[7] 
+
     fig, ax = plt.subplots()
-    ax.errorbar(xdata, ydata, xerr=0, yerr =yerr, label = "Data", elinewidth = 1, fmt='x', ms = 0.75, mew = 3.0)
+    #ax.errorbar(xdata, ydata, xerr=0, yerr =yerr, label = "Data", elinewidth = 1, fmt='x', ms = 0.75, mew = 3.0)
+    plt.errorbar(xdata, ydata, xerr=0, yerr =yerr, label = "Data", elinewidth = 1, fmt='x', ms = 0.75, mew = 3.0)
     xfit = np.linspace(min(xdata), max(xdata), 1000)
-    plt.plot(xfit, gaussian(xfit,*popt), "g", label = "Gaussian fit")
+    plt.plot(xfit, gaussian_and_bkg(xfit,*popt), "g", label = "a*gauss(x,d,e,f) - b*gauss_cdf(x,g,h) + c") 
+    plt.plot(xfit, -1*b*gaussian_cdf(xfit,g,h) + c, "r--", label ="-b*gauss_cdf(x,g,h) + c")
     plt.xlabel(key)
     plt.ylabel("Counts")
-    plt.legend()
+    plt.legend(loc="upper right", fontsize=8)
 
-    chi_sq, p_value, residuals, dof = chi_sq_calc(xdata, ydata, yerr, "gaussian", popt)
+    chi_sq, p_value, residuals, dof = chi_sq_calc(xdata, ydata, yerr, "gaussian_and_bkg", popt)
 
     props = dict(boxstyle='round', facecolor='wheat', alpha=0.5)
-    info_str = '\n'.join((r'$\mu=%.2f \pm %.2f$' % (mu, mu_err, ), r'$\sigma=%.2f \pm %.2f$' % (np.abs(sigma), sigma_err,), r'$\chi^2/dof=%.2f/%.0f$'%(chi_sq, dof))) #, r'$p=%.3g$'%p_value))
-    ax.text(0.70, 0.20, info_str, transform=ax.transAxes, fontsize=10,verticalalignment='top', bbox=props)
+    info_str = '\n'.join((r'$a=%.3g \pm %.3g$' % (popt[0], np.sqrt(pcov[0][0])), r'$b=%.3g \pm %.3g$' % (popt[1], np.sqrt(pcov[1][1])), r'$c=%.3g \pm %.3g$' % (popt[2], np.sqrt(pcov[2][2])), r'$d=%.3g \pm %.3g$' % (popt[3], np.sqrt(pcov[3][3])), r'$e=%.3g \pm %.3g$' % (popt[4], np.sqrt(pcov[4][4])), r'$f=%.3g \pm %.3g$' % (popt[5], np.sqrt(pcov[5][5])),r'$g=%.3g \pm %.3g$' % (popt[6], np.sqrt(pcov[6][6])), r'$h=%.3g \pm %.3g$' % (popt[7], np.sqrt(pcov[7][7])), r'$\chi^2/dof=%.2f/%.0f$'%(chi_sq, dof)))
+    plt.text(0.02, 0.98, info_str, transform=ax.transAxes, fontsize=8,verticalalignment='top', bbox=props) #ax.text..ax.tra
 
-    FWHM = 2*np.sqrt(2*np.log(2))*sigma #gaussian FWHM relationship
-    peak_range = [mu-FWHM, mu+FWHM]
-
-    return mu, sigma, mu_err, sigma_err
+    return popt, pcov, xfit
 
 
 if __name__ =="__main__":
