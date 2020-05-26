@@ -52,7 +52,7 @@ def main():
     print("")
     print("Constructing Ba133 dead layer observable...")
 
-    xmin_356, xmax_356 = 352, 362 #kev
+    xmin_356, xmax_356 = 353, 360 #kev
     plt.figure()
     popt, pcov, xfit = fit_peak_356("Energy (keV)", bins_cal, counts, xmin_356, xmax_356)
     counts, bins, bars = plt.hist(calibrated_energy, bins=no_bins, histtype='step', color='grey')
@@ -62,7 +62,7 @@ def main():
     # plt.savefig("/lfs/l1/legend/users/aalexander/HADES_detchar/Ba133_analysis/plots/356keV_dlt.png")
 
     # plt.figure()
-    plt.plot(xfit, -1*popt[1]*gaussian_cdf(xfit,popt[6],popt[7]) + popt[2], "r--", label ="-b*gauss_cdf(x,g,h) + c")
+    plt.plot(xfit, -1*popt[1]*gaussian_cdf(xfit,popt[6],popt[7]) + popt[2], "r--", label ="-b*gauss_cdf(x,g,h) + c (bkg)")
     plt.yscale("log")
     plt.savefig("/lfs/l1/legend/users/aalexander/HADES_detchar/Ba133_analysis/plots/356keV_dlt.png")
 
