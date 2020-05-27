@@ -51,22 +51,47 @@ def main():
     #_________Construct dlt observable________
     print("")
     print("Constructing Ba133 dead layer observable...")
+    print("356 peak:")
 
+
+    #fit peak with gaussian and cdf
     xmin_356, xmax_356 = 353, 360 #kev
     plt.figure()
     popt, pcov, xfit = fit_peak_356("Energy (keV)", bins_cal, counts, xmin_356, xmax_356)
+    a,b,c,d,e,f,g,h = popt[0],popt[1],[2],popt[3],popt[4],popt[5],popt[6],popt[7] 
     counts, bins, bars = plt.hist(calibrated_energy, bins=no_bins, histtype='step', color='grey')
     plt.xlim(xmin_356, xmax_356) 
     plt.ylim(100, 10**6)
-    # plt.yscale('log')
-    # plt.savefig("/lfs/l1/legend/users/aalexander/HADES_detchar/Ba133_analysis/plots/356keV_dlt.png")
-
-    # plt.figure()
-    plt.plot(xfit, -1*popt[1]*gaussian_cdf(xfit,popt[6],popt[7]) + popt[2], "r--", label ="-b*gauss_cdf(x,g,h) + c (bkg)")
+    plt.plot(xfit, -1*popt[1]*gaussian_cdf(xfit,popt[6],popt[7]) + popt[2], "r--", label ="-b*gauss_cdf(x,g,h) + c")
     plt.yscale("log")
     plt.savefig("/lfs/l1/legend/users/aalexander/HADES_detchar/Ba133_analysis/plots/356keV_dlt.png")
 
 
+    #plot signal only and calculate integral
+    fig, ax = plt.subplots()
+    ax.plot(xfit, a*gaussian(xfit, d, e, f), "b--", label ="a*gauss(x,e,f)")
+    plt.yscale("log")
+    integral = gauss_count(a*d, e, f)
+    print("gauss count: ", integral)
+    plt.xlim(xmin_356, xmax_356) 
+    plt.xlabel("Energy (keV)")
+    plt.ylabel("Counts")
+    plt.legend(loc="upper right", fontsize=9)
+    props = dict(boxstyle='round', facecolor='wheat', alpha=0.5)
+    info_str = r'$C_{356} = %.3g$' % (integral)
+    plt.text(0.02, 0.07, info_str, transform=ax.transAxes, fontsize=9,verticalalignment='top', bbox=props) #ax.text
+    plt.savefig("/lfs/l1/legend/users/aalexander/HADES_detchar/Ba133_analysis/plots/356keV_dlt_signalonly.png")
+
+
+    #try other fits - constrained cdf - doesnt work?
+    plt.figure()
+    popt, pcov, xfit = fit_peak_356_2("Energy (keV)", bins_cal, counts, xmin_356, xmax_356)
+    counts, bins, bars = plt.hist(calibrated_energy, bins=no_bins, histtype='step', color='grey')
+    plt.xlim(xmin_356, xmax_356) 
+    plt.ylim(100, 10**6)
+    plt.plot(xfit, -1*popt[1]*gaussian_cdf(xfit,popt[4],popt[5]) + popt[2], "r--", label ="-b*gauss_cdf(x,e,f) + c")
+    plt.yscale("log")
+    plt.savefig("/lfs/l1/legend/users/aalexander/HADES_detchar/Ba133_analysis/plots/356keV_dlt_2.png")
 
     
 
@@ -113,6 +138,11 @@ def gaussian_and_bkg(x, a, b, c, d, e, f, g, h):
     f = a*gaussian(x, d, e, f) - b*gaussian_cdf(x, g, h) + c
     return f
 
+def gaussian_and_bkg_2(x, a, b, c, d, e, f):
+    "fit function for 356kev peak - cdf fixed to same params as gaussian"
+    f = a*gaussian(x, d, e, f) - b*gaussian_cdf(x, e, f) + c
+    return f
+
 def linear_fit(x, m, c):
     "linear function"
     f = m*x + c
@@ -146,6 +176,8 @@ def chi_sq_calc(xdata, ydata, yerr, fittype, popt):
             y_exp_i = sqrt_curve(x_obs, *popt)
         if fittype == "gaussian_and_bkg":
             y_exp_i = gaussian_and_bkg(x_obs, *popt)
+        if fittype == "gaussian_and_bkg_2":
+            y_exp_i = gaussian_and_bkg_2(x_obs, *popt)
         y_exp.append(y_exp_i)
 
     #chi_sq, p_value = stats.chisquare(y_obs, y_exp)#this is without errors
@@ -166,6 +198,11 @@ def chi_sq_calc(xdata, ydata, yerr, fittype, popt):
     p_value = 1-stats.chi2.cdf(chi_sq, dof)
 
     return chi_sq, p_value, residuals, dof
+
+def gauss_count(a,b,c):
+    "count/integrate gaussian from -inf to plus inf"
+    integral = a*c*np.sqrt(2*np.pi)
+    return integral
 
 def fit_peak_356(key, bins, counts, xmin, xmax):
     "fit the 356 keV peak with gaussian +cdf bkg"
@@ -196,12 +233,6 @@ def fit_peak_356(key, bins, counts, xmin, xmax):
     fguess = 1 #gauss sigma
     gguess = eguess #cdf mean
     hguess = 1 #fguess #cdf sigma
-    # bguess = xdata[aguess_index] #gauss mean
-    # cguess = (xmax-xmin)/2 #gauss sigma
-    # dguess = min(ydata) #offset
-    # eguess = bguess #cdf mean
-    # fguess = cguess #cdf sigma
-    # gguess = aguess/100 #cdf amplitude
     p_guess = [aguess, bguess, cguess, dguess, eguess, fguess, gguess, hguess]
     #bounds=([0, 0, -np.inf, 0, 0, 0, 0, 0], [np.inf]*8)
     sigma = []
@@ -229,6 +260,65 @@ def fit_peak_356(key, bins, counts, xmin, xmax):
 
     props = dict(boxstyle='round', facecolor='wheat', alpha=0.5)
     info_str = '\n'.join((r'$a=%.3g \pm %.3g$' % (popt[0], np.sqrt(pcov[0][0])), r'$b=%.3g \pm %.3g$' % (popt[1], np.sqrt(pcov[1][1])), r'$c=%.3g \pm %.3g$' % (popt[2], np.sqrt(pcov[2][2])), r'$d=%.3g \pm %.3g$' % (popt[3], np.sqrt(pcov[3][3])), r'$e=%.3g \pm %.3g$' % (popt[4], np.sqrt(pcov[4][4])), r'$f=%.3g \pm %.3g$' % (popt[5], np.sqrt(pcov[5][5])),r'$g=%.3g \pm %.3g$' % (popt[6], np.sqrt(pcov[6][6])), r'$h=%.3g \pm %.3g$' % (popt[7], np.sqrt(pcov[7][7])), r'$\chi^2/dof=%.2f/%.0f$'%(chi_sq, dof)))
+    plt.text(0.02, 0.98, info_str, transform=ax.transAxes, fontsize=8,verticalalignment='top', bbox=props) #ax.text..ax.tra
+
+    return popt, pcov, xfit
+
+
+def fit_peak_356_2(key, bins, counts, xmin, xmax):
+    "fit the 356 keV peak with gaussian +cdf bkg"
+
+    no_bins = bins.size 
+
+    xdata = []
+    ydata = []
+    for bin in bins:
+        bin_centre = bin + 0.5*(max(bins)-(min(bins)))/no_bins 
+        if bin_centre < xmax and bin_centre > xmin:
+            xdata.append(bin_centre)
+            bin_index = np.where(bins == bin)[0][0]
+            ydata.append(counts[bin_index])
+
+    xdata = np.array(xdata)
+    ydata = np.array(ydata)     
+
+    yerr = np.sqrt(ydata) #counting error
+
+    #initial rough guess of params
+    aguess = max(ydata) - min(ydata) #gauss amplitude
+    aguess_index = np.where(ydata == max(ydata))[0][0]
+    bguess = min(ydata)/100 #cdf amp
+    cguess = 0 #min(ydata) #offset
+    dguess = 1 #intrinsic gauss amp
+    eguess = xdata[aguess_index] #gauss mean
+    fguess = 1 #gauss sigma
+    p_guess = [aguess, bguess, cguess, dguess, eguess, fguess]
+    #bounds=([0, 0, -np.inf, 0, 0, 0, 0, 0], [np.inf]*6)
+    sigma = []
+    for index, i in enumerate(yerr):    
+        if i != 0:
+            sigma.append(yerr[index])
+        else:
+            sigma.append(1) #just to prevent errors...
+    sigma = np.array(sigma)
+    popt, pcov = optimize.curve_fit(gaussian_and_bkg_2, xdata, ydata, p0=p_guess, sigma = sigma, maxfev = 1000000, method ="trf") #, bounds = bounds)
+    
+    a,b,c,d,e,f = popt[0],popt[1],[2],popt[3],popt[4],popt[5]
+
+    fig, ax = plt.subplots()
+    #ax.errorbar(xdata, ydata, xerr=0, yerr =yerr, label = "Data", elinewidth = 1, fmt='x', ms = 0.75, mew = 3.0)
+    plt.errorbar(xdata, ydata, xerr=0, yerr =yerr, label = "Data", elinewidth = 1, fmt='x', ms = 0.75, mew = 3.0)
+    xfit = np.linspace(min(xdata), max(xdata), 1000)
+    plt.plot(xfit, gaussian_and_bkg_2(xfit,*popt), "g", label = "a*gauss(x,d,e,f) - b*gauss_cdf(x,e,f) + c") 
+    plt.plot(xfit, -1*b*gaussian_cdf(xfit,e,f) + c, "r--", label ="-b*gauss_cdf(x,e,f) + c")
+    plt.xlabel(key)
+    plt.ylabel("Counts")
+    plt.legend(loc="upper right", fontsize=8)
+
+    chi_sq, p_value, residuals, dof = chi_sq_calc(xdata, ydata, yerr, "gaussian_and_bkg_2", popt)
+
+    props = dict(boxstyle='round', facecolor='wheat', alpha=0.5)
+    info_str = '\n'.join((r'$a=%.3g \pm %.3g$' % (popt[0], np.sqrt(pcov[0][0])), r'$b=%.3g \pm %.3g$' % (popt[1], np.sqrt(pcov[1][1])), r'$c=%.3g \pm %.3g$' % (popt[2], np.sqrt(pcov[2][2])), r'$d=%.3g \pm %.3g$' % (popt[3], np.sqrt(pcov[3][3])), r'$e=%.3g \pm %.3g$' % (popt[4], np.sqrt(pcov[4][4])), r'$f=%.3g \pm %.3g$' % (popt[5], np.sqrt(pcov[5][5])), r'$\chi^2/dof=%.2f/%.0f$'%(chi_sq, dof)))
     plt.text(0.02, 0.98, info_str, transform=ax.transAxes, fontsize=8,verticalalignment='top', bbox=props) #ax.text..ax.tra
 
     return popt, pcov, xfit
