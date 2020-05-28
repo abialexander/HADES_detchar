@@ -62,7 +62,7 @@ def main():
     counts, bins, bars = plt.hist(calibrated_energy, bins=no_bins, histtype='step', color='grey')
     plt.xlim(xmin_356, xmax_356) 
     plt.ylim(100, 10**6)
-    plt.plot(xfit, -1*d*gaussian_cdf(xfit,e,f) + g, "r--", label ="-d*gauss_cdf(x,e,f) + g")
+    plt.plot(xfit, -1*d*gaussian_cdf(xfit,e,f) + g, "r--", ms = 0.5, label ="-d*gauss_cdf(x,e,f) + g")
     plt.yscale("log")
     plt.savefig("/lfs/l1/legend/users/aalexander/HADES_detchar/Ba133_analysis/plots/356keV_dlt.png")
 
@@ -90,9 +90,21 @@ def main():
     counts, bins, bars = plt.hist(calibrated_energy, bins=no_bins, histtype='step', color='grey')
     plt.xlim(xmin_356, xmax_356) 
     plt.ylim(100, 10**6)
-    plt.plot(xfit, -1*d*gaussian_cdf(xfit,b,c) + e, "r--", label ="-d*gauss_cdf(x,b,c) + e")
+    plt.plot(xfit, -1*d*gaussian_cdf(xfit,b,c) + e, "r--", ms = 0.5, label ="-d*gauss_cdf(x,b,c) + e")
     plt.yscale("log")
     plt.savefig("/lfs/l1/legend/users/aalexander/HADES_detchar/Ba133_analysis/plots/356keV_dlt_2.png")
+
+    plt.figure()
+    popt, pcov, xfit = fit_peak_356_3("Energy (keV)", bins_cal, counts, xmin_356, xmax_356)
+    a,b,c,d,e,f = popt[0],popt[1],[2],popt[3],popt[4],popt[5]
+    counts, bins, bars = plt.hist(calibrated_energy, bins=no_bins, histtype='step', color='grey')
+    plt.xlim(xmin_356, xmax_356) 
+    plt.ylim(100, 10**6)
+    plt.plot(xfit, -1*d*gaussian_cdf(xfit,b,e) + f, "r--", ms = 0.5, label ="-d*gauss_cdf(x,b,e) + f")
+    plt.yscale("log")
+    plt.savefig("/lfs/l1/legend/users/aalexander/HADES_detchar/Ba133_analysis/plots/356keV_dlt_3.png")
+
+
 
     
 
@@ -145,6 +157,11 @@ def gaussian_and_bkg_2(x, a, b, c, d, e):
     f = gaussian(x, a, b, c) - d*gaussian_cdf(x, b, c) + e
     return f
 
+def gaussian_and_bkg_3(x, a, b, c, d, e, f):
+    "fit function for 356kev peak - cdf fixed to the just same mean as gaussian, different sigma"
+    f = gaussian(x, a, b, c) - d*gaussian_cdf(x, b, e) + f
+    return f
+
 def linear_fit(x, m, c):
     "linear function"
     f = m*x + c
@@ -166,6 +183,7 @@ def chi_sq_calc(xdata, ydata, yerr, fit_func, popt):
     y_obs = ydata
     y_exp = []
 
+    y_exp = []
     for index, y_i in enumerate(y_obs):
         x_obs = xdata[index]
         y_exp_i = fit_func(x_obs, *popt)
@@ -219,22 +237,17 @@ def fit_peak_356(key, bins, counts, xmin, xmax):
     aguess_index = np.where(ydata == max(ydata))[0][0]
     bguess = xdata[aguess_index] #gauss mean
     cguess =  1 #gauss sigma
-    dguess =  min(ydata)/100 #cdf amp
+    dguess =  100 #0 #cdf amp
     eguess =  bguess #cdf mean
     fguess = cguess #cdf sigma
-    gguess = 0 #offset
+    gguess = min(ydata) #offset
     p_guess = [aguess, bguess, cguess, dguess, eguess, fguess, gguess]
-    bounds=([0, 0, 0, 0, 0, 0, -np.inf], [np.inf]*7)
-    sigma = []
-    for index, i in enumerate(yerr):    
-        if i != 0:
-            sigma.append(yerr[index])
-        else:
-            sigma.append(1) #just to prevent errors...
-    sigma = np.array(sigma)
-    popt, pcov = optimize.curve_fit(gaussian_and_bkg, xdata, ydata, p0=p_guess, sigma = sigma, maxfev = 10**7, method ="trf", bounds = bounds)
-    
-    a,b,c,d,e,f,g = popt[0],popt[1],[2],popt[3],popt[4],popt[5],popt[6]
+    print(p_guess)
+    bounds=([0, 0, 0, 0, xmin, 0, -np.inf], [np.inf, np.inf, np.inf, np.inf, xmax, np.inf, np.inf])
+
+    popt, pcov = optimize.curve_fit(gaussian_and_bkg, xdata, ydata, p0=p_guess, sigma = yerr, maxfev = 10**7, method ="trf", bounds = bounds) #nb, if there is a yerr=0, sigma needs an if statement
+    print(popt)
+    a,b,c,d,e,f,g = popt[0],popt[1],popt[2],popt[3],popt[4],popt[5],popt[6]
 
     fig, ax = plt.subplots()
     #ax.errorbar(xdata, ydata, xerr=0, yerr =yerr, label = "Data", elinewidth = 1, fmt='x', ms = 0.75, mew = 3.0)
@@ -249,14 +262,14 @@ def fit_peak_356(key, bins, counts, xmin, xmax):
     chi_sq, p_value, residuals, dof = chi_sq_calc(xdata, ydata, yerr, gaussian_and_bkg, popt)
 
     props = dict(boxstyle='round', facecolor='wheat', alpha=0.5)
-    info_str = '\n'.join((r'$a=%.3g \pm %.3g$' % (popt[0], np.sqrt(pcov[0][0])), r'$b=%.3g \pm %.3g$' % (popt[1], np.sqrt(pcov[1][1])), r'$c=%.3g \pm %.3g$' % (popt[2], np.sqrt(pcov[2][2])), r'$d=%.3g \pm %.3g$' % (popt[3], np.sqrt(pcov[3][3])), r'$e=%.3g \pm %.3g$' % (popt[4], np.sqrt(pcov[4][4])), r'$f=%.3g \pm %.3g$' % (popt[5], np.sqrt(pcov[5][5])),r'$g=%.3g \pm %.3g$' % (popt[6], np.sqrt(pcov[6][6])), r'$\chi^2/dof=%.2f/%.0f$'%(chi_sq, dof)))
+    info_str = '\n'.join((r'$a=%.3g \pm %.3g$' % (a, np.sqrt(pcov[0][0])), r'$b=%.3g \pm %.3g$' % (b, np.sqrt(pcov[1][1])), r'$c=%.3g \pm %.3g$' % (c, np.sqrt(pcov[2][2])), r'$d=%.3g \pm %.3g$' % (d, np.sqrt(pcov[3][3])), r'$e=%.3g \pm %.3g$' % (e, np.sqrt(pcov[4][4])), r'$f=%.3g \pm %.3g$' % (f, np.sqrt(pcov[5][5])),r'$g=%.3g \pm %.3g$' % (g, np.sqrt(pcov[6][6])), r'$\chi^2/dof=%.2f/%.0f$'%(chi_sq, dof)))
     plt.text(0.02, 0.98, info_str, transform=ax.transAxes, fontsize=8,verticalalignment='top', bbox=props) #ax.text..ax.tra
 
     return popt, pcov, xfit
 
 
 def fit_peak_356_2(key, bins, counts, xmin, xmax):
-    "fit the 356 keV peak with gaussian +cdf bkg"
+    "fit the 356 keV peak with gaussian +cdf bkg - cdf mean and sigma constrained to that of gaussian"
 
     no_bins = bins.size 
 
@@ -279,21 +292,15 @@ def fit_peak_356_2(key, bins, counts, xmin, xmax):
     aguess_index = np.where(ydata == max(ydata))[0][0]
     bguess = xdata[aguess_index] #gauss mean
     cguess =  1 #gauss sigma
-    dguess =  min(ydata)/100 #cdf amp
-    eguess = 0 #offset
+    dguess =  100 #0 #cdf amp
+    eguess = min(ydata) #offset
     p_guess = [aguess,bguess,cguess,dguess,eguess]
+    print(p_guess)
     bounds=([0, 0, 0, 0, -np.inf], [np.inf]*5)
-    #bounds=([0, 0, -np.inf, 0, 0, 0, 0, 0], [np.inf]*4)
-    sigma = []
-    for index, i in enumerate(yerr):    
-        if i != 0:
-            sigma.append(yerr[index])
-        else:
-            sigma.append(1) #just to prevent errors...
-    sigma = np.array(sigma)
-    popt, pcov = optimize.curve_fit(gaussian_and_bkg_2, xdata, ydata, p0=p_guess, sigma = sigma, maxfev = 10**7, method ="trf", bounds = bounds)
-    
-    a,b,c,d,e = popt[0],popt[1],[2],popt[3],popt[4]
+
+    popt, pcov = optimize.curve_fit(gaussian_and_bkg_2, xdata, ydata, p0=p_guess, sigma = yerr, maxfev = 10**7, method ="trf", bounds = bounds)
+    print(popt)
+    a,b,c,d,e = popt[0],popt[1],popt[2],popt[3],popt[4]
 
     fig, ax = plt.subplots()
     #ax.errorbar(xdata, ydata, xerr=0, yerr =yerr, label = "Data", elinewidth = 1, fmt='x', ms = 0.75, mew = 3.0)
@@ -308,7 +315,60 @@ def fit_peak_356_2(key, bins, counts, xmin, xmax):
     chi_sq, p_value, residuals, dof = chi_sq_calc(xdata, ydata, yerr, gaussian_and_bkg_2, popt)
 
     props = dict(boxstyle='round', facecolor='wheat', alpha=0.5)
-    info_str = '\n'.join((r'$a=%.3g \pm %.3g$' % (popt[0], np.sqrt(pcov[0][0])), r'$b=%.3g \pm %.3g$' % (popt[1], np.sqrt(pcov[1][1])), r'$c=%.3g \pm %.3g$' % (popt[2], np.sqrt(pcov[2][2])), r'$d=%.3g \pm %.3g$' % (popt[3], np.sqrt(pcov[3][3])), r'$e=%.3g \pm %.3g$' % (popt[4], np.sqrt(pcov[4][4])), r'$\chi^2/dof=%.2f/%.0f$'%(chi_sq, dof)))
+    info_str = '\n'.join((r'$a=%.3g \pm %.3g$' % (a, np.sqrt(pcov[0][0])), r'$b=%.3g \pm %.3g$' % (b, np.sqrt(pcov[1][1])), r'$c=%.3g \pm %.3g$' % (c, np.sqrt(pcov[2][2])), r'$d=%.3g \pm %.3g$' % (d, np.sqrt(pcov[3][3])), r'$e=%.3g \pm %.3g$' % (e, np.sqrt(pcov[4][4])), r'$\chi^2/dof=%.2f/%.0f$'%(chi_sq, dof)))
+    plt.text(0.02, 0.98, info_str, transform=ax.transAxes, fontsize=8,verticalalignment='top', bbox=props) #ax.text..ax.tra
+
+    return popt, pcov, xfit
+
+def fit_peak_356_3(key, bins, counts, xmin, xmax):
+    "fit the 356 keV peak with gaussian +cdf bkg - cdf mean constained to that of gaussian"
+
+    no_bins = bins.size 
+
+    xdata = []
+    ydata = []
+    for bin in bins:
+        bin_centre = bin + 0.5*(max(bins)-(min(bins)))/no_bins 
+        if bin_centre < xmax and bin_centre > xmin:
+            xdata.append(bin_centre)
+            bin_index = np.where(bins == bin)[0][0]
+            ydata.append(counts[bin_index])
+
+    xdata = np.array(xdata)
+    ydata = np.array(ydata)     
+
+    yerr = np.sqrt(ydata) #counting error
+
+    #initial rough guess of params
+    aguess = max(ydata) - min(ydata) #gauss amplitude
+    aguess_index = np.where(ydata == max(ydata))[0][0]
+    bguess = xdata[aguess_index] #gauss mean
+    cguess =  1 #gauss sigma
+    dguess =  100 #0 #cdf amp
+    eguess = 1 #cdf sigma
+    fguess = min(ydata) #offset
+    p_guess = [aguess,bguess,cguess,dguess,eguess,fguess]
+    print(p_guess)
+    bounds=([0, 0, 0, 0, 0.1, -1000], [np.inf, np.inf, np.inf, 500, 10, 1000])
+
+    popt, pcov = optimize.curve_fit(gaussian_and_bkg_3, xdata, ydata, p0=p_guess, sigma = yerr, maxfev = 10**7, method ="trf", bounds = bounds)
+    print(popt)
+    a,b,c,d,e,f = popt[0],popt[1],popt[2],popt[3],popt[4], popt[5]
+
+    fig, ax = plt.subplots()
+    #ax.errorbar(xdata, ydata, xerr=0, yerr =yerr, label = "Data", elinewidth = 1, fmt='x', ms = 0.75, mew = 3.0)
+    plt.errorbar(xdata, ydata, xerr=0, yerr =yerr, label = "Data", elinewidth = 1, fmt='x', ms = 0.75, mew = 3.0)
+    xfit = np.linspace(min(xdata), max(xdata), 1000)
+    plt.plot(xfit, gaussian_and_bkg_3(xfit,*popt), "g", label = "gauss(x,a,b,c) - d*gauss_cdf(x,b,e) + f") 
+    plt.plot(xfit, -1*d*gaussian_cdf(xfit,b,e) + f, "r--", label ="-d*gauss_cdf(x,b,e) + f")
+    plt.xlabel(key)
+    plt.ylabel("Counts")
+    plt.legend(loc="upper right", fontsize=8)
+
+    chi_sq, p_value, residuals, dof = chi_sq_calc(xdata, ydata, yerr, gaussian_and_bkg_3, popt)
+
+    props = dict(boxstyle='round', facecolor='wheat', alpha=0.5)
+    info_str = '\n'.join((r'$a=%.3g \pm %.3g$' % (a, np.sqrt(pcov[0][0])), r'$b=%.3g \pm %.3g$' % (b, np.sqrt(pcov[1][1])), r'$c=%.3g \pm %.3g$' % (c, np.sqrt(pcov[2][2])), r'$d=%.3g \pm %.3g$' % (d, np.sqrt(pcov[3][3])), r'$e=%.3g \pm %.3g$' % (e, np.sqrt(pcov[4][4])), r'$f=%.3g \pm %.3g$' % (f, np.sqrt(pcov[5][5])), r'$\chi^2/dof=%.2f/%.0f$'%(chi_sq, dof)))
     plt.text(0.02, 0.98, info_str, transform=ax.transAxes, fontsize=8,verticalalignment='top', bbox=props) #ax.text..ax.tra
 
     return popt, pcov, xfit
