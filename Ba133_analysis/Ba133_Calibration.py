@@ -277,7 +277,7 @@ def sqrt_curve(x,a,c):
     f = a*np.sqrt(x + c)
     return f
 
-def chi_sq_calc(xdata, ydata, yerr, fittype, popt):
+def chi_sq_calc(xdata, ydata, yerr, fit_func, popt):
     "calculate chi sq and p-val of a fit given the data points and fit parameters, e.g. fittype ='linear'"
    
     y_obs = ydata
@@ -285,14 +285,7 @@ def chi_sq_calc(xdata, ydata, yerr, fittype, popt):
 
     for index, y_i in enumerate(y_obs):
         x_obs = xdata[index]
-        if fittype == "linear":
-            y_exp_i = linear_fit(x_obs, *popt)
-        if fittype == "gaussian":
-            y_exp_i = gaussian(x_obs, *popt)
-        if fittype == "quadratic":
-            y_exp_i = quadratic_fit(x_obs, *popt)
-        if fittype == "sqrt":
-            y_exp_i = sqrt_curve(x_obs, *popt)
+        y_exp_i = fit_func(x_obs, *popt)
         y_exp.append(y_exp_i)
 
     #chi_sq, p_value = stats.chisquare(y_obs, y_exp)#this is without errors
@@ -361,7 +354,7 @@ def fit_peak(key, bins, counts, xmin, xmax): #p_guess):
     plt.ylabel("Counts")
     plt.legend()
 
-    chi_sq, p_value, residuals, dof = chi_sq_calc(xdata, ydata, yerr, "gaussian", popt)
+    chi_sq, p_value, residuals, dof = chi_sq_calc(xdata, ydata, yerr, gaussian, popt)
 
     props = dict(boxstyle='round', facecolor='wheat', alpha=0.5)
     info_str = '\n'.join((r'$\mu=%.2f \pm %.2f$' % (mu, mu_err, ), r'$\sigma=%.2f \pm %.2f$' % (np.abs(sigma), sigma_err,), r'$\chi^2/dof=%.2f/%.0f$'%(chi_sq, dof))) #, r'$p=%.3g$'%p_value))
@@ -392,7 +385,7 @@ def calibration(data, data_err, truth, fittype):
         plt.ylabel("calibration peaks")
         plt.legend(loc = 4)
 
-        chi_sq, p_value, residuals, dof = chi_sq_calc(xdata, ydata, yerr, "linear", popt)
+        chi_sq, p_value, residuals, dof = chi_sq_calc(xdata, ydata, yerr, linear_fit, popt)
 
         props = dict(boxstyle='round', facecolor='wheat', alpha=0.5)
         info_str = '\n'.join((r'$m = %.3f \pm %.3f$' % (m, m_err, ), r'$c = %.3f \pm %.3f$' % (c, c_err,), r'$\chi^2/dof=%.0f/%.0f$'%(chi_sq, dof)))# r'$\chi^2 = %.3f$'%(chi_sq), r'$p = %.3g$'%(p_value)))
@@ -413,7 +406,7 @@ def calibration(data, data_err, truth, fittype):
         plt.ylabel("calibration peaks")
         plt.legend(loc = 4)
 
-        chi_sq, p_value, residuals, dof = chi_sq_calc(xdata, ydata, yerr, "quadratic", popt)
+        chi_sq, p_value, residuals, dof = chi_sq_calc(xdata, ydata, yerr, quadratic_fit, popt)
 
         props = dict(boxstyle='round', facecolor='wheat', alpha=0.5)
         info_str = '\n'.join((r'$a = %.3g \pm %.3g$' % (a, a_err, ), r'$b = %.3f \pm %.3f$' % (b, b_err,), r'$c = %.3f \pm %.3f$' % (c, c_err,),  r'$\chi^2/dof=%.0f/%.0f$'%(chi_sq, dof))) #, r'$p = %.3g$'%(p_value)))
@@ -447,7 +440,7 @@ def resolution_plot(energies, energies_err, FWHM, FWHM_err):
     plt.xlabel("Energy (keV)")
     plt.ylabel("FWHM (keV)")
     plt.legend()
-    chi_sq, p_value, residuals, dof = chi_sq_calc(energies, FWHM, FWHM_err, "sqrt", popt)
+    chi_sq, p_value, residuals, dof = chi_sq_calc(energies, FWHM, FWHM_err, sqrt_curve, popt)
     props = dict(boxstyle='round', facecolor='wheat', alpha=0.5)
     info_str = '\n'.join((r'$A=%.3f \pm %.3f$' % (A, A_err, ), r'$c=%.3f \pm %.3f$' % (offset, offset_err,), r'$\chi^2/dof=%.0f/%.0f$'%(chi_sq, dof))) #, r'$p=%.3g$'%p_value))
     ax.text(0.70, 0.20, info_str, transform=ax.transAxes, fontsize=10,verticalalignment='top', bbox=props)
