@@ -48,6 +48,9 @@ def main():
     counts, bins_cal, bars = plt.hist(calibrated_energy, bins=no_bins)
     plt.close("all")
 
+    bin_width = bins_cal[1] - bins_cal[0]
+    print("bin width: ", bin_width, " keV")
+
     #_________Construct dlt observable________
     print("")
     print("Constructing Ba133 dead layer observable...")
@@ -73,16 +76,23 @@ def main():
     fig, ax = plt.subplots()
     plt.plot(xfit, gaussian(xfit,a,b,c), "b--", label ="gauss(x,a,b,c)")
     plt.yscale("log")
-    C_356 = gauss_count(a, b, c)
-    print("gauss count: ", C_356)
+    C_356, C_356_err = gauss_count(a, c, np.sqrt(pcov[0][0]), np.sqrt(pcov[2][2]), bin_width)
+    print("gauss count: ", C_356, " +/- ", C_356_err )
     plt.xlim(xmin_356, xmax_356) 
+    plt.ylim(100,10**6) 
     plt.xlabel("Energy (keV)")
     plt.ylabel("Counts")
     plt.legend(loc="upper right", fontsize=9)
     props = dict(boxstyle='round', facecolor='wheat', alpha=0.5)
-    info_str = r'$C_{356} = %.3g$' % (C_356)
-    plt.text(0.02, 0.07, info_str, transform=ax.transAxes, fontsize=9,verticalalignment='top', bbox=props) #ax.text
+    info_str = r'$C_{356} = %.3g \pm %.3g$' % (C_356, C_356_err)
+    plt.text(0.02, 0.98, info_str, transform=ax.transAxes, fontsize=9,verticalalignment='top', bbox=props) #ax.text
     plt.savefig("/lfs/l1/legend/users/aalexander/HADES_detchar/Ba133_analysis/plots/356keV_dlt_signalonly.png")
+
+    #check with manual integration
+    bina, binb = int(xmin_356/bin_width), int(xmax_356/bin_width)
+    bkg_estimate = g*(xmax_356-xmin_356)
+    integral_356 = bin_width*sum(counts[bina:binb]) - bkg_estimate
+    print("manual integral check: ", integral_356)
 
 
     #try other fits - constrained cdf
@@ -126,24 +136,27 @@ def main():
     fig, ax = plt.subplots()
     R = 2.65/32.9
     plt.plot(xfit, gaussian(xfit,a,b,c) + R*gaussian(xfit,a,d,e), "b--", label ="gauss(x,a,b,c) + R*gauss(x,a,d,e)")
+    plt.plot(xfit, gaussian(xfit,a,b,c), "g--", label ="gauss(x,a,b,c)")
+    plt.plot(xfit, R*gaussian(xfit,a,d,e), "r--", label ="R*gauss(x,a,d,e)")
     plt.yscale("log")
-    C_81 = gauss_count(a, b, c)
-    C_79 = gauss_count(R*a,d,e)
-    print("gauss count 81: ", C_81)
-    print("gauss count 79: ", C_79)
+    C_81, C_81_err = gauss_count(a, c, np.sqrt(pcov[0][0]), np.sqrt(pcov[2][2]), bin_width)
+    C_79, C_79_err = gauss_count(R*a, e, R*np.sqrt(pcov[0][0]), np.sqrt(pcov[4][4]), bin_width)
+    print("gauss count 81: ", C_81, " +/- ", C_81_err )
+    print("gauss count 79.6: ", C_79, " +/- ", C_79_err )
     plt.xlim(xmin_81, xmax_81)
     plt.ylim(100,10**6) 
     plt.xlabel("Energy (keV)")
     plt.ylabel("Counts")
     plt.legend(loc="upper right", fontsize=9)
     props = dict(boxstyle='round', facecolor='wheat', alpha=0.5)
-    info_str = '\n'.join(( r'$C_{81} = %.3g$' % (C_81), r'$C_{79.6} = %.3g$' % (C_79)))
+    info_str = '\n'.join(( r'$C_{81} = %.3g \pm %.3g$' % (C_81, C_81_err), r'$C_{79.6} = %.3g \pm %.3g$' % (C_79, C_79_err)))
     plt.text(0.02, 0.98, info_str, transform=ax.transAxes, fontsize=9,verticalalignment='top', bbox=props) #ax.text
     plt.savefig("/lfs/l1/legend/users/aalexander/HADES_detchar/Ba133_analysis/plots/81keV_dlt_signalonly.png")
 
-
+    print("")
     O_Ba133 = (C_79 + C_81)/C_356
-    print("O_BA133 = " , O_Ba133)
+    O_Ba133_err = O_Ba133*np.sqrt((C_79_err**2 + C_81_err**2)/(C_79+C_81)**2 + (C_356_err/C_356)**2)
+    print("O_BA133 = " , O_Ba133, " +/- ", O_Ba133_err)
 
 
     
@@ -255,10 +268,13 @@ def chi_sq_calc(xdata, ydata, yerr, fit_func, popt):
 
     return chi_sq, p_value, residuals, dof
 
-def gauss_count(a,b,c):
+def gauss_count(a,c, a_err, c_err, bin_width):
     "count/integrate gaussian from -inf to plus inf"
-    integral = a*c*np.sqrt(2*np.pi)
-    return integral
+    #integral = a*c*np.sqrt(2*np.pi) #old - not normalised to bin width
+    integral = a*c*np.sqrt(2*np.pi)/bin_width
+    integral_err = integral*np.sqrt((a_err/a)**2 + (c_err/c)**2)
+
+    return integral, integral_err
 
 def fit_peak_356(key, bins, counts, xmin, xmax):
     "fit the 356 keV peak with gaussian +cdf bkg"
