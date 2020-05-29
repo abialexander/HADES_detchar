@@ -84,7 +84,7 @@ def main():
     plt.ylabel("Counts")
     plt.legend(loc="upper right", fontsize=9)
     props = dict(boxstyle='round', facecolor='wheat', alpha=0.5)
-    info_str = r'$C_{356} = %.3g \pm %.3g$' % (C_356, C_356_err)
+    info_str = r'$C_{356} = %.4g \pm %.4g$' % (C_356, C_356_err)
     plt.text(0.02, 0.98, info_str, transform=ax.transAxes, fontsize=9,verticalalignment='top', bbox=props) #ax.text
     plt.savefig("/lfs/l1/legend/users/aalexander/HADES_detchar/Ba133_analysis/plots/356keV_dlt_signalonly.png")
 
@@ -98,16 +98,32 @@ def main():
     #try other fits - constrained cdf
     plt.figure()
     popt, pcov, xfit = fit_peak_356_2("Energy (keV)", bins_cal, counts, xmin_356, xmax_356)
-    a,b,c,d,e = popt[0],popt[1],[2],popt[3],popt[4]
+    a,b,c,d,e = popt[0],popt[1],popt[2],popt[3],popt[4]
     counts, bins, bars = plt.hist(calibrated_energy, bins=no_bins, histtype='step', color='grey')
     plt.xlim(xmin_356, xmax_356) 
     plt.ylim(100, 0.5*10**6)
     plt.yscale("log")
     plt.savefig("/lfs/l1/legend/users/aalexander/HADES_detchar/Ba133_analysis/plots/356keV_dlt_2.png")
 
+    fig, ax = plt.subplots()
+    plt.plot(xfit, gaussian(xfit,a,b,c), "b--", label ="gauss(x,a,b,c)")
+    plt.yscale("log")
+    C_356_2, C_356_2_err = gauss_count(a, c, np.sqrt(pcov[0][0]), np.sqrt(pcov[2][2]), bin_width)
+    print("gauss count: ", C_356_2, " +/- ", C_356_2_err )
+    plt.xlim(xmin_356, xmax_356) 
+    plt.ylim(100,10**6) 
+    plt.xlabel("Energy (keV)")
+    plt.ylabel("Counts")
+    plt.legend(loc="upper right", fontsize=9)
+    props = dict(boxstyle='round', facecolor='wheat', alpha=0.5)
+    info_str = r'$C_{356} = %.4g \pm %.4g$' % (C_356_2, C_356_2_err)
+    plt.text(0.02, 0.98, info_str, transform=ax.transAxes, fontsize=9,verticalalignment='top', bbox=props) #ax.text
+    plt.savefig("/lfs/l1/legend/users/aalexander/HADES_detchar/Ba133_analysis/plots/356keV_dlt_signalonly_2.png")
+
+
     plt.figure()
     popt, pcov, xfit = fit_peak_356_3("Energy (keV)", bins_cal, counts, xmin_356, xmax_356)
-    a,b,c,d,e,f = popt[0],popt[1],[2],popt[3],popt[4],popt[5]
+    a,b,c,d,e,f = popt[0],popt[1],popt[2],popt[3],popt[4],popt[5]
     counts, bins, bars = plt.hist(calibrated_energy, bins=no_bins, histtype='step', color='grey')
     plt.xlim(xmin_356, xmax_356) 
     plt.ylim(100, 0.5*10**6)
@@ -149,7 +165,7 @@ def main():
     plt.ylabel("Counts")
     plt.legend(loc="upper right", fontsize=9)
     props = dict(boxstyle='round', facecolor='wheat', alpha=0.5)
-    info_str = '\n'.join(( r'$C_{81} = %.3g \pm %.3g$' % (C_81, C_81_err), r'$C_{79.6} = %.3g \pm %.3g$' % (C_79, C_79_err)))
+    info_str = '\n'.join(( r'$C_{81} = %.4g \pm %.4g$' % (C_81, C_81_err), r'$C_{79.6} = %.4g \pm %.4g$' % (C_79, C_79_err)))
     plt.text(0.02, 0.98, info_str, transform=ax.transAxes, fontsize=9,verticalalignment='top', bbox=props) #ax.text
     plt.savefig("/lfs/l1/legend/users/aalexander/HADES_detchar/Ba133_analysis/plots/81keV_dlt_signalonly.png")
 
