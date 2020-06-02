@@ -105,6 +105,18 @@ def main():
     plt.yscale("log")
     plt.savefig("/lfs/l1/legend/users/aalexander/HADES_detchar/Ba133_analysis/plots/356keV_dlt_2.png")
 
+    plt.figure() #zoomed in
+    popt, pcov, xfit = fit_peak_356_2("Energy (keV)", bins_cal, counts, xmin_356, xmax_356)
+    a,b,c,d,e = popt[0],popt[1],popt[2],popt[3],popt[4]
+    counts, bins, bars = plt.hist(calibrated_energy, bins=no_bins, histtype='step', color='grey')
+    plt.xlim(355.5, 357.3) 
+    plt.ylim(100, 0.5*10**6)
+    plt.yscale("log")
+    plt.savefig("/lfs/l1/legend/users/aalexander/HADES_detchar/Ba133_analysis/plots/356keV_dlt_2_zoom.png")
+
+
+
+
     fig, ax = plt.subplots()
     plt.plot(xfit, gaussian(xfit,a,b,c), "b--", label ="gauss(x,a,b,c)")
     plt.yscale("log")
