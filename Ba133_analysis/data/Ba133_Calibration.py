@@ -35,7 +35,7 @@ def main():
     plt.xlabel("e_ftp")
     plt.ylabel("Counts")
     plt.xlim(0, 40000)
-    plt.savefig("/lfs/l1/legend/users/aalexander/HADES_detchar/Ba133_analysis/plots/e_ftp.png")
+    plt.savefig("/lfs/l1/legend/users/aalexander/HADES_detchar/Ba133_analysis/data/plots/e_ftp.png")
 
     plt.figure()
     counts, bins, bars = plt.hist(key_data, bins=no_bins)
@@ -43,7 +43,7 @@ def main():
     plt.xlabel("e_ftp")
     plt.ylabel("Counts")
     plt.xlim(0, 7000) 
-    plt.savefig("/lfs/l1/legend/users/aalexander/HADES_detchar/Ba133_analysis/plots/e_ftp_zoom.png")
+    plt.savefig("/lfs/l1/legend/users/aalexander/HADES_detchar/Ba133_analysis/data/plots/e_ftp_zoom.png")
 
 
     #___________Calibration__________
@@ -78,7 +78,7 @@ def main():
         plt.ylim(10, 10**6)
         plt.title(truth_str+" keV peak [Uncalibrated]")
         plt.yscale("log")
-        plt.savefig("/lfs/l1/legend/users/aalexander/HADES_detchar/Ba133_analysis/plots/"+truth_str+"keV_peak_uncal.png")
+        plt.savefig("/lfs/l1/legend/users/aalexander/HADES_detchar/Ba133_analysis/data/plots/"+truth_str+"keV_peak_uncal.png")
 
     #Plot calibration curves:
     print("")
@@ -89,7 +89,7 @@ def main():
     for x, y in zip(truth_energies, calibration_data):
         truth_str = str(int(x))
         plt.annotate(truth_str, (x,y), textcoords="offset points", xytext=(-5,5), ha='center') # horizontal alignment can be left, right or center
-    plt.savefig("/lfs/l1/legend/users/aalexander/HADES_detchar/Ba133_analysis/plots/calibration_curve_linear.png")
+    plt.savefig("/lfs/l1/legend/users/aalexander/HADES_detchar/Ba133_analysis/data/plots/calibration_curve_linear.png")
 
     #plot linear residuals
     plt.figure()
@@ -102,7 +102,7 @@ def main():
         truth_str = str(int(x))
         plt.annotate(truth_str, (x,y), textcoords="offset points", xytext=(0,5), ha='center') # horizontal alignment can be left, right or center 
     plt.axhline(linewidth=2, color='black', dashes = (5,2,1,2))
-    plt.savefig("/lfs/l1/legend/users/aalexander/HADES_detchar/Ba133_analysis/plots/calibration_residuals.png")
+    plt.savefig("/lfs/l1/legend/users/aalexander/HADES_detchar/Ba133_analysis/data/plots/calibration_residuals.png")
 
     #try non-linear calibration
     plt.figure()
@@ -110,7 +110,7 @@ def main():
     for x, y in zip(truth_energies, calibration_data):
         truth_str = str(int(x))
         plt.annotate(truth_str, (x,y), textcoords="offset points", xytext=(-5,5), ha='center') 
-    plt.savefig("/lfs/l1/legend/users/aalexander/HADES_detchar/Ba133_analysis/plots/calibration_curve_quadratic.png")
+    plt.savefig("/lfs/l1/legend/users/aalexander/HADES_detchar/Ba133_analysis/data/plots/calibration_curve_quadratic.png")
 
     #Save calibration coefficients to json file
     calibration_coef_dict = {
@@ -141,7 +141,7 @@ def main():
     #     index = np.where(energies == x)[0][0]
     #     truth_str = str(int(truth_energies[index]))
     #     plt.annotate(truth_str, (x,y), textcoords="offset points", xytext=(-10,5), ha='center') # horizontal alignment can be left, right or center
-    # plt.savefig("/lfs/l1/legend/users/aalexander/HADES_detchar/Ba133_analysis/plots/resolution_plot_old.png")
+    # plt.savefig("/lfs/l1/legend/users/aalexander/HADES_detchar/Ba133_analysis/data/plots/resolution_plot_old.png")
 
     plt.close('all') #Cant keep more than 20 figures open
 
@@ -163,7 +163,7 @@ def main():
     plt.ylabel("Counts")
     plt.xlim(0, 2500)
     plt.yscale("log")
-    plt.savefig("/lfs/l1/legend/users/aalexander/HADES_detchar/Ba133_analysis/plots/calibrated_energy.png") 
+    plt.savefig("/lfs/l1/legend/users/aalexander/HADES_detchar/Ba133_analysis/data/plots/calibrated_energy.png") 
 
     #plot zoomed in
     plt.figure()
@@ -172,7 +172,7 @@ def main():
     plt.ylabel("Counts")
     plt.yscale("log")
     plt.xlim(0,450)
-    plt.savefig("/lfs/l1/legend/users/aalexander/HADES_detchar/Ba133_analysis/plots/calibrated_energy_zoom.png") 
+    plt.savefig("/lfs/l1/legend/users/aalexander/HADES_detchar/Ba133_analysis/data/plots/calibrated_energy_zoom.png") 
 
     print("")
     print("Replotting calibrated spectra and peaks...")
@@ -201,7 +201,7 @@ def main():
         plt.ylim(10, 10**6)
         plt.title(truth_str+" keV peak [Calibrated]")
         plt.yscale("log")
-        plt.savefig("/lfs/l1/legend/users/aalexander/HADES_detchar/Ba133_analysis/plots/"+truth_str+"keV_peak.png")
+        plt.savefig("/lfs/l1/legend/users/aalexander/HADES_detchar/Ba133_analysis/data/plots/"+truth_str+"keV_peak.png")
 
 
     #______Correct resolution plot_______
@@ -216,7 +216,7 @@ def main():
         index = np.where(energies == x)[0][0]
         truth_str = str(int(truth_energies[index]))
         plt.annotate(truth_str, (x,y), textcoords="offset points", xytext=(-10,5), ha='center') # horizontal alignment can be left, right or center
-    plt.savefig("/lfs/l1/legend/users/aalexander/HADES_detchar/Ba133_analysis/plots/resolution_plot.png")
+    plt.savefig("/lfs/l1/legend/users/aalexander/HADES_detchar/Ba133_analysis/data/plots/resolution_plot.png")
 
 
     #calculate estimated resolution at qbb=2039keV
@@ -244,7 +244,7 @@ def read_all_t2(t2_folder):
     # df_total.hist('e_ftp',  bins = 10000) #testing
     # plt.ylabel("Frequency")
     # plt.yscale("log")
-    # plt.savefig("/lfs/l1/legend/users/aalexander/HADES_detchar/Ba133_analysis/plots/e_ftp_pandas.png")
+    # plt.savefig("/lfs/l1/legend/users/aalexander/HADES_detchar/Ba133_analysis/data/plots/e_ftp_pandas.png")
 
     return keys, data
 

@@ -13,6 +13,8 @@ from pygama.analysis import peak_fitting
 import json
 
 
+#this is the OLD SCRIPT - DO NOT USE
+
 def main():
 
     #read tier 2 runs for Ba data - I02160A

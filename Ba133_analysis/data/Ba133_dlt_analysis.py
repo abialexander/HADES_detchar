@@ -29,7 +29,7 @@ def main():
     key = "e_ftp"
     key_data = obtain_key_data(data, keys, key, no_events)
 
-    no_bins = 10000 #7722=ideal number for 0.5 kev bin width
+    no_bins = 30000 #10000 #7722=ideal number for 0.5 kev bin width
 
     #Linearly calibrated data:
     print("")
@@ -61,15 +61,15 @@ def main():
 
 
     #fit peak with gaussian and cdf
-    xmin_356, xmax_356 = 353, 360 #kev
+    xmin_356, xmax_356 = 352.5, 359.5 #360 #kev
     plt.figure()
     popt, pcov, xfit = fit_peak_356("Energy (keV)", bins_cal, counts, xmin_356, xmax_356)
     a,b,c,d,e,f,g = popt[0],popt[1],popt[2],popt[3],popt[4],popt[5],popt[6] 
     counts, bins, bars = plt.hist(calibrated_energy, bins=no_bins, histtype='step', color='grey')
     plt.xlim(xmin_356, xmax_356) 
-    plt.ylim(100, 0.5*10**6)
+    plt.ylim(0.5*100, 5*10**5)
     plt.yscale("log")
-    plt.savefig("/lfs/l1/legend/users/aalexander/HADES_detchar/Ba133_analysis/plots/356keV_dlt.png")
+    plt.savefig("/lfs/l1/legend/users/aalexander/HADES_detchar/Ba133_analysis/data/plots/356keV_dlt.png")
 
 
     #plot signal only and calculate integral
@@ -79,14 +79,14 @@ def main():
     C_356, C_356_err = gauss_count(a, c, np.sqrt(pcov[0][0]), np.sqrt(pcov[2][2]), bin_width)
     print("gauss count: ", C_356, " +/- ", C_356_err )
     plt.xlim(xmin_356, xmax_356) 
-    plt.ylim(100,10**6) 
+    plt.ylim(0.5*100,5*10**5) 
     plt.xlabel("Energy (keV)")
     plt.ylabel("Counts")
     plt.legend(loc="upper right", fontsize=9)
     props = dict(boxstyle='round', facecolor='wheat', alpha=0.5)
     info_str = r'$C_{356} = %.4g \pm %.4g$' % (C_356, C_356_err)
     plt.text(0.02, 0.98, info_str, transform=ax.transAxes, fontsize=9,verticalalignment='top', bbox=props) #ax.text
-    plt.savefig("/lfs/l1/legend/users/aalexander/HADES_detchar/Ba133_analysis/plots/356keV_dlt_signalonly.png")
+    plt.savefig("/lfs/l1/legend/users/aalexander/HADES_detchar/Ba133_analysis/data/plots/356keV_dlt_signalonly.png")
 
     #check with manual integration
     bina, binb = int(xmin_356/bin_width), int(xmax_356/bin_width)
@@ -101,18 +101,18 @@ def main():
     a,b,c,d,e = popt[0],popt[1],popt[2],popt[3],popt[4]
     counts, bins, bars = plt.hist(calibrated_energy, bins=no_bins, histtype='step', color='grey')
     plt.xlim(xmin_356, xmax_356) 
-    plt.ylim(100, 0.5*10**6)
+    plt.ylim(0.5*100, 5*10**5)
     plt.yscale("log")
-    plt.savefig("/lfs/l1/legend/users/aalexander/HADES_detchar/Ba133_analysis/plots/356keV_dlt_2.png")
+    plt.savefig("/lfs/l1/legend/users/aalexander/HADES_detchar/Ba133_analysis/data/plots/356keV_dlt_2.png")
 
     plt.figure() #zoomed in
     popt, pcov, xfit = fit_peak_356_2("Energy (keV)", bins_cal, counts, xmin_356, xmax_356)
     a,b,c,d,e = popt[0],popt[1],popt[2],popt[3],popt[4]
     counts, bins, bars = plt.hist(calibrated_energy, bins=no_bins, histtype='step', color='grey')
     plt.xlim(355.5, 357.3) 
-    plt.ylim(100, 0.5*10**6)
+    plt.ylim(0.5*100, 5*10**5)
     plt.yscale("log")
-    plt.savefig("/lfs/l1/legend/users/aalexander/HADES_detchar/Ba133_analysis/plots/356keV_dlt_2_zoom.png")
+    plt.savefig("/lfs/l1/legend/users/aalexander/HADES_detchar/Ba133_analysis/data/plots/356keV_dlt_2_zoom.png")
 
 
 
@@ -123,14 +123,14 @@ def main():
     C_356_2, C_356_2_err = gauss_count(a, c, np.sqrt(pcov[0][0]), np.sqrt(pcov[2][2]), bin_width)
     print("gauss count: ", C_356_2, " +/- ", C_356_2_err )
     plt.xlim(xmin_356, xmax_356) 
-    plt.ylim(100,10**6) 
+    plt.ylim(50,5*10**5) 
     plt.xlabel("Energy (keV)")
     plt.ylabel("Counts")
     plt.legend(loc="upper right", fontsize=9)
     props = dict(boxstyle='round', facecolor='wheat', alpha=0.5)
     info_str = r'$C_{356} = %.4g \pm %.4g$' % (C_356_2, C_356_2_err)
     plt.text(0.02, 0.98, info_str, transform=ax.transAxes, fontsize=9,verticalalignment='top', bbox=props) #ax.text
-    plt.savefig("/lfs/l1/legend/users/aalexander/HADES_detchar/Ba133_analysis/plots/356keV_dlt_signalonly_2.png")
+    plt.savefig("/lfs/l1/legend/users/aalexander/HADES_detchar/Ba133_analysis/data/plots/356keV_dlt_signalonly_2.png")
 
 
     plt.figure()
@@ -138,9 +138,9 @@ def main():
     a,b,c,d,e,f = popt[0],popt[1],popt[2],popt[3],popt[4],popt[5]
     counts, bins, bars = plt.hist(calibrated_energy, bins=no_bins, histtype='step', color='grey')
     plt.xlim(xmin_356, xmax_356) 
-    plt.ylim(100, 0.5*10**6)
+    plt.ylim(50, 5*10**5)
     plt.yscale("log")
-    plt.savefig("/lfs/l1/legend/users/aalexander/HADES_detchar/Ba133_analysis/plots/356keV_dlt_3.png")
+    plt.savefig("/lfs/l1/legend/users/aalexander/HADES_detchar/Ba133_analysis/data/plots/356keV_dlt_3.png")
 
 
 
@@ -156,9 +156,9 @@ def main():
     a,b,c,d,e,f,g,h = popt[0],popt[1],popt[2],popt[3],popt[4],popt[5],popt[6],popt[7] 
     counts, bins, bars = plt.hist(calibrated_energy, bins=no_bins, histtype='step', color='grey')
     plt.xlim(xmin_81, xmax_81) 
-    plt.ylim(500, 10**6)
+    plt.ylim(100, 5*10**5)
     plt.yscale("log")
-    plt.savefig("/lfs/l1/legend/users/aalexander/HADES_detchar/Ba133_analysis/plots/81keV_dlt.png")
+    plt.savefig("/lfs/l1/legend/users/aalexander/HADES_detchar/Ba133_analysis/data/plots/81keV_dlt.png")
 
     #plot signal only and calculate integral
     fig, ax = plt.subplots()
@@ -172,14 +172,14 @@ def main():
     print("gauss count 81: ", C_81, " +/- ", C_81_err )
     print("gauss count 79.6: ", C_79, " +/- ", C_79_err )
     plt.xlim(xmin_81, xmax_81)
-    plt.ylim(100,10**6) 
+    plt.ylim(100,5*10**5) 
     plt.xlabel("Energy (keV)")
     plt.ylabel("Counts")
     plt.legend(loc="upper right", fontsize=9)
     props = dict(boxstyle='round', facecolor='wheat', alpha=0.5)
     info_str = '\n'.join(( r'$C_{81} = %.4g \pm %.4g$' % (C_81, C_81_err), r'$C_{79.6} = %.4g \pm %.4g$' % (C_79, C_79_err)))
     plt.text(0.02, 0.98, info_str, transform=ax.transAxes, fontsize=9,verticalalignment='top', bbox=props) #ax.text
-    plt.savefig("/lfs/l1/legend/users/aalexander/HADES_detchar/Ba133_analysis/plots/81keV_dlt_signalonly.png")
+    plt.savefig("/lfs/l1/legend/users/aalexander/HADES_detchar/Ba133_analysis/data/plots/81keV_dlt_signalonly.png")
 
     print("")
     O_Ba133 = (C_79 + C_81)/C_356
