@@ -6,6 +6,7 @@ import matplotlib.pyplot as plt
 plt.style.use("mplstyle.txt")
 
 df =  pd.read_hdf("processed.hdf5", key="procdf")
+print(df)
 
 bins = np.arange(0, 4000, 1)
 plt.figure()
