@@ -60,11 +60,13 @@ def main():
     print("356 peak...")
 
 
-    #fit peak with gaussian and cdf
-    xmin_356, xmax_356 = 352.5, 359.5 #360 #kev
+    #fit peak with gaussian and unconstrained cdf
+    xmin_356, xmax_356 = 352.5, 359.5 #360 #kev 
     plt.figure()
     popt, pcov, xfit = fit_peak_356("Energy (keV)", bins_cal, counts, xmin_356, xmax_356)
     a,b,c,d,e,f,g = popt[0],popt[1],popt[2],popt[3],popt[4],popt[5],popt[6] 
+    # mu_356_1, mu_356_1_err = b, pc
+    # sigma_356_1, sigma_356_1_err = c , 
     counts, bins, bars = plt.hist(calibrated_energy, bins=no_bins, histtype='step', color='grey')
     plt.xlim(xmin_356, xmax_356) 
     plt.ylim(0.5*100, 5*10**5)
@@ -115,8 +117,6 @@ def main():
     plt.savefig("/lfs/l1/legend/users/aalexander/HADES_detchar/Ba133_analysis/data/plots/356keV_dlt_2_zoom.png")
 
 
-
-
     fig, ax = plt.subplots()
     plt.plot(xfit, gaussian(xfit,a,b,c), "b--", label ="gauss(x,a,b,c)")
     plt.yscale("log")
@@ -133,6 +133,13 @@ def main():
     plt.savefig("/lfs/l1/legend/users/aalexander/HADES_detchar/Ba133_analysis/data/plots/356keV_dlt_signalonly_2.png")
 
 
+    #propagate error of 2 fits:
+    C_356_average = (C_356 + C_356_2)/2
+    C_356_average_err = 0.5*np.sqrt(C_356_err**2 + C_356_2_err**2)
+    print("gauss count averaged: ", C_356_average, " +/- ", C_356_average_err )
+
+
+    #constrained mean cdf, unconstrained sigma - dont use this one
     plt.figure()
     popt, pcov, xfit = fit_peak_356_3("Energy (keV)", bins_cal, counts, xmin_356, xmax_356)
     a,b,c,d,e,f = popt[0],popt[1],popt[2],popt[3],popt[4],popt[5]
@@ -182,10 +189,16 @@ def main():
     plt.savefig("/lfs/l1/legend/users/aalexander/HADES_detchar/Ba133_analysis/data/plots/81keV_dlt_signalonly.png")
 
     print("")
+    print("Using just C_356_2, the constrained cdf")
     O_Ba133 = (C_79 + C_81)/C_356
     O_Ba133_err = O_Ba133*np.sqrt((C_79_err**2 + C_81_err**2)/(C_79+C_81)**2 + (C_356_err/C_356)**2)
     print("O_BA133 = " , O_Ba133, " +/- ", O_Ba133_err)
 
+    print("")
+    print("Using the average of C`-356_1 and 2")
+    O_Ba133_av = (C_79 + C_81)/C_356_average
+    O_Ba133_av_err = O_Ba133*np.sqrt((C_79_err**2 + C_81_err**2)/(C_79+C_81)**2 + (C_356_average_err/C_356_average)**2)
+    print("O_BA133 = " , O_Ba133_av, " +/- ", O_Ba133_av_err)
 
     
 
@@ -217,6 +230,21 @@ def obtain_key_data(data, keys, key, no_events):
 
     return key_data
 
+def linear_fit(x, m, c):
+    "linear function"
+    f = m*x + c
+    return f
+
+def quadratic_fit(x,a,b,c):
+    "quadratic function"
+    f = a*x**2 + b*x + c
+    return f
+
+def sqrt_curve(x,a,c):
+    "square root function with offset"
+    f = a*np.sqrt(x+c)
+    return f
+
 def gaussian(x,a,b,c):
     "gaussian function without offset"
     f = a*np.exp(-((x-b)**2.0/(2.0*c**2.0)))
@@ -243,26 +271,39 @@ def gaussian_and_bkg_3(x, a, b, c, d, e, f):
     f = gaussian(x, a, b, c) - d*gaussian_cdf(x, b, e) + f
     return f
 
+def low_energy_tail(x, a ,b):
+    """ The "low energy tail" is a heuristic function used to account for any mechanism leading to a systematic underestimation of the energy for a certain class of events. 
+    Often the tail is due to:
+
+    1. trapping/recombination of the charged carriers during their drift to the electrodes
+    2. events close to the n+ electrode in which part of the charges is created in a weak e-field region (slow pulses)
+    3. ballistic deficit -> the integration time of the energy filter is not enough
+    4. high rate of the source -> pulses sit on the tail of a previous pulse (pile-ups) and the energy filter does not fully correct for it
+
+    1 and 2 are related to the detector itself and usually cannot be fixed. 
+    3 can be fixed by increasing the integration time of the filter but typically this worsen the energy resolution. 
+    4 can be reduced by removing from the analysis the events with multiple pulses in the same waveform or with non-flat baselines.
+    Slow pulses are probably the main issue for low energy gamma-lines....
+    """
+
+    f = a +b 
+    return f
+
+def gaussian_and_bkg_4(x, a, b, c, d, e):
+    """fit function for 356kev peak consisting of:
+    - Gaussian [signal]
+    - Gaussian CDF, constained to gaussian centroid [bkg - energy loss of centroid gamma]
+    - linear [bkg - ]
+    - Low energy tail [bkg - heuristic function used to account for any mechanism leading to a systematic underestimation of the energy for a certain class of events.]
+    """
+    f = gaussian(x, a, b, c) - d*gaussian_cdf(x, b, c) + linear_fit(x, e, f) + low_energy_tail(x, g, h)
+    return f
+
 def double_gaussian_and_bkg(x,a,b,c,d,e,f,g,h):
     "fit function for Ba-133 79/81keV double peak - double gaussian and double cdf step, constrained bkg to mean and sigma of gauss"
 
     R = 2.65/32.9 #intensity ratio for Ba-133 double peak
     f = gaussian(x, a, b, c) + R*gaussian(x, a, d, e) - f*gaussian_cdf(x,b,c) - g*gaussian_cdf(x, d, e) + h 
-    return f
-
-def linear_fit(x, m, c):
-    "linear function"
-    f = m*x + c
-    return f
-
-def quadratic_fit(x,a,b,c):
-    "quadratic function"
-    f = a*x**2 + b*x + c
-    return f
-
-def sqrt_curve(x,a,c):
-    "square root function with offset"
-    f = a*np.sqrt(x+c)
     return f
 
 def chi_sq_calc(xdata, ydata, yerr, fit_func, popt):

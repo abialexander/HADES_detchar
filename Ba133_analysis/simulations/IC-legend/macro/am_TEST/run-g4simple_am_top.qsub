@@ -1,0 +1,13 @@
+#!/bin/bash
+#
+# USAGE: qsub run-g4simple.qsub run_detector_bi.mac
+#
+#$ -P short ### queue
+#$ -j y     ### have logoutput and erroroutput in the same file
+#$ -o /dev/null
+#$ -e /dev/null
+
+LOGFILE=$(echo $1 | cut -f 1 -d '.').out
+source ~/software/sw-containers/load.sh
+cd "/lfs/l1/legend/users/aalexander/HADES_detchar/Ba133_analysis/simulations/IC-legend/macro/am_TEST/"
+g4simple $1 &> /lfs/l1/legend/users/aalexander/HADES_detchar/Ba133_analysis/simulations/IC-legend/macro/am_TEST/output/$LOGFILE
