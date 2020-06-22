@@ -12,7 +12,7 @@ ln -sf $PATH_SIMULATION/holder.gdml
 ln -sf $PATH_SIMULATION/Alcap.gdml
 ln -sf $PATH_SIMULATION/bottom_plate.gdml
 ln -sf $PATH_SIMULATION/lead_castle_table1.gdml
-ln -sf $PATH_SIMULATION/source_encapsulated_$SOURCE.gdml
+#ln -sf $PATH_SIMULATION/source_encapsulated_$SOURCE.gdml
 ln -sf $PATH_SIMULATION/collimator_Cu$POSITION.gdml
 
 ln -sf $PATH_SIMULATION/define_source_$SOURCE$POSITION.xml define_source.xml

@@ -1,0 +1,76 @@
+/run/verbose 1
+#/event/verbose 1
+#/tracking/verbose 1
+
+/g4simple/setRandomSeed true
+#/random/setSeed 12345678
+
+# Need to set the physics list before we can do some of the other commands. 
+/g4simple/setReferencePhysList Shielding
+
+# Set GDML file name
+# The bool after the file name turns validation on / off
+/g4simple/setDetectorGDML /lfs/l1/legend/users/aalexander/HADES_detchar/Ba133_analysis/simulations/IC-legend/macro/ba_top/geometry/detector_ba_top.gdml #false
+#/g4simple/setDetectorGDML /lfs/l1/legend/users/bianca/IC_geometry/IC-legend/detector_am_top.gdml 
+
+# Set up output. Choose a format:
+#/g4simple/setOutputFormat csv
+#/g4simple/setOutputFormat xml
+#g4simple/setOutputFormat root
+/g4simple/setOutputFormat hdf5 
+
+# Uncomment to override an output's standard option
+#/g4simple/setOutputOption stepwise
+#/g4simple/setOutputOption eventwise #this was unncommented initially - THIS NEEDS TO BE UNCOMMENTED!!
+
+# Change the name of the output file (by default it's g4simple.[ext])
+/analysis/setFileName hdf5/detector_IC160A_ba_top_01.hdf5
+#/analysis/setFileName root/detector_IC160A_am_top_01.root
+
+#/geometry/test/tolerance 0.01
+
+# Steps are only written out if they are in a volume that matches a pattern set
+# via the setVolID command
+# Example setting a full volume name (exact match):
+/g4simple/setVolID Crystal_PV 1
+# Example using a regular expression to match multiple volumes, extract an
+# integer from the name, and set it as the volID
+#/g4simple/setVolID .*Detector([0-9]*).* $1
+# To get all steps in all volumes, comment out all setVolID commands (removes
+# all volume IDs from output), or uncomment the following line to keep the
+# volume IDs:
+/g4simple/recordAllSteps false 
+
+/run/initialize
+
+# If you want to see the list of available NIST materials (e.g. to help you
+# build your gdml file) uncomment this line
+#/material/nist/listMaterials
+
+# If you want to see the list of all physical volume names (e.g. to set volume
+# IDs above) uncomment this line
+/g4simple/listPhysVols
+
+# Set up gps after /run/initialize
+/gps/particle ion
+/gps/ion 56 133 0 0 #think this is where we set isotope of source
+/gps/energy    0 MeV
+##/grdm/nucleusLimits      212 212 83 83
+/gps/ang/type            iso
+/gps/pos/type Volume
+/gps/pos/shape Sphere
+/gps/pos/radius 0.5 mm
+/gps/pos/centre 0 0 -3.9 cm   #-4.2+0.3  (-source position+source translation to the bottom surface of the capsule)
+/gps/pos/centre 0 0 -5.95   #-(4.2+1.6.0+0.15)
+/gps/pos/confine Source_PV
+/gps/ang/mintheta 90 deg
+/gps/ang/maxtheta 180 deg
+
+/gps/List #list available incident particles
+
+
+
+
+
+/run/beamOn 1000000 #300000000
+
