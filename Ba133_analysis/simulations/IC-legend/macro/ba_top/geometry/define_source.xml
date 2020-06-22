@@ -1,7 +1,7 @@
 
   #this was originally /lfs/l1/legend/detector_char/enr/hades/simulations/legend-g4simple-simulation/IC-legend/general_geometry/define_source_am_top.xml, now edited for ba
-  #using elog: https://elog.legend-exp.org/HADES/9
-  <constant name="source_height"   value="2.0" />
+  #using elog: https://elog.legend-exp.org/HADES/9 "top source at 81mm"
+  <constant name="source_height"   value="2.0" /> 
   <constant name="source_width"   value="1.0" />
 
   <constant name="source_capsule_height"   value="10.0" /> 

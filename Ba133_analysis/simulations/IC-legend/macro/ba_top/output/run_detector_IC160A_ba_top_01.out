@@ -55,15 +55,15 @@ End of Run User Vis Actions: none
 
 Some /vis commands (optionally) take a string to specify colour.
 "/vis/list" to see available colours.
-CLHEP::HepRandom seed set to: 2622887063038516195
+CLHEP::HepRandom seed set to: 7679162361114513681
 G4PhysListFactory::GetReferencePhysList <Shielding>  EMoption= 0
 <<< Geant4 Physics List simulation engine: Shielding
 <<< Reference Physics List Shielding is built
 
-G4GDML: Reading '/lfs/l1/legend/users/aalexander/HADES_detchar/Ba133_analysis/simulations/IC-legend/macro/ba_top/geometry/detector_ba_top.gdml'...
-G4GDML: VALIDATION ERROR! no character data is allowed by content model at line: 3
-G4GDML: VALIDATION ERROR! ID attribute 'G4_AIR' is referenced but was never declared at line: 135
-G4GDML: VALIDATION ERROR! ID attribute 'G4_Galactic' is referenced but was never declared at line: 135
+G4GDML: Reading '/lfs/l1/legend/users/aalexander/HADES_detchar/Ba133_analysis/simulations/IC-legend/macro/ba_top/geometry/detector_ba_top_nocoll.gdml'...
+G4GDML: VALIDATION ERROR! no character data is allowed by content model at line: 4
+G4GDML: VALIDATION ERROR! ID attribute 'G4_AIR' is referenced but was never declared at line: 136
+G4GDML: VALIDATION ERROR! ID attribute 'G4_Galactic' is referenced but was never declared at line: 136
 G4GDML: Reading definitions...
 G4GDML: Reading materials...
 G4GDML: Reading solids...
@@ -109,7 +109,7 @@ G4GDML: Reading structure...
 G4GDML: Reading setup...
 G4GDML: Reading module '/lfs/l1/legend/users/aalexander/HADES_detchar/Ba133_analysis/simulations/IC-legend/macro/ba_top/geometry/lead_castle_table1.gdml' done!
 G4GDML: Reading module '/lfs/l1/legend/users/aalexander/HADES_detchar/Ba133_analysis/simulations/IC-legend/macro/ba_top/geometry/source_encapsulated_ba.gdml'...
-G4GDML: VALIDATION ERROR! no character data is allowed by content model at line: 3
+G4GDML: VALIDATION ERROR! no character data is allowed by content model at line: 4
 G4GDML: VALIDATION ERROR! ID attribute 'G4_SILICON_DIOXIDE' is referenced but was never declared at line: 56
 G4GDML: VALIDATION ERROR! ID attribute 'G4_STAINLESS-STEEL' is referenced but was never declared at line: 56
 G4GDML: Reading definitions...
@@ -118,16 +118,6 @@ G4GDML: Reading solids...
 G4GDML: Reading structure...
 G4GDML: Reading setup...
 G4GDML: Reading module '/lfs/l1/legend/users/aalexander/HADES_detchar/Ba133_analysis/simulations/IC-legend/macro/ba_top/geometry/source_encapsulated_ba.gdml' done!
-G4GDML: Reading module '/lfs/l1/legend/users/aalexander/HADES_detchar/Ba133_analysis/simulations/IC-legend/macro/ba_top/geometry/collimator_Cu_top.gdml'...
-G4GDML: VALIDATION ERROR! no character data is allowed by content model at line: 3
-G4GDML: VALIDATION ERROR! ID attribute 'G4_Cu' is referenced but was never declared at line: 68
-G4GDML: VALIDATION ERROR! ID attribute 'G4_AIR' is referenced but was never declared at line: 68
-G4GDML: Reading definitions...
-G4GDML: Reading materials...
-G4GDML: Reading solids...
-G4GDML: Reading structure...
-G4GDML: Reading setup...
-G4GDML: Reading module '/lfs/l1/legend/users/aalexander/HADES_detchar/Ba133_analysis/simulations/IC-legend/macro/ba_top/geometry/collimator_Cu_top.gdml' done!
 G4GDML: Reading module '/lfs/l1/legend/users/aalexander/HADES_detchar/Ba133_analysis/simulations/IC-legend/macro/ba_top/geometry/Alcap.gdml'...
 G4GDML: VALIDATION ERROR! ID attribute 'G4_Al' is referenced but was never declared at line: 56
 G4GDML: Reading definitions...
@@ -137,9 +127,9 @@ G4GDML: Reading structure...
 G4GDML: Reading setup...
 G4GDML: Reading module '/lfs/l1/legend/users/aalexander/HADES_detchar/Ba133_analysis/simulations/IC-legend/macro/ba_top/geometry/Alcap.gdml' done!
 G4GDML: Reading setup...
-G4GDML: Reading '/lfs/l1/legend/users/aalexander/HADES_detchar/Ba133_analysis/simulations/IC-legend/macro/ba_top/geometry/detector_ba_top.gdml' done!
+G4GDML: Reading '/lfs/l1/legend/users/aalexander/HADES_detchar/Ba133_analysis/simulations/IC-legend/macro/ba_top/geometry/detector_ba_top_nocoll.gdml' done!
 Stripping off GDML names of materials, solids and volumes ...
-Set file name: hdf5/detector_IC160A_ba_top_01.hdf5
+Set file name: /lfs/l1/legend/users/aalexander/hdf5_output/detector_IC160A_ba_top_01.hdf5
 
  Shielding : threshold between BERT and FTFP is over the interval : 4 to 5 GeV
 
@@ -163,8 +153,6 @@ Bottom_plate_PV 0
 Lead_castle_PV 0
 Source_PV 0
 Source_Encapsulated_PV 0
-Collimator_Beam_PV 0
-Collimator_PV 0
 AlCap_PV 0
 Vacuum_cavity_PV 0
 World_PV 0
@@ -962,27 +950,20 @@ Index : 4     used in the geometry : Yes
     DefaultRegionForTheWorld
 
 Index : 5     used in the geometry : Yes
- Material : G4_Cu
- Range cuts        :  gamma  700 um     e-  700 um     e+  700 um  proton 0 fm 
- Energy thresholds :  gamma  20.6438 keV    e-  1.03121 MeV    e+  977.24 keV proton 0 eV 
- Region(s) which use this couple : 
-    DefaultRegionForTheWorld
-
-Index : 6     used in the geometry : Yes
  Material : G4_Galactic
  Range cuts        :  gamma  700 um     e-  700 um     e+  700 um  proton 0 fm 
  Energy thresholds :  gamma  990 eV     e-  990 eV     e+  990 eV  proton 0 eV 
  Region(s) which use this couple : 
     DefaultRegionForTheWorld
 
-Index : 7     used in the geometry : Yes
+Index : 6     used in the geometry : Yes
  Material : enriched_germanium
  Range cuts        :  gamma  700 um     e-  700 um     e+  700 um  proton 0 fm 
  Energy thresholds :  gamma  17.0457 keV    e-  652.968 keV    e+  631.393 keV proton 0 eV 
  Region(s) which use this couple : 
     DefaultRegionForTheWorld
 
-Index : 8     used in the geometry : Yes
+Index : 7     used in the geometry : Yes
  Material : G4_TEFLON
  Range cuts        :  gamma  700 um     e-  700 um     e+  700 um  proton 0 fm 
  Energy thresholds :  gamma  3.74537 keV    e-  413.461 keV    e+  402.496 keV proton 0 eV 
@@ -992,17 +973,5 @@ Index : 8     used in the geometry : Yes
 ====================================================================
 
 ### Run 0 starts.
-Opening file hdf5/detector_IC160A_ba_top_01.hdf5
+Opening file /lfs/l1/legend/users/aalexander/hdf5_output/detector_IC160A_ba_top_01.hdf5
 Setting ID for Crystal_PV to 1
- Run terminated.
-Run Summary
-  Number of events processed : 1000000
-  User=125.490000s Real=135.490991s Sys=0.390000s [Cpu=92.9%]
-Graphics systems deleted.
-Visualization Manager deleting...
-G4 kernel has come to Quit state.
-================== Deleting memory pools ===================
-Number of memory pools allocated: 9; of which, static: 0
-Dynamic pools deleted: 9 / Total memory freed: 0.061 MB
-============================================================
-RunManagerKernel is deleted. Good bye :)
