@@ -25,8 +25,7 @@
 #/g4simple/setOutputOption eventwise #this was unncommented initially - THIS NEEDS TO BE COMMENTED!!
 
 # Change the name of the output file (by default it's g4simple.[ext])
-/analysis/setFileName /lfs/l1/legend/users/aalexander/hdf5_output/detector_IC160A_ba_top_01.hdf5 #save hdf5 files in separate location as too big (for github)
-#/analysis/setFileName hdf5/detector_IC160A_ba_top_01.hdf5
+/analysis/setFileName /lfs/l1/legend/users/aalexander/hdf5_output/detector_IC160A_ba_top_gammas_01.hdf5 #save hdf5 files in separate location as too big (for github)
 #/analysis/setFileName root/detector_IC160A_am_top_01.root
 
 #/geometry/test/tolerance 0.01
@@ -55,10 +54,14 @@
 
 #/gps/List #list available incident particles
 
-/gps/particle  ion
-/gps/ion       56 133 0 0
-/gps/energy    0 MeV
-/grdm/nucleusLimits      133 133 56 56
+#use gamma lines from here https://www.ezag.com/fileadmin/ezag/user-uploads/isotopes/isotopes/Isotrak/isotrak-pdf/Decay_Schema_Data/Ba-133.pdf
+#https://www.nndc.bnl.gov/nudat2/decaysearchdirect.jsp?nuc=133BA&unc=nds - actually use this one instead
+
+
+/gps/source/intensity 1 #62.05% intensity
+#/gps/source/add 62.05
+/gps/particle gamma
+/gps/ene/mono 356.0129 keV
 /gps/ang/type iso
 /gps/ang/mintheta 150 deg
 /gps/ang/maxtheta 180 deg
@@ -70,9 +73,59 @@
 #/gps/direction 0 0 1
 /gps/pos/confine Source_PV
 
+/gps/source/add 0.53022 
+#/gps/source/add 32.9 #0.53022 #32.9% intensity, so add at 32.9/62.05 = 
+/gps/particle gamma
+/gps/ene/mono 80.9979 keV
+/gps/ang/type iso
+/gps/ang/mintheta 150 deg
+/gps/ang/maxtheta 180 deg
+/gps/pos/type Volume
+/gps/pos/shape Cylinder
+/gps/pos/radius 0.5 mm
+/gps/pos/halfz 1.0 mm
+/gps/pos/centre -14.1421 -14.1421 -29.8 mm
+#/gps/direction 0 0 1
+/gps/pos/confine Source_PV
 
+/gps/source/add 0.04271
+#/gps/source/add 2.65 #0.04271 #2.65% intensity, so add at 2.65/62.05
+/gps/particle gamma
+/gps/ene/mono 79.6142 keV
+/gps/ang/type iso
+/gps/ang/mintheta 150 deg
+/gps/ang/maxtheta 180 deg
+/gps/pos/type Volume
+/gps/pos/shape Cylinder
+/gps/pos/radius 0.5 mm
+/gps/pos/halfz 1.0 mm
+/gps/pos/centre -14.1421 -14.1421 -29.8 mm
+#/gps/direction 0 0 1
+/gps/pos/confine Source_PV
 
 /gps/source/list #list the particle sources defined
+
+#/gps/G4RadioactiveDecay
+#/rdecay01
+#/G4RadioactiveDecay/
+#/grdm
+
+#below are old Am-241 lines
+#/gps/source/intensity 1
+#/gps/particle gamma
+#/gps/ene/mono 59.5409 keV
+
+#/gps/source/add 0.000565145  #= 0.0203/35.9
+#/gps/particle gamma
+#/gps/ene/mono 98.97 keV
+
+
+#/gps/source/add 0.000542873 #= 0.0195/35.9
+#/gps/particle gamma
+#/gps/ene/mono 102.98 keV
+
+
+
 
 /run/beamOn 10000000 #300000000
 

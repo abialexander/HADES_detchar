@@ -1,1 +1,0 @@
-qsub -e /lfs/l1/legend/users/aalexander/HADES_detchar/Ba133_analysis/data/errorlog.txt -o /lfs/l1/legend/users/aalexander/HADES_detchar/Ba133_analysis/data/outputlog.txt -N abi_Ba133_analysis -P short /lfs/l1/legend/users/aalexander/HADES_detchar/Ba133_analysis/data/Launch_Ba133_analysis.sh

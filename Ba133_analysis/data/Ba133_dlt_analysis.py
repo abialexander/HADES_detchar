@@ -41,15 +41,25 @@ def main():
         m_err = calibration_coefs['m_err']
         c = calibration_coefs['c']
         c_err = calibration_coefs['c_err']
+        a_quad = calibration_coefs['a_quad']
+        a_quad_err = calibration_coefs['a_quad_err']
+        b_quad = calibration_coefs['b_quad']
+        b_quad_err = calibration_coefs['b_quad_err']
+        c_quad = calibration_coefs['c_quad']
+        c_quad_err = calibration_coefs['c_quad_err']
 
     print("m: ", m, " , c: ", c)
 
     calibrated_energy = (key_data-c)/m
     counts, bins_cal, bars = plt.hist(calibrated_energy, bins=no_bins)
-    plt.close("all")
-
     bin_width = bins_cal[1] - bins_cal[0]
     print("bin width: ", bin_width, " keV")
+
+    binwidth = 0.1 #kev
+    bins = np.arange(min(data), max(data) + binwidth, binwidth)
+    counts, bins_cal, bars = plt.hist(calibrated_energy, bins=bins)
+
+    plt.close("all")  
 
     #_________Construct dlt observable________
     print("")
@@ -65,9 +75,8 @@ def main():
     plt.figure()
     popt, pcov, xfit = fit_peak_356("Energy (keV)", bins_cal, counts, xmin_356, xmax_356)
     a,b,c,d,e,f,g = popt[0],popt[1],popt[2],popt[3],popt[4],popt[5],popt[6] 
-    # mu_356_1, mu_356_1_err = b, pc
-    # sigma_356_1, sigma_356_1_err = c , 
-    counts, bins, bars = plt.hist(calibrated_energy, bins=no_bins, histtype='step', color='grey')
+    #counts, bins, bars = plt.hist(calibrated_energy, bins=no_bins, histtype='step', color='grey')
+    counts, bins, bars = plt.hist(calibrated_energy, bins=bins, histtype='step', color='grey')
     plt.xlim(xmin_356, xmax_356) 
     plt.ylim(0.5*100, 5*10**5)
     plt.yscale("log")
@@ -78,7 +87,9 @@ def main():
     fig, ax = plt.subplots()
     plt.plot(xfit, gaussian(xfit,a,b,c), "b--", label ="gauss(x,a,b,c)")
     plt.yscale("log")
-    C_356, C_356_err = gauss_count(a, c, np.sqrt(pcov[0][0]), np.sqrt(pcov[2][2]), bin_width)
+    # C_356, C_356_err = gauss_count(a, c, np.sqrt(pcov[0][0]), np.sqrt(pcov[2][2]), bin_width)
+    # print("gauss count: ", C_356, " +/- ", C_356_err )
+    C_356, C_356_err = gauss_count(a, c, np.sqrt(pcov[0][0]), np.sqrt(pcov[2][2]), binwidth)
     print("gauss count: ", C_356, " +/- ", C_356_err )
     plt.xlim(xmin_356, xmax_356) 
     plt.ylim(0.5*100,5*10**5) 
@@ -101,7 +112,8 @@ def main():
     plt.figure()
     popt, pcov, xfit = fit_peak_356_2("Energy (keV)", bins_cal, counts, xmin_356, xmax_356)
     a,b,c,d,e = popt[0],popt[1],popt[2],popt[3],popt[4]
-    counts, bins, bars = plt.hist(calibrated_energy, bins=no_bins, histtype='step', color='grey')
+    #counts, bins, bars = plt.hist(calibrated_energy, bins=no_bins, histtype='step', color='grey')
+    counts, bins, bars = plt.hist(calibrated_energy, bins=bins, histtype='step', color='grey')
     plt.xlim(xmin_356, xmax_356) 
     plt.ylim(0.5*100, 5*10**5)
     plt.yscale("log")
@@ -110,7 +122,8 @@ def main():
     plt.figure() #zoomed in
     popt, pcov, xfit = fit_peak_356_2("Energy (keV)", bins_cal, counts, xmin_356, xmax_356)
     a,b,c,d,e = popt[0],popt[1],popt[2],popt[3],popt[4]
-    counts, bins, bars = plt.hist(calibrated_energy, bins=no_bins, histtype='step', color='grey')
+    #counts, bins, bars = plt.hist(calibrated_energy, bins=no_bins, histtype='step', color='grey')
+    counts, bins, bars = plt.hist(calibrated_energy, bins=bins, histtype='step', color='grey')
     plt.xlim(355.5, 357.3) 
     plt.ylim(0.5*100, 5*10**5)
     plt.yscale("log")
@@ -120,7 +133,9 @@ def main():
     fig, ax = plt.subplots()
     plt.plot(xfit, gaussian(xfit,a,b,c), "b--", label ="gauss(x,a,b,c)")
     plt.yscale("log")
-    C_356_2, C_356_2_err = gauss_count(a, c, np.sqrt(pcov[0][0]), np.sqrt(pcov[2][2]), bin_width)
+    # C_356_2, C_356_2_err = gauss_count(a, c, np.sqrt(pcov[0][0]), np.sqrt(pcov[2][2]), bin_width)
+    # print("gauss count: ", C_356_2, " +/- ", C_356_2_err )
+    C_356_2, C_356_2_err = gauss_count(a, c, np.sqrt(pcov[0][0]), np.sqrt(pcov[2][2]), binwidth)
     print("gauss count: ", C_356_2, " +/- ", C_356_2_err )
     plt.xlim(xmin_356, xmax_356) 
     plt.ylim(50,5*10**5) 
@@ -143,7 +158,8 @@ def main():
     plt.figure()
     popt, pcov, xfit = fit_peak_356_3("Energy (keV)", bins_cal, counts, xmin_356, xmax_356)
     a,b,c,d,e,f = popt[0],popt[1],popt[2],popt[3],popt[4],popt[5]
-    counts, bins, bars = plt.hist(calibrated_energy, bins=no_bins, histtype='step', color='grey')
+    #counts, bins, bars = plt.hist(calibrated_energy, bins=no_bins, histtype='step', color='grey')
+    counts, bins, bars = plt.hist(calibrated_energy, bins=bins, histtype='step', color='grey')
     plt.xlim(xmin_356, xmax_356) 
     plt.ylim(50, 5*10**5)
     plt.yscale("log")
@@ -161,7 +177,8 @@ def main():
     plt.figure()
     popt, pcov, xfit = fit_double_peak_81("Energy (keV)", bins_cal, counts, xmin_81, xmax_81)
     a,b,c,d,e,f,g,h = popt[0],popt[1],popt[2],popt[3],popt[4],popt[5],popt[6],popt[7] 
-    counts, bins, bars = plt.hist(calibrated_energy, bins=no_bins, histtype='step', color='grey')
+    #counts, bins, bars = plt.hist(calibrated_energy, bins=no_bins, histtype='step', color='grey')
+    counts, bins, bars = plt.hist(calibrated_energy, bins=bins, histtype='step', color='grey')
     plt.xlim(xmin_81, xmax_81) 
     plt.ylim(100, 5*10**5)
     plt.yscale("log")
@@ -174,8 +191,12 @@ def main():
     plt.plot(xfit, gaussian(xfit,a,b,c), "g--", label ="gauss(x,a,b,c)")
     plt.plot(xfit, R*gaussian(xfit,a,d,e), "r--", label ="R*gauss(x,a,d,e)")
     plt.yscale("log")
-    C_81, C_81_err = gauss_count(a, c, np.sqrt(pcov[0][0]), np.sqrt(pcov[2][2]), bin_width)
-    C_79, C_79_err = gauss_count(R*a, e, R*np.sqrt(pcov[0][0]), np.sqrt(pcov[4][4]), bin_width)
+    # C_81, C_81_err = gauss_count(a, c, np.sqrt(pcov[0][0]), np.sqrt(pcov[2][2]), bin_width)
+    # C_79, C_79_err = gauss_count(R*a, e, R*np.sqrt(pcov[0][0]), np.sqrt(pcov[4][4]), bin_width)
+    # print("gauss count 81: ", C_81, " +/- ", C_81_err )
+    # print("gauss count 79.6: ", C_79, " +/- ", C_79_err )
+    C_81, C_81_err = gauss_count(a, c, np.sqrt(pcov[0][0]), np.sqrt(pcov[2][2]), binwidth)
+    C_79, C_79_err = gauss_count(R*a, e, R*np.sqrt(pcov[0][0]), np.sqrt(pcov[4][4]), binwidth)
     print("gauss count 81: ", C_81, " +/- ", C_81_err )
     print("gauss count 79.6: ", C_79, " +/- ", C_79_err )
     plt.xlim(xmin_81, xmax_81)

@@ -55,7 +55,7 @@ End of Run User Vis Actions: none
 
 Some /vis commands (optionally) take a string to specify colour.
 "/vis/list" to see available colours.
-CLHEP::HepRandom seed set to: 8463279220485474595
+CLHEP::HepRandom seed set to: 7001649954059670730
 G4PhysListFactory::GetReferencePhysList <Shielding>  EMoption= 0
 <<< Geant4 Physics List simulation engine: Shielding
 <<< Reference Physics List Shielding is built
@@ -129,7 +129,7 @@ G4GDML: Reading module '/lfs/l1/legend/users/aalexander/HADES_detchar/Ba133_anal
 G4GDML: Reading setup...
 G4GDML: Reading '/lfs/l1/legend/users/aalexander/HADES_detchar/Ba133_analysis/simulations/IC-legend/macro/ba_top/geometry/detector_ba_top_nocoll.gdml' done!
 Stripping off GDML names of materials, solids and volumes ...
-Set file name: /lfs/l1/legend/users/aalexander/hdf5_output/test.hdf5
+Set file name: /lfs/l1/legend/users/aalexander/hdf5_output/test2.hdf5
 
  Shielding : threshold between BERT and FTFP is over the interval : 4 to 5 GeV
 
@@ -156,24 +156,10 @@ Source_Encapsulated_PV 0
 AlCap_PV 0
 Vacuum_cavity_PV 0
 World_PV 0
-The number of particle sources is: 3
+The number of particle sources is: 1
  Multiple Vertex sources: 0 Flat Sampling flag: 0
 	source 0 with intensity: 1
- 		Num Particles: 1; Particle type: gamma
- 		Energy: 1 MeV
- 		Direction: (0,0,-1); Position: -1.41421 -1.41421 -2.98 cm 
- 		Angular Distribution: iso
- 		Energy Distribution: Mono
- 		Position Distribution Type: Volume; Position Shape: Cylinder
-	source 1 with intensity: 0.53022
- 		Num Particles: 1; Particle type: gamma
- 		Energy: 1 MeV
- 		Direction: (0,0,-1); Position: -1.41421 -1.41421 -2.98 cm 
- 		Angular Distribution: iso
- 		Energy Distribution: Mono
- 		Position Distribution Type: Volume; Position Shape: Cylinder
-	source 2 with intensity: 0.04271
- 		Num Particles: 1; Particle type: gamma
+ 		Num Particles: 1; Particle type: Ba133
  		Energy: 1 MeV
  		Direction: (0,0,-1); Position: -1.41421 -1.41421 -2.98 cm 
  		Angular Distribution: iso
@@ -966,17 +952,17 @@ Index : 7     used in the geometry : Yes
 ====================================================================
 
 ### Run 0 starts.
-Opening file /lfs/l1/legend/users/aalexander/hdf5_output/test.hdf5
+Opening file /lfs/l1/legend/users/aalexander/hdf5_output/test2.hdf5
 Setting ID for Crystal_PV to 1
  Run terminated.
 Run Summary
   Number of events processed : 10000000
-  User=2179.570000s Real=2200.988784s Sys=18.850000s [Cpu=99.9%]
+  User=5495.550000s Real=5506.583590s Sys=9.380000s [Cpu=100.0%]
 Graphics systems deleted.
 Visualization Manager deleting...
 G4 kernel has come to Quit state.
 ================== Deleting memory pools ===================
-Number of memory pools allocated: 9; of which, static: 0
-Dynamic pools deleted: 9 / Total memory freed: 0.063 MB
+Number of memory pools allocated: 11; of which, static: 0
+Dynamic pools deleted: 11 / Total memory freed: 0.076 MB
 ============================================================
 RunManagerKernel is deleted. Good bye :)

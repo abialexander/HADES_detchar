@@ -3,7 +3,7 @@ import pandas as pd
 import numpy as np
 
 # Modify this value for different energy resolution
-pctResAt1MeV = 0.15#;
+pctResAt1MeV = 0.15 #5#;
 
 
 hdf5_path = "/lfs/l1/legend/users/aalexander/hdf5_output/"
@@ -23,16 +23,17 @@ g4sdf = g4sdf.join(pd.DataFrame(np.array(g4sntuple['Edep']['pages']), columns=['
 g4sdf = g4sdf.join(pd.DataFrame(np.array(g4sntuple['volID']['pages']),columns=['volID']), lsuffix = '_caller', rsuffix = '_other')
 g4sdf = g4sdf.join(pd.DataFrame(np.array(g4sntuple['iRep']['pages']),columns=['iRep']), lsuffix = '_caller', rsuffix = '_other')
 print(g4sdf)
+
 # apply E cut / detID cut and sum Edeps for each event using loc, groupby, and sum
 # write directly into output dataframe
 detector_hits = g4sdf.loc[(g4sdf.Edep>0)&(g4sdf.volID==1)]
-print(detector_hits)
+
 procdf = pd.DataFrame(detector_hits.groupby(['event','volID','iRep'], as_index=False)['Edep'].sum())
 procdf = procdf.rename(columns={'iRep':'detID', 'Edep':'energy'})
-print(procdf)
+
 # apply energy resolution function
 procdf['energy'] = procdf['energy'] + np.sqrt(procdf['energy'])*pctResAt1MeV/100.*np.random.randn(len(procdf['energy']))
 print(procdf)
 # write to output file
-procdf.to_hdf(hdf5_path+'processed/processed.hdf5', key='procdf', mode='w')
+procdf.to_hdf(hdf5_path+'processed/processed_'+sys.argv[1], key='procdf', mode='w')
 

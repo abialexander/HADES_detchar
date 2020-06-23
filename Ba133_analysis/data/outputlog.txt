@@ -80,3 +80,78 @@ chisq with errors:
 chisq:  634.7658873143431
 dof:  201
 p:  0.0
+data_size:  65456552
+bin width uncal:  6.169174073347186  uncal unit
+No. events [sum(counts)]:  1769096.0
+No. events [sum(counts)/binwidth]:  286763.83239744575
+No. events [sum(counts)*binwidth]:  10913861.176462213
+No. events [key_data.size]:  1769096
+Calibrating...
+Calibration peaks:
+fitting peak:  81  keV
+rough peak boundaries:  1277  ,  1315
+fitting peak:  276  keV
+rough peak boundaries:  4380  ,  4450
+fitting peak:  302  keV
+rough peak boundaries:  4805  ,  4870
+fitting peak:  356  keV
+rough peak boundaries:  5645  ,  5725
+fitting peak:  383  keV
+rough peak boundaries:  6090  ,  6170
+
+Constructing calibration curve...
+
+Linearly calibrating energy...
+No. events [sum(counts)]:  1769096.0
+No. events [sum(counts)/binwidth]:  17690960.0
+No. events [cal_energy.size]:  1769096
+
+Replotting calibrated spectra and peaks...
+fitting calibrated peak:  81  keV
+rough peak boundaries:  79.71598591030582  ,  82.09707885089826
+fitting calibrated peak:  276  keV
+rough peak boundaries:  274.15102261184103  ,  278.5372464497745
+fitting calibrated peak:  302  keV
+rough peak boundaries:  300.78166734215125  ,  304.85458947737516
+fitting calibrated peak:  356  keV
+rough peak boundaries:  353.4163533973525  ,  358.429180640705
+fitting calibrated peak:  383  keV
+rough peak boundaries:  381.3002049385008  ,  386.3130321818533
+
+Constructing calibrated resolution plot...
+Estimated resolution at qbb=2039 keV:  1.877414292324714  keV
+data_size:  65456552
+No. events [key_data.size]:  1769096
+bin width uncal:  2.4676696293388742  uncal unit
+Calibrating...
+Calibration peaks:
+fitting peak:  81  keV
+rough peak boundaries:  1277  ,  1315
+fitting peak:  276  keV
+rough peak boundaries:  4380  ,  4450
+fitting peak:  302  keV
+rough peak boundaries:  4805  ,  4870
+fitting peak:  356  keV
+rough peak boundaries:  5645  ,  5725
+fitting peak:  383  keV
+rough peak boundaries:  6090  ,  6170
+
+Constructing calibration curve...
+
+Linearly calibrating energy...
+No. events [cal_energy.size]:  1769096
+
+Replotting calibrated spectra and peaks...
+fitting calibrated peak:  81  keV
+rough peak boundaries:  79.87814694772976  ,  82.25773421991296
+fitting calibrated peak:  276  keV
+rough peak boundaries:  274.19023393679515  ,  278.5736841750274
+fitting calibrated peak:  302  keV
+rough peak boundaries:  300.80403895463365  ,  304.8743856044207
+fitting calibrated peak:  356  keV
+rough peak boundaries:  353.4054418134203  ,  358.41509922854283
+fitting calibrated peak:  383  keV
+rough peak boundaries:  381.27166118503936  ,  386.2813186001619
+
+Constructing calibrated resolution plot...
+Estimated resolution at qbb=2039 keV:  1.8747196917213473  keV
