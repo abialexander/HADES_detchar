@@ -3,7 +3,7 @@ import pandas as pd
 import numpy as np
 
 # Modify this value for different energy resolution
-pctResAt1MeV = 0.1 #0.15 #5#;
+pctResAt1MeV = 0.15 #0.15 #5#;
 
 
 hdf5_path = "/lfs/l1/legend/users/aalexander/hdf5_output/"

@@ -17,6 +17,7 @@ def main():
 
     filename = sys.argv[1]
     plotname = filename.strip('.hdf5')
+    plotname = filename.strip('processed_')
 
     df =  pd.read_hdf(hdf5_path+filename, key="procdf")
 
@@ -35,7 +36,7 @@ def main():
     #plt.show()
 
 
-    binwidth = 0.1 #5 #0.1 kev = rough min resolution
+    binwidth = 0.15 #5 #0.1 kev = rough min resolution
     energies = df['energy']
     energies = energies*1000
 
@@ -50,7 +51,6 @@ def main():
     plt.ylim(1,10**6)  
     props = dict(boxstyle='round', facecolor='wheat', alpha=0.5)
     info_str = '\n'.join((r'# events = $%.0f$' % (no_events), r'binwidth = $%.2f$ keV' % (binwidth)))
-    #info_str = r'# events = $%.0f$' % (no_events)
     ax.text(0.67, 0.97, info_str, transform=ax.transAxes, fontsize=10,verticalalignment='top', bbox=props)
     plt.savefig("plots/"+plotname+'.png')
 
