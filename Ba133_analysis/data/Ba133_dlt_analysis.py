@@ -11,9 +11,18 @@ import pygama
 from pygama.analysis import histograms
 from pygama.analysis import peak_fitting
 import json
+from datetime import datetime
 
 
 def main():
+
+
+    #print date and time for log:
+    now = datetime.now()
+    dt_string = now.strftime("%d/%m/%Y %H:%M:%S") # dd/mm/YY H:M:S
+    print("")
+    print("date and time =", dt_string)	
+    print("")
 
     #read tier 2 runs for Ba data
     detector = "I02160A"
@@ -21,13 +30,11 @@ def main():
     keys, data = read_all_t2(t2_folder)
     print("Available keys: " ,keys)
 
-
-
-    no_events = data.size #all events
-    print("No. events: ", no_events)
+    data_size = data.size #all events
+    print("data_size: ", data_size)
 
     key = "e_ftp"
-    key_data = obtain_key_data(data, keys, key, no_events)
+    key_data = obtain_key_data(data, keys, key, data_size)
 
     no_bins = 30000 #10000 #7722=ideal number for 0.5 kev bin width
 
@@ -35,7 +42,7 @@ def main():
     print("")
     print("Linearly calibrating energy...")
 
-    with open('calibration_coef.json') as json_file:
+    with open('/lfs/l1/legend/users/aalexander/HADES_detchar/Ba133_analysis/data/calibration_coef.json') as json_file:
         calibration_coefs = json.load(json_file)
         m = calibration_coefs['m']
         m_err = calibration_coefs['m_err']
@@ -55,8 +62,8 @@ def main():
     bin_width = bins_cal[1] - bins_cal[0]
     print("bin width: ", bin_width, " keV")
 
-    binwidth = 0.1 #kev
-    bins = np.arange(min(data), max(data) + binwidth, binwidth)
+    binwidth = 0.15 #0.1 #kev
+    bins = np.arange(min(calibrated_energy), max(calibrated_energy) + binwidth, binwidth)
     counts, bins_cal, bars = plt.hist(calibrated_energy, bins=bins)
 
     plt.close("all")  
@@ -370,6 +377,7 @@ def fit_peak_356(key, bins, counts, xmin, xmax):
     "fit the 356 keV peak with gaussian +cdf bkg"
 
     no_bins = bins.size 
+    binwidth = bins[1]-bins[0]
 
     xdata = []
     ydata = []
@@ -415,7 +423,7 @@ def fit_peak_356(key, bins, counts, xmin, xmax):
     chi_sq, p_value, residuals, dof = chi_sq_calc(xdata, ydata, yerr, gaussian_and_bkg, popt)
 
     props = dict(boxstyle='round', facecolor='wheat', alpha=0.5)
-    info_str = '\n'.join((r'$a=%.3g \pm %.3g$' % (a, np.sqrt(pcov[0][0])), r'$b=%.3g \pm %.3g$' % (b, np.sqrt(pcov[1][1])), r'$c=%.3g \pm %.3g$' % (c, np.sqrt(pcov[2][2])), r'$d=%.3g \pm %.3g$' % (d, np.sqrt(pcov[3][3])), r'$e=%.3g \pm %.3g$' % (e, np.sqrt(pcov[4][4])), r'$f=%.3g \pm %.3g$' % (f, np.sqrt(pcov[5][5])),r'$g=%.3g \pm %.3g$' % (g, np.sqrt(pcov[6][6])), r'$\chi^2/dof=%.2f/%.0f$'%(chi_sq, dof)))
+    info_str = '\n'.join((r'$a=%.3g \pm %.3g$' % (a, np.sqrt(pcov[0][0])), r'$b=%.3g \pm %.3g$' % (b, np.sqrt(pcov[1][1])), r'$c=%.3g \pm %.3g$' % (c, np.sqrt(pcov[2][2])), r'$d=%.3g \pm %.3g$' % (d, np.sqrt(pcov[3][3])), r'$e=%.3g \pm %.3g$' % (e, np.sqrt(pcov[4][4])), r'$f=%.3g \pm %.3g$' % (f, np.sqrt(pcov[5][5])),r'$g=%.3g \pm %.3g$' % (g, np.sqrt(pcov[6][6])), r'$\chi^2/dof=%.2f/%.0f$'%(chi_sq, dof), r'binwidth = $%.2g$ keV'%binwidth))
     plt.text(0.02, 0.98, info_str, transform=ax.transAxes, fontsize=8,verticalalignment='top', bbox=props) #ax.text..ax.tra
 
     return popt, pcov, xfit
@@ -425,6 +433,7 @@ def fit_peak_356_2(key, bins, counts, xmin, xmax):
     "fit the 356 keV peak with gaussian +cdf bkg - cdf mean and sigma constrained to that of gaussian"
 
     no_bins = bins.size 
+    binwidth = bins[1]-bins[0]
 
     xdata = []
     ydata = []
@@ -468,7 +477,7 @@ def fit_peak_356_2(key, bins, counts, xmin, xmax):
     chi_sq, p_value, residuals, dof = chi_sq_calc(xdata, ydata, yerr, gaussian_and_bkg_2, popt)
 
     props = dict(boxstyle='round', facecolor='wheat', alpha=0.5)
-    info_str = '\n'.join((r'$a=%.3g \pm %.3g$' % (a, np.sqrt(pcov[0][0])), r'$b=%.3g \pm %.3g$' % (b, np.sqrt(pcov[1][1])), r'$c=%.3g \pm %.3g$' % (c, np.sqrt(pcov[2][2])), r'$d=%.3g \pm %.3g$' % (d, np.sqrt(pcov[3][3])), r'$e=%.3g \pm %.3g$' % (e, np.sqrt(pcov[4][4])), r'$\chi^2/dof=%.2f/%.0f$'%(chi_sq, dof)))
+    info_str = '\n'.join((r'$a=%.3g \pm %.3g$' % (a, np.sqrt(pcov[0][0])), r'$b=%.3g \pm %.3g$' % (b, np.sqrt(pcov[1][1])), r'$c=%.3g \pm %.3g$' % (c, np.sqrt(pcov[2][2])), r'$d=%.3g \pm %.3g$' % (d, np.sqrt(pcov[3][3])), r'$e=%.3g \pm %.3g$' % (e, np.sqrt(pcov[4][4])), r'$\chi^2/dof=%.2f/%.0f$'%(chi_sq, dof), r'binwidth = $%.2g$ keV'%binwidth))
     plt.text(0.02, 0.98, info_str, transform=ax.transAxes, fontsize=8,verticalalignment='top', bbox=props) #ax.text..ax.tra
 
     return popt, pcov, xfit
@@ -477,6 +486,7 @@ def fit_peak_356_3(key, bins, counts, xmin, xmax):
     "fit the 356 keV peak with gaussian +cdf bkg - cdf mean constained to that of gaussian"
 
     no_bins = bins.size 
+    binwidth = bins[1]-bins[0]
 
     xdata = []
     ydata = []
@@ -521,7 +531,7 @@ def fit_peak_356_3(key, bins, counts, xmin, xmax):
     chi_sq, p_value, residuals, dof = chi_sq_calc(xdata, ydata, yerr, gaussian_and_bkg_3, popt)
 
     props = dict(boxstyle='round', facecolor='wheat', alpha=0.5)
-    info_str = '\n'.join((r'$a=%.3g \pm %.3g$' % (a, np.sqrt(pcov[0][0])), r'$b=%.3g \pm %.3g$' % (b, np.sqrt(pcov[1][1])), r'$c=%.3g \pm %.3g$' % (c, np.sqrt(pcov[2][2])), r'$d=%.3g \pm %.3g$' % (d, np.sqrt(pcov[3][3])), r'$e=%.3g \pm %.3g$' % (e, np.sqrt(pcov[4][4])), r'$f=%.3g \pm %.3g$' % (f, np.sqrt(pcov[5][5])), r'$\chi^2/dof=%.2f/%.0f$'%(chi_sq, dof)))
+    info_str = '\n'.join((r'$a=%.3g \pm %.3g$' % (a, np.sqrt(pcov[0][0])), r'$b=%.3g \pm %.3g$' % (b, np.sqrt(pcov[1][1])), r'$c=%.3g \pm %.3g$' % (c, np.sqrt(pcov[2][2])), r'$d=%.3g \pm %.3g$' % (d, np.sqrt(pcov[3][3])), r'$e=%.3g \pm %.3g$' % (e, np.sqrt(pcov[4][4])), r'$f=%.3g \pm %.3g$' % (f, np.sqrt(pcov[5][5])), r'$\chi^2/dof=%.2f/%.0f$'%(chi_sq, dof), r'binwidth = $%.2g$ keV'%binwidth))
     plt.text(0.02, 0.98, info_str, transform=ax.transAxes, fontsize=8,verticalalignment='top', bbox=props) #ax.text..ax.tra
 
     return popt, pcov, xfit
@@ -531,6 +541,7 @@ def fit_double_peak_81(key, bins, counts, xmin, xmax):
     "fit the double 79.6 /81 keV peak with gaussian +cdf bkg - cdf mean and sigma constrained to that of gaussian"
 
     no_bins = bins.size 
+    binwidth = bins[1]-bins[0]
 
     xdata = []
     ydata = []
@@ -576,7 +587,7 @@ def fit_double_peak_81(key, bins, counts, xmin, xmax):
     chi_sq, p_value, residuals, dof = chi_sq_calc(xdata, ydata, yerr, double_gaussian_and_bkg, popt)
 
     props = dict(boxstyle='round', facecolor='wheat', alpha=0.5)
-    info_str = '\n'.join((r'$a=%.3g \pm %.3g$' % (a, np.sqrt(pcov[0][0])), r'$b=%.3g \pm %.3g$' % (b, np.sqrt(pcov[1][1])), r'$c=%.3g \pm %.3g$' % (c, np.sqrt(pcov[2][2])), r'$d=%.3g \pm %.3g$' % (d, np.sqrt(pcov[3][3])), r'$e=%.3g \pm %.3g$' % (e, np.sqrt(pcov[4][4])), r'$f=%.3g \pm %.3g$' % (f, np.sqrt(pcov[5][5])), r'$g=%.3g \pm %.3g$' % (g, np.sqrt(pcov[6][6])), r'$h=%.3g \pm %.3g$' % (h, np.sqrt(pcov[7][7])), r'$R=2.65/32.9$',r'$\chi^2/dof=%.2f/%.0f$'%(chi_sq, dof)))
+    info_str = '\n'.join((r'$a=%.3g \pm %.3g$' % (a, np.sqrt(pcov[0][0])), r'$b=%.3g \pm %.3g$' % (b, np.sqrt(pcov[1][1])), r'$c=%.3g \pm %.3g$' % (c, np.sqrt(pcov[2][2])), r'$d=%.3g \pm %.3g$' % (d, np.sqrt(pcov[3][3])), r'$e=%.3g \pm %.3g$' % (e, np.sqrt(pcov[4][4])), r'$f=%.3g \pm %.3g$' % (f, np.sqrt(pcov[5][5])), r'$g=%.3g \pm %.3g$' % (g, np.sqrt(pcov[6][6])), r'$h=%.3g \pm %.3g$' % (h, np.sqrt(pcov[7][7])), r'$R=2.65/32.9$',r'$\chi^2/dof=%.2f/%.0f$'%(chi_sq, dof), r'binwidth = $%.2g$ keV'%binwidth))
     plt.text(0.02, 0.82, info_str, transform=ax.transAxes, fontsize=8,verticalalignment='top', bbox=props) #ax.text..ax.tra
 
     return popt, pcov, xfit

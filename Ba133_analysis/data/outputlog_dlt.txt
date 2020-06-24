@@ -1,0 +1,174 @@
+Available keys:  Index(['bl', 'bl0', 'bl1', 'channel', 'energy', 'ievt', 'packet_id', 'fcdaq',
+       'bl_rms', 'bl_p0', 'bl_p1', 'etrap_max', 'etrap_imax', 'strap_max',
+       'strap_imax', 'atrap_max', 'atrap_imax', 'ttrap_max', 'ttrap_imax',
+       'blsub_max', 'blsub_imax', 'current_max', 'current_imax', 'tp5', 'tp10',
+       'tp50', 'tp100', 'n_curr_pks', 's_curr_pks', 't0', 't_ftp', 'e_ftp',
+       'overflow', 'tslope_blsub', 'tslope_pz', 'tail_amp', 'tail_tau'],
+      dtype='object')
+data_size:  65456552
+
+Linearly calibrating energy...
+Available keys:  Index(['bl', 'bl0', 'bl1', 'channel', 'energy', 'ievt', 'packet_id', 'fcdaq',
+       'bl_rms', 'bl_p0', 'bl_p1', 'etrap_max', 'etrap_imax', 'strap_max',
+       'strap_imax', 'atrap_max', 'atrap_imax', 'ttrap_max', 'ttrap_imax',
+       'blsub_max', 'blsub_imax', 'current_max', 'current_imax', 'tp5', 'tp10',
+       'tp50', 'tp100', 'n_curr_pks', 's_curr_pks', 't0', 't_ftp', 'e_ftp',
+       'overflow', 'tslope_blsub', 'tslope_pz', 'tail_amp', 'tail_tau'],
+      dtype='object')
+data_size:  65456552
+
+Linearly calibrating energy...
+Available keys:  Index(['bl', 'bl0', 'bl1', 'channel', 'energy', 'ievt', 'packet_id', 'fcdaq',
+       'bl_rms', 'bl_p0', 'bl_p1', 'etrap_max', 'etrap_imax', 'strap_max',
+       'strap_imax', 'atrap_max', 'atrap_imax', 'ttrap_max', 'ttrap_imax',
+       'blsub_max', 'blsub_imax', 'current_max', 'current_imax', 'tp5', 'tp10',
+       'tp50', 'tp100', 'n_curr_pks', 's_curr_pks', 't0', 't_ftp', 'e_ftp',
+       'overflow', 'tslope_blsub', 'tslope_pz', 'tail_amp', 'tail_tau'],
+      dtype='object')
+data_size:  65456552
+
+Linearly calibrating energy...
+m:  15.969155846566643  , c:  1.4134226567518207
+bin width:  0.128772702673856  keV
+Available keys:  Index(['bl', 'bl0', 'bl1', 'channel', 'energy', 'ievt', 'packet_id', 'fcdaq',
+       'bl_rms', 'bl_p0', 'bl_p1', 'etrap_max', 'etrap_imax', 'strap_max',
+       'strap_imax', 'atrap_max', 'atrap_imax', 'ttrap_max', 'ttrap_imax',
+       'blsub_max', 'blsub_imax', 'current_max', 'current_imax', 'tp5', 'tp10',
+       'tp50', 'tp100', 'n_curr_pks', 's_curr_pks', 't0', 't_ftp', 'e_ftp',
+       'overflow', 'tslope_blsub', 'tslope_pz', 'tail_amp', 'tail_tau'],
+      dtype='object')
+data_size:  65456552
+
+Linearly calibrating energy...
+m:  15.969155846566643  , c:  1.4134226567518207
+bin width:  0.128772702673856  keV
+
+Constructing Ba133 dead layer observable...
+
+356 peak...
+[31219.0, 355.94524691595535, 1, 100, 355.94524691595535, 1, 94.0]
+[3.07591832e+04 3.55982129e+02 4.21192725e-01 4.39371231e+03
+ 3.59499784e+02 1.50196144e+03 2.32753260e+03]
+gauss count:  324747.33378352714  +/-  2025.5477397739755
+manual integral check:  -10017.63442396204
+[31219.0, 355.94524691595535, 1, 100, 94.0]
+[3.07589971e+04 3.55982114e+02 4.21198720e-01 1.84552312e+00
+ 1.35616497e+02]
+[31219.0, 355.94524691595535, 1, 100, 94.0]
+[3.07589971e+04 3.55982114e+02 4.21198720e-01 1.84552312e+00
+ 1.35616497e+02]
+gauss count:  324749.9916094833  +/-  1948.0655551043142
+gauss count averaged:  324748.6626965052  +/-  1405.151509009557
+[31219.0, 355.94524691595535, 1, 100, 1, 94.0]
+[3.07591773e+04 3.55982129e+02 4.21192886e-01 2.92980175e+01
+ 1.00000000e+01 1.49428509e+02]
+
+79.6/81 keV double peak...
+[30332.0, 81.0, 1, 79.6, 1, 100, 100, 287.0]
+[ 3.00799143e+04  8.08192009e+01  3.10456947e-01  7.94417542e+01
+  3.29407802e-01  5.09762724e+02 -6.67590575e+01  7.91188002e+02]
+gauss count 81:  234081.9418050096  +/-  1268.4362586425593
+gauss count 79.6:  20005.544947773025  +/-  545.3984371417229
+
+Using just C_356_2, the constrained cdf
+O_BA133 =  0.7824159286929033  +/-  0.006472462940632266
+
+Using the average of C`-356_1 and 2
+O_BA133 =  0.782412726947057  +/-  0.005434875840666622
+
+date and time = 24/06/2020 11:43:39
+
+Available keys:  Index(['bl', 'bl0', 'bl1', 'channel', 'energy', 'ievt', 'packet_id', 'fcdaq',
+       'bl_rms', 'bl_p0', 'bl_p1', 'etrap_max', 'etrap_imax', 'strap_max',
+       'strap_imax', 'atrap_max', 'atrap_imax', 'ttrap_max', 'ttrap_imax',
+       'blsub_max', 'blsub_imax', 'current_max', 'current_imax', 'tp5', 'tp10',
+       'tp50', 'tp100', 'n_curr_pks', 's_curr_pks', 't0', 't_ftp', 'e_ftp',
+       'overflow', 'tslope_blsub', 'tslope_pz', 'tail_amp', 'tail_tau'],
+      dtype='object')
+data_size:  65456552
+
+Linearly calibrating energy...
+m:  15.969155846566643  , c:  1.4134226567518207
+bin width:  0.128772702673856  keV
+
+Constructing Ba133 dead layer observable...
+
+356 peak...
+[46262.0, 355.92024529824283, 1, 100, 355.92024529824283, 1, 143.0]
+[4.60200889e+04 3.55982057e+02 4.21840521e-01 6.38559698e+01
+ 3.58508903e+02 1.97550410e-01 2.21310410e+02]
+gauss count:  324410.1419955295  +/-  2021.790071085873
+manual integral check:  -1452.4645671932208
+[46262.0, 355.92024529824283, 1, 100, 143.0]
+[4.59952252e+04 3.55982101e+02 4.22509974e-01 2.64468935e+00
+ 2.04538712e+02]
+[46262.0, 355.92024529824283, 1, 100, 143.0]
+[4.59952252e+04 3.55982101e+02 4.22509974e-01 2.64468935e+00
+ 2.04538712e+02]
+gauss count:  324749.42461718124  +/-  2343.2108264902786
+gauss count averaged:  324579.78330635536  +/-  1547.4391804625695
+[46262.0, 355.92024529824283, 1, 100, 1, 143.0]
+[4.59955241e+04 3.55982121e+02 4.22503548e-01 4.57416102e+01
+ 1.00000000e+01 2.26226004e+02]
+
+79.6/81 keV double peak...
+[45373.0, 81.0, 1, 79.6, 1, 100, 100, 442.0]
+[ 4.49467006e+04  8.08189178e+01  3.11926459e-01  7.94461032e+01
+  3.35554043e-01  7.09580031e+02 -4.79071852e+01  1.18586967e+03]
+gauss count 81:  234287.27800708875  +/-  1544.8654963495035
+gauss count 79.6:  20300.603255999264  +/-  668.749886259155
+
+Using just C_356_2, the constrained cdf
+O_BA133 =  0.7847716464628789  +/-  0.007130732589117963
+
+Using the average of C`-356_1 and 2
+O_BA133 =  0.7843614863184337  +/-  0.006397266961722615
+
+date and time = 24/06/2020 12:07:33
+
+Available keys:  Index(['bl', 'bl0', 'bl1', 'channel', 'energy', 'ievt', 'packet_id', 'fcdaq',
+       'bl_rms', 'bl_p0', 'bl_p1', 'etrap_max', 'etrap_imax', 'strap_max',
+       'strap_imax', 'atrap_max', 'atrap_imax', 'ttrap_max', 'ttrap_imax',
+       'blsub_max', 'blsub_imax', 'current_max', 'current_imax', 'tp5', 'tp10',
+       'tp50', 'tp100', 'n_curr_pks', 's_curr_pks', 't0', 't_ftp', 'e_ftp',
+       'overflow', 'tslope_blsub', 'tslope_pz', 'tail_amp', 'tail_tau'],
+      dtype='object')
+data_size:  65456552
+
+Linearly calibrating energy...
+m:  15.969155846566643  , c:  1.4134226567518207
+bin width:  0.128772702673856  keV
+
+Constructing Ba133 dead layer observable...
+
+356 peak...
+peak fitting: bin widht =  0.15
+[46262.0, 355.92024529824283, 1, 100, 355.92024529824283, 1, 143.0]
+[4.60200889e+04 3.55982057e+02 4.21840521e-01 6.38559698e+01
+ 3.58508903e+02 1.97550410e-01 2.21310410e+02]
+gauss count:  324410.1419955295  +/-  2021.790071085873
+manual integral check:  -1452.4645671932208
+[46262.0, 355.92024529824283, 1, 100, 143.0]
+[4.59952252e+04 3.55982101e+02 4.22509974e-01 2.64468935e+00
+ 2.04538712e+02]
+[46262.0, 355.92024529824283, 1, 100, 143.0]
+[4.59952252e+04 3.55982101e+02 4.22509974e-01 2.64468935e+00
+ 2.04538712e+02]
+gauss count:  324749.42461718124  +/-  2343.2108264902786
+gauss count averaged:  324579.78330635536  +/-  1547.4391804625695
+[46262.0, 355.92024529824283, 1, 100, 1, 143.0]
+[4.59955241e+04 3.55982121e+02 4.22503548e-01 4.57416102e+01
+ 1.00000000e+01 2.26226004e+02]
+
+79.6/81 keV double peak...
+[45373.0, 81.0, 1, 79.6, 1, 100, 100, 442.0]
+[ 4.49467006e+04  8.08189178e+01  3.11926459e-01  7.94461032e+01
+  3.35554043e-01  7.09580031e+02 -4.79071852e+01  1.18586967e+03]
+gauss count 81:  234287.27800708875  +/-  1544.8654963495035
+gauss count 79.6:  20300.603255999264  +/-  668.749886259155
+
+Using just C_356_2, the constrained cdf
+O_BA133 =  0.7847716464628789  +/-  0.007130732589117963
+
+Using the average of C`-356_1 and 2
+O_BA133 =  0.7843614863184337  +/-  0.006397266961722615

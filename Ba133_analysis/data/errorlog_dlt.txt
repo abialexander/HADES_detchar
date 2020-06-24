@@ -1,0 +1,18 @@
+Traceback (most recent call last):
+  File "/lfs/l1/legend/users/aalexander/HADES_detchar/Ba133_analysis/data/Ba133_dlt_analysis.py", line 584, in <module>
+    main()
+  File "/lfs/l1/legend/users/aalexander/HADES_detchar/Ba133_analysis/data/Ba133_dlt_analysis.py", line 36, in main
+    with open('calibration_coef.json') as json_file:
+FileNotFoundError: [Errno 2] No such file or directory: 'calibration_coef.json'
+Traceback (most recent call last):
+  File "/lfs/l1/legend/users/aalexander/HADES_detchar/Ba133_analysis/data/Ba133_dlt_analysis.py", line 584, in <module>
+    main()
+  File "/lfs/l1/legend/users/aalexander/HADES_detchar/Ba133_analysis/data/Ba133_dlt_analysis.py", line 47, in main
+    c_quad_err = calibration_coefs['c_quad_err']
+KeyError: 'c_quad_err'
+Traceback (most recent call last):
+  File "/lfs/l1/legend/users/aalexander/HADES_detchar/Ba133_analysis/data/Ba133_dlt_analysis.py", line 584, in <module>
+    main()
+  File "/lfs/l1/legend/users/aalexander/HADES_detchar/Ba133_analysis/data/Ba133_dlt_analysis.py", line 57, in main
+    bins = np.arange(min(data), max(data) + binwidth, binwidth)
+ValueError: The truth value of an array with more than one element is ambiguous. Use a.any() or a.all()

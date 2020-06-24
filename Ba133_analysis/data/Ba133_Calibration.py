@@ -11,10 +11,17 @@ import pygama
 from pygama.analysis import histograms
 from pygama.analysis import peak_fitting
 import json
+from datetime import datetime
 
 "Script to calibrate Ba spectrum from known peaks and output coefficients into json file"
 
 def main():
+
+    #print date and time for log:
+    now = datetime.now()
+    dt_string = now.strftime("%d/%m/%Y %H:%M:%S") # dd/mm/YY H:M:S
+    print("date and time =", dt_string)	
+    print("")
 
     #read tier 2 runs for Ba data
     detector = "I02160A"
@@ -145,7 +152,7 @@ def main():
         "b_quad" : b,
         "b_quad_err" : b_err,
         "c_quad" : c_quad,
-        "a_quad_err" : c_quad_err
+        "c_quad_err" : c_quad_err
     }
     with open("/lfs/l1/legend/users/aalexander/HADES_detchar/Ba133_analysis/data/calibration_coef.json", "w") as outfile: 
         json.dump(calibration_coef_dict, outfile)
@@ -160,7 +167,7 @@ def main():
     print("Linearly calibrating energy...")
 
     calibrated_energy = (key_data-c)/m
-    binwidth = 0.1 #keV - rough min resolution
+    binwidth = 0.15 #0.1 #keV - rough min resolution
     bins = np.arange(min(calibrated_energy), max(calibrated_energy) + binwidth, binwidth)
 
     #bin_width = 0.5 #0.5 kev = resolution #plt.hist(data, bins=np.arange(min(data), max(data) + binwidth, binwidth))
@@ -329,6 +336,7 @@ def fit_peak(key, bins, counts, xmin, xmax): #p_guess):
     "fit a gaussian to a peak and return fit parameters"
 
     no_bins = bins.size 
+    binwidth = bins[1]-bins[0]
 
     xdata = []
     ydata = []
@@ -374,7 +382,10 @@ def fit_peak(key, bins, counts, xmin, xmax): #p_guess):
     chi_sq, p_value, residuals, dof = chi_sq_calc(xdata, ydata, yerr, gaussian, popt)
 
     props = dict(boxstyle='round', facecolor='wheat', alpha=0.5)
-    info_str = '\n'.join((r'$\mu=%.2f \pm %.2f$' % (mu, mu_err, ), r'$\sigma=%.2f \pm %.2f$' % (np.abs(sigma), sigma_err,), r'$\chi^2/dof=%.2f/%.0f$'%(chi_sq, dof))) #, r'$p=%.3g$'%p_value))
+    if key == "Energy (keV)":
+        info_str = '\n'.join((r'$\mu=%.2f \pm %.2f$' % (mu, mu_err, ), r'$\sigma=%.2f \pm %.2f$' % (np.abs(sigma), sigma_err,), r'$\chi^2/dof=%.2f/%.0f$'%(chi_sq, dof),r'binwidth = $%.2g$ keV'%binwidth)) #, r'$p=%.3g$'%p_value))
+    else: 
+        info_str = '\n'.join((r'$\mu=%.2f \pm %.2f$' % (mu, mu_err, ), r'$\sigma=%.2f \pm %.2f$' % (np.abs(sigma), sigma_err,), r'$\chi^2/dof=%.2f/%.0f$'%(chi_sq, dof),r'binwidth = $%.2g$'%binwidth)) #, r'$p=%.3g$'%p_value))
     ax.text(0.01, 0.99, info_str, transform=ax.transAxes, fontsize=10,verticalalignment='top', bbox=props)
 
     FWHM = 2*np.sqrt(2*np.log(2))*sigma #gaussian FWHM relationship
@@ -451,7 +462,7 @@ def resolution_plot(energies, energies_err, FWHM, FWHM_err):
     A_err, offset_err = np.sqrt(pcov[0][0]), np.sqrt(pcov[1][1])
 
     fig, ax = plt.subplots()
-    ax.errorbar(energies, FWHM, xerr=energies_err, yerr = FWHM_err, label = "Data", fmt='o', ms=1.0) #, elinewidth = 1, fmt='x', ms = 1.5, mew = 4.0)
+    ax.errorbar(energies, FWHM, xerr=energies_err, yerr = FWHM_err, label = "Data", fmt='o') #, ms=1.5) #, elinewidth = 1, fmt='x', ms = 1.5, mew = 4.0)
     xfit = np.linspace(min(energies), max(energies), 1000)
     plt.plot(xfit, sqrt_curve(xfit,*popt), "g", label = "$A*\sqrt{x +c}$ fit")
     plt.xlabel("Energy (keV)")
@@ -459,7 +470,7 @@ def resolution_plot(energies, energies_err, FWHM, FWHM_err):
     plt.legend()
     chi_sq, p_value, residuals, dof = chi_sq_calc(energies, FWHM, FWHM_err, sqrt_curve, popt)
     props = dict(boxstyle='round', facecolor='wheat', alpha=0.5)
-    info_str = '\n'.join((r'$A=%.3f \pm %.3f$' % (A, A_err, ), r'$c=%.3f \pm %.3f$' % (offset, offset_err,), r'$\chi^2/dof=%.0f/%.0f$'%(chi_sq, dof))) #, r'$p=%.3g$'%p_value))
+    info_str = '\n'.join((r'$A=%.3f \pm %.3f$' % (A, A_err, ), r'$c=%.3f \pm %.3f$' % (offset, offset_err,), r'$\chi^2/dof=%.2f/%.0f$'%(chi_sq, dof))) #, r'$p=%.3g$'%p_value))
     ax.text(0.65, 0.20, info_str, transform=ax.transAxes, fontsize=10,verticalalignment='top', bbox=props)
 
     return A, offset, A_err, offset_err, chi_sq, p_value, residuals, dof

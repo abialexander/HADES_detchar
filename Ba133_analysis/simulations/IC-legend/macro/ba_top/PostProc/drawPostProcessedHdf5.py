@@ -35,39 +35,24 @@ def main():
     #plt.show()
 
 
-    binwidth = 0.15 #5 #0.1 kev = rough min resolution
+    binwidth = 0.1 #5 #0.1 kev = rough min resolution
     energies = df['energy']
     energies = energies*1000
 
-    # #plt.figure()
     fig, ax = plt.subplots()
-    #counts, bins, bars = plt.hist(energies, bins = np.arange(min(energies), max(energies) + binwidth, binwidth)) #, histtype = 'step')
-    plt.hist(energies, bins = np.arange(min(energies), max(energies) + binwidth, binwidth)) #, histtype = 'step')
-
-    
-
-    # no_events = sum(counts)
-    # print("No. events: ", no_events)
-
-    # no_events = sum(counts)/binwidth
-    # print("No. events: ", no_events)
-
-    # no_events = sum(counts)*binwidth
-    # print("No. events: ", no_events)
-
-    # no_events = energies.size
-    # print("No. events: ", no_events) #this is the correct one
-
-
-    # plt.xlabel("Energy [keV]")
-    # plt.ylabel("Counts")
-    # plt.xlim(0, 450)
-    # plt.yscale("log")
-    # plt.ylim(1,10**6) 
-    # props = dict(boxstyle='round', facecolor='wheat', alpha=0.5)
-    # info_str = r'# events = $%.0f$' % (no_events)
-    # ax.text(0.67, 0.97, info_str, transform=ax.transAxes, fontsize=10,verticalalignment='top', bbox=props)
-    # plt.savefig("plots/"+plotname+'.png')
+    counts, bins, bars = plt.hist(energies, bins = np.arange(min(energies), max(energies) + binwidth, binwidth)) #, histtype = 'step')
+    no_events = energies.size #=sum(counts)
+    print("No. events: ", no_events) #this is the correct one
+    plt.xlabel("Energy [keV]")
+    plt.ylabel("Counts")
+    plt.xlim(0, 450)
+    plt.yscale("log")
+    plt.ylim(1,10**6)  
+    props = dict(boxstyle='round', facecolor='wheat', alpha=0.5)
+    info_str = '\n'.join((r'# events = $%.0f$' % (no_events), r'binwidth = $%.2f$ keV' % (binwidth)))
+    #info_str = r'# events = $%.0f$' % (no_events)
+    ax.text(0.67, 0.97, info_str, transform=ax.transAxes, fontsize=10,verticalalignment='top', bbox=props)
+    plt.savefig("plots/"+plotname+'.png')
 
 
 
