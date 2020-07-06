@@ -11,15 +11,18 @@ def main():
 
     hdf5_path = "/lfs/l1/legend/users/aalexander/hdf5_output/processed/"
 
+    # if(len(sys.argv) != 2):
+    #     print('Usage: drawPostProcessedHdf5.py [processed.hdf5]')
+    #     sys.exit()
+
+    
     if(len(sys.argv) != 2):
-        print('Usage: drawPostProcessedHdf5.py [processed.hdf5]')
+        print('Usage: drawPostProcessedHdf5.py [IC160A_ba_top_coll_01]')
         sys.exit()
 
-    filename = sys.argv[1]
-    plotname = filename.strip('.hdf5')
-    plotname = filename.strip('processed_')
+    MC_file_id = sys.argv[1]
 
-    df =  pd.read_hdf(hdf5_path+filename, key="procdf")
+    df =  pd.read_hdf(hdf5_path+"processed_detector_"+MC_file_id+'.hdf5', key="procdf")
 
     # bins = np.arange(0, 4000, 1) #want rougly binwidth to be det resolution, e.g. 0.1keV 
     # plt.figure()
@@ -48,11 +51,11 @@ def main():
     plt.ylabel("Counts")
     plt.xlim(0, 450)
     plt.yscale("log")
-    plt.ylim(1,10**6)  
+    plt.ylim(1,10*10**6)  
     props = dict(boxstyle='round', facecolor='wheat', alpha=0.5)
     info_str = '\n'.join((r'# events = $%.0f$' % (no_events), r'binwidth = $%.2f$ keV' % (binwidth)))
     ax.text(0.67, 0.97, info_str, transform=ax.transAxes, fontsize=10,verticalalignment='top', bbox=props)
-    plt.savefig("plots/"+plotname+'.png')
+    plt.savefig("plots/"+MC_file_id+'.png')
 
 
 

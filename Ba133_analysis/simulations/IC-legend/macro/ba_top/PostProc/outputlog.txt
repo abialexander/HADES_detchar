@@ -1,0 +1,170 @@
+
+date and time = 25/06/2020 13:44:12
+
+
+date and time = 25/06/2020 13:44:13
+
+
+date and time = 25/06/2020 13:45:07
+
+
+date and time = 25/06/2020 13:45:08
+
+
+date and time = 25/06/2020 13:47:32
+
+Usage: postprochdf5.py [detector_IC160A_ba_top_coll_01]
+
+date and time = 25/06/2020 13:47:33
+
+Usage: drawPostProcessedHdf5.py [detector_IC160A_ba_top_coll_01]
+
+date and time = 25/06/2020 13:54:17
+
+Usage: postprochdf5.py [detector_IC160A_ba_top_coll_01]
+
+date and time = 25/06/2020 13:54:18
+
+Usage: drawPostProcessedHdf5.py [detector_IC160A_ba_top_coll_01]
+
+date and time = 25/06/2020 14:01:07
+
+Usage: postprochdf5.py [detector_IC160A_ba_top_coll_01]
+
+date and time = 25/06/2020 14:01:08
+
+Usage: drawPostProcessed_FCCD.py [detector_IC160A_ba_top_coll_01]
+
+date and time = 25/06/2020 16:01:32
+
+Usage: postprochdf5.py [detector_IC160A_ba_top_coll_01]
+
+date and time = 25/06/2020 16:01:33
+
+Usage: drawPostProcessed_FCCD.py [detector_IC160A_ba_top_coll_01]
+
+date and time = 25/06/2020 16:30:27
+
+Usage: postprochdf5.py [IC160A_ba_top_coll_01]
+
+date and time = 25/06/2020 16:30:28
+
+Usage: drawPostProcessed_FCCD.py [IC160A_ba_top_coll_01]
+
+date and time = 25/06/2020 16:31:57
+
+Usage: postprochdf5.py [IC160A_ba_top_coll_01]
+
+date and time = 25/06/2020 16:31:58
+
+Usage: drawPostProcessed_FCCD.py [IC160A_ba_top_coll_01]
+
+date and time = 25/06/2020 16:34:07
+
+9706280
+9276168
+9210272
+9145600
+9078104
+9008384
+8940320
+
+date and time = 25/06/2020 16:34:12
+
+No. events:  109020
+
+date and time = 25/06/2020 16:37:07
+
+9706280
+9276168
+9210272
+9145600
+9078104
+9008384
+8940320
+
+date and time = 25/06/2020 16:37:11
+
+No. events:  109020
+No. events:  105608
+No. events:  104996
+No. events:  104373
+No. events:  103737
+No. events:  103113
+No. events:  102492
+done
+
+date and time = 25/06/2020 16:52:56
+
+9706280
+436080
+9276168
+9210272
+9145600
+9078104
+9008384
+8940320
+
+date and time = 25/06/2020 16:53:02
+
+No. events:  109020
+No. events:  105608
+No. events:  104996
+No. events:  104373
+No. events:  103737
+No. events:  103113
+No. events:  102492
+done
+
+date and time = 25/06/2020 17:11:51
+
+1363484784
+57703424
+1300528248
+1288212328
+1275973456
+1263830384
+1251598256
+1239375456
+
+date and time = 25/06/2020 17:26:30
+
+No. events:  14425856
+No. events:  13884035
+No. events:  13763441
+No. events:  13643659
+No. events:  13524857
+No. events:  13405053
+No. events:  13285617
+done
+
+date and time = 25/06/2020 18:31:02
+
+6989597256
+301315632
+6759903688
+
+date and time = 25/06/2020 19:38:05
+
+No. events:  75328908
+
+date and time = 25/06/2020 20:10:51
+
+6989597256
+301315632
+0.25
+6759903688
+
+date and time = 25/06/2020 21:26:56
+
+No. events:  75328908
+
+date and time = 28/06/2020 13:18:42
+
+
+date and time = 30/06/2020 16:40:30
+
+6989597256
+0.25
+6759903688
+293914204

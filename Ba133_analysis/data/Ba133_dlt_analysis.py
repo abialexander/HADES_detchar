@@ -562,10 +562,10 @@ def fit_double_peak_81(key, bins, counts, xmin, xmax):
     bguess = 81.0 #gauss 81 mean
     cguess =  1 #gauss 81 sigma
     dguess =  79.6 #gauss 79.6 mean
-    eguess = 1 #gauss 79.6 sigma
+    eguess = 1 #gauss 79.6 sigma 
     fguess = 100 #cdf 81 amp
-    gguess = 100 #cdf 79.6 amp
-    hguess = min(ydata) #offset
+    gguess =  -100 #100 #cdf 79.6 amp
+    hguess = 1000 #min(ydata) #offset
     p_guess = [aguess,bguess,cguess,dguess,eguess, fguess, gguess, hguess]
     print(p_guess)
     bounds=([0, 0, 0, 0, 0, -np.inf, -np.inf, -np.inf], [np.inf]*8)

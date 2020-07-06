@@ -954,3 +954,15 @@ Index : 7     used in the geometry : Yes
 ### Run 0 starts.
 Opening file /lfs/l1/legend/users/aalexander/hdf5_output/detector_IC160A_ba_top_01.hdf5
 Setting ID for Crystal_PV to 1
+ Run terminated.
+Run Summary
+  Number of events processed : 100000000
+  User=53535.920000s Real=53583.998669s Sys=29.600000s [Cpu=100.0%]
+Graphics systems deleted.
+Visualization Manager deleting...
+G4 kernel has come to Quit state.
+================== Deleting memory pools ===================
+Number of memory pools allocated: 11; of which, static: 0
+Dynamic pools deleted: 11 / Total memory freed: 0.08 MB
+============================================================
+RunManagerKernel is deleted. Good bye :)
