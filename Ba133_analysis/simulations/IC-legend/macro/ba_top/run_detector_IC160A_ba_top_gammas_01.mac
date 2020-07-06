@@ -26,6 +26,7 @@
 
 # Change the name of the output file (by default it's g4simple.[ext])
 /analysis/setFileName /lfs/l1/legend/users/aalexander/hdf5_output/detector_IC160A_ba_top_gammas_01.hdf5 #save hdf5 files in separate location as too big (for github)
+/analysis/setFileName /lfs/l1/legend/users/aalexander/hdf5_output/detector_IC160A_ba_top_gammas_81mm_01.hdf5
 #/analysis/setFileName root/detector_IC160A_am_top_01.root
 
 #/geometry/test/tolerance 0.01

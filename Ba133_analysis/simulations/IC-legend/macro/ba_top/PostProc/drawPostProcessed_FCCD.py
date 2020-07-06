@@ -45,13 +45,13 @@ def main():
     # plt.savefig("/lfs/l1/legend/users/aalexander/HADES_detchar/Ba133_analysis/simulations/IC-legend/macro/ba_top/PostProc/plots/"+MC_file_id+'_356keV.png')
 
     
-    xmin_356, xmax_356 = 350, 360 #362 #kev 
+    xmin_356, xmax_356 = 350, 360.5 #362 #360.5 for gammas #2 #360 #kev 
     plt.figure()
     counts, bins = get_histo_energies(MC_file, binwidth)
     popt, pcov, xfit = fit_peak_356_2("Energy (keV)", bins, counts, xmin_356, xmax_356)
     a,b,c,d,e = popt[0],popt[1],popt[2],popt[3],popt[4]
     plt.xlim(xmin_356, xmax_356) 
-    plt.ylim(10, 5*10**6)
+    plt.ylim(10, 10**7)
     plt.yscale("log")
     plt.savefig("/lfs/l1/legend/users/aalexander/HADES_detchar/Ba133_analysis/simulations/IC-legend/macro/ba_top/PostProc/plots/"+MC_file_id+'_356keV.png')
 
@@ -59,28 +59,41 @@ def main():
     print("gauss count 356keV: ", C_356, " +/- ", C_356_err )
 
 
-    # xmin_81, xmax_81 = 77, 84
-    # plt.figure()
-    # counts, bins = get_histo_energies(MC_file, binwidth)
-    # popt, pcov, xfit = fit_double_peak_81("Energy (keV)", bins, counts, xmin_81, xmax_81)
-    # a,b,c,d,e,f,g,h = popt[0],popt[1],popt[2],popt[3],popt[4],popt[5],popt[6],popt[7] 
-    # plt.xlim(xmin_81, xmax_81) 
-    # plt.ylim(10, 5*10**6)
-    # plt.yscale("log")
-    # plt.savefig("/lfs/l1/legend/users/aalexander/HADES_detchar/Ba133_analysis/simulations/IC-legend/macro/ba_top/PostProc/plots/"+MC_file_id+'_81keV.png')
+    xmin_81, xmax_81 = 77, 84
+    plt.figure()
+    counts, bins = get_histo_energies(MC_file, binwidth)
+    popt, pcov, xfit = fit_double_peak_81("Energy (keV)", bins, counts, xmin_81, xmax_81)
+    a,b,c,d,e,f,g,h = popt[0],popt[1],popt[2],popt[3],popt[4],popt[5],popt[6],popt[7] 
+    plt.xlim(xmin_81, xmax_81) 
+    plt.ylim(5*10**3, 10**7)
+    plt.yscale("log")
+    plt.savefig("/lfs/l1/legend/users/aalexander/HADES_detchar/Ba133_analysis/simulations/IC-legend/macro/ba_top/PostProc/plots/"+MC_file_id+'_81keV.png')
 
-    # R = 2.65/32.9
-    # C_81, C_81_err = gauss_count(a, c, np.sqrt(pcov[0][0]), np.sqrt(pcov[2][2]), binwidth)
-    # C_79, C_79_err = gauss_count(R*a, e, R*np.sqrt(pcov[0][0]), np.sqrt(pcov[4][4]), binwidth)
-    # print("gauss count 81: ", C_81, " +/- ", C_81_err )
-    # print("gauss count 79.6: ", C_79, " +/- ", C_79_err )
+    R = 2.65/32.9
+    C_81, C_81_err = gauss_count(a, c, np.sqrt(pcov[0][0]), np.sqrt(pcov[2][2]), binwidth)
+    C_79, C_79_err = gauss_count(R*a, e, R*np.sqrt(pcov[0][0]), np.sqrt(pcov[4][4]), binwidth)
+    print("gauss count 81: ", C_81, " +/- ", C_81_err )
+    print("gauss count 79.6: ", C_79, " +/- ", C_79_err )
 
-    # print("")
-    # O_Ba133 = (C_79 + C_81)/C_356
-    # O_Ba133_err = O_Ba133*np.sqrt((C_79_err**2 + C_81_err**2)/(C_79+C_81)**2 + (C_356_err/C_356)**2)
-    # print("O_BA133 = " , O_Ba133, " +/- ", O_Ba133_err)
+    print("")
+    O_Ba133 = (C_79 + C_81)/C_356
+    O_Ba133_err = O_Ba133*np.sqrt((C_79_err**2 + C_81_err**2)/(C_79+C_81)**2 + (C_356_err/C_356)**2)
+    print("O_BA133 = " , O_Ba133, " +/- ", O_Ba133_err)
 
 
+    #Save count values to json file
+    dlt_observables = {
+        "C_356": C_356,
+        "C_356_err" : C_356_err,
+        "C_81" : C_81,
+        "C_81_err" : C_81_err,
+        "C_79" : C_79,
+        "C_79_err" : C_79_err,
+        "O_Ba133" : O_Ba133,
+        "O_Ba133_err" : O_Ba133_err
+    }
+    with open("/lfs/l1/legend/users/aalexander/HADES_detchar/Ba133_analysis/simulations/IC-legend/macro/ba_top/PostProc/"+MC_file_id+"_dlt_observables.json", "w") as outfile: 
+        json.dump(dlt_observables, outfile)
 
 
     # #_____________PROCESS AND PLOT FCCDS_____________
@@ -96,7 +109,7 @@ def main():
     # # plt.savefig("/lfs/l1/legend/users/aalexander/HADES_detchar/Ba133_analysis/simulations/IC-legend/macro/ba_top/PostProc/plots/FCCDs2_"+MC_file_id+'.png')
 
 
-    plt.show() 
+    #plt.show() 
     
     print("done")
 
