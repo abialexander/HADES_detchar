@@ -228,6 +228,26 @@ def main():
     O_Ba133_av_err = O_Ba133*np.sqrt((C_79_err**2 + C_81_err**2)/(C_79+C_81)**2 + (C_356_average_err/C_356_average)**2)
     print("O_BA133 = " , O_Ba133_av, " +/- ", O_Ba133_av_err)
 
+    #Save count values to json file
+    dlt_observables = {
+        "C_356": C_356,
+        "C_356_err" : C_356_err,
+        "C_356_2": C_356_2,
+        "C_356_2_err" : C_356_2_err,
+        "C_356_average": C_356_average,
+        "C_356_average_err" : C_356_average_err,
+        "C_81" : C_81,
+        "C_81_err" : C_81_err,
+        "C_79" : C_79,
+        "C_79_err" : C_79_err,
+        "O_Ba133" : O_Ba133,
+        "O_Ba133_err" : O_Ba133_err,
+        "O_Ba133_av" : O_Ba133_av,
+        "O_Ba133_av_err" : O_Ba133_av_err
+    }
+    with open("/lfs/l1/legend/users/aalexander/HADES_detchar/Ba133_analysis/data/dlt_observables.json", "w") as outfile: 
+        json.dump(dlt_observables, outfile)
+
     
 
 def read_all_t2(t2_folder):
@@ -559,16 +579,17 @@ def fit_double_peak_81(key, bins, counts, xmin, xmax):
 
     #initial rough guess of params
     aguess = max(ydata) - min(ydata) #gauss amplitude
-    bguess = 81.0 #gauss 81 mean
-    cguess =  1 #gauss 81 sigma
-    dguess =  79.6 #gauss 79.6 mean
-    eguess = 1 #gauss 79.6 sigma 
+    bguess = 80.9979 #80.9979 for sims # 81 for data
+    cguess =  0.5 #gauss 81 sigma
+    dguess =  79.6142 #79.6142 for sims #79 for data
+    eguess = 0.5 #gauss 79.6 sigma 
     fguess = 100 #cdf 81 amp
-    gguess =  -100 #100 #cdf 79.6 amp
-    hguess = 1000 #min(ydata) #offset
+    gguess =  100 #100 #cdf 79.6 amp
+    hguess = min(ydata) #offset
     p_guess = [aguess,bguess,cguess,dguess,eguess, fguess, gguess, hguess]
     print(p_guess)
-    bounds=([0, 0, 0, 0, 0, -np.inf, -np.inf, -np.inf], [np.inf]*8)
+    #bounds=([0, 0, 0, 0, 0, -np.inf, -np.inf, -np.inf], [np.inf]*8) #this one for data
+    bounds=([0, 0, 0, 0, 0, 0, 0, -np.inf], [np.inf]*8) #this one for simulations
 
     popt, pcov = optimize.curve_fit(double_gaussian_and_bkg, xdata, ydata, p0=p_guess, sigma = yerr, maxfev = 10**7, method ="trf", bounds = bounds)
     print(popt)
