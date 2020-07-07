@@ -71,8 +71,6 @@
 #/gps/direction 0 0 1
 /gps/pos/confine Source_PV
 
-
-
 /gps/source/list #list the particle sources defined
 
 /run/beamOn 100000000 #300000000

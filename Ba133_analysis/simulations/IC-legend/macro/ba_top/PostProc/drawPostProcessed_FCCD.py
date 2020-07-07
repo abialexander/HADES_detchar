@@ -40,9 +40,9 @@ def main():
     # counts, bins = get_histo_energies(MC_file, binwidth)
     # plt.xlabel("Energy [keV]")
     # plt.ylabel("Counts")
-    # plt.xlim(350, 363)
+    # plt.xlim(0, 450)
     # plt.yscale("log")
-    # plt.savefig("/lfs/l1/legend/users/aalexander/HADES_detchar/Ba133_analysis/simulations/IC-legend/macro/ba_top/PostProc/plots/"+MC_file_id+'_356keV.png')
+    # plt.savefig("/lfs/l1/legend/users/aalexander/HADES_detchar/Ba133_analysis/simulations/IC-legend/macro/ba_top/PostProc/plots/"+MC_file_id+'.png')
 
     
     xmin_356, xmax_356 = 350, 360.5 #362 #360.5 for gammas #2 #360 #kev 
@@ -65,7 +65,7 @@ def main():
     popt, pcov, xfit = fit_double_peak_81("Energy (keV)", bins, counts, xmin_81, xmax_81)
     a,b,c,d,e,f,g,h = popt[0],popt[1],popt[2],popt[3],popt[4],popt[5],popt[6],popt[7] 
     plt.xlim(xmin_81, xmax_81) 
-    plt.ylim(5*10**3, 10**7)
+    plt.ylim(5*10**2, 5*10**6)
     plt.yscale("log")
     plt.savefig("/lfs/l1/legend/users/aalexander/HADES_detchar/Ba133_analysis/simulations/IC-legend/macro/ba_top/PostProc/plots/"+MC_file_id+'_81keV.png')
 

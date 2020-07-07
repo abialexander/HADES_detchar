@@ -61,8 +61,8 @@ def main():
     #apply FCCD cuts
     top_width = 75.5 #mm - these come from detector.xml file
     bottom_width = 79.8 #mm
-    FCCD_list = [0.25]
-    #FCCD_list = [0.25, 0.5, 0.75, 1.0, 1.25, 1.5] #mm
+    #FCCD_list = [0.25]
+    FCCD_list = [0.25, 0.5, 0.75, 1.0, 1.25, 1.5] #mm
 
     for FCCD in FCCD_list:
 
