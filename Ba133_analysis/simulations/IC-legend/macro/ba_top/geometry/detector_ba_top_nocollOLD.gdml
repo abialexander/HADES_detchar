@@ -16,7 +16,7 @@
 
 
 	  <quantity name="collimator_z" type="length" value="collimator_height" unit="mm"/>
-	  <quantity name="collimator_beam_z" type="length" value="collimator_beam_height" unit="mm"/> 
+	  <quantity name="collimator_beam_z" type="length" value="collimator_beam_height" unit="mm"/>
 
 	  <quantity name="source_capsule_z" type="length" value="source_capsule_height" unit="mm" />
 
@@ -24,8 +24,12 @@
 	  <quantity name="pos_collimator_fromAlcap_r" type="length" value="position_collimator_fromAlcap_r*cosine" unit="mm"/>
 
 	  <position name="pos_collimator" x="-pos_collimator_fromAlcap_r" y="-pos_collimator_fromAlcap_r"  z="-(pos_collimator_fromAlcap_z + collimator_z/2)" />
-	  <position name="pos_source" x="-pos_collimator_fromAlcap_r" y="-pos_collimator_fromAlcap_r" z="-(pos_collimator_fromAlcap_z + collimator_beam_z+ source_capsule_z/2)" />
+	  <!--<position name="pos_source" x="-pos_collimator_fromAlcap_r" y="-pos_collimator_fromAlcap_r" z="-(pos_collimator_fromAlcap_z + collimator_beam_z+ source_capsule_z/2)" /> 
+	  <position name="pos_source" x="source_x" y="source_y" z="-(source_position +(source_height/2))" /> -->
 	  
+	  <quantity name="pos_source_fromAlcap" type="length" value="position_source_fromAlcap" unit="mm"/>
+	  <position name="pos_source" z="-pos_source_fromAlcap"/> <!-- need to add the half of source height-->
+
 	  <quantity name="position_vacuum_cavity" type="length" value="position_Alcap_cavity_fromTop" unit="mm" />
 	  <position name="pos_vacuum_cavity" z="position_vacuum_cavity"/>
 

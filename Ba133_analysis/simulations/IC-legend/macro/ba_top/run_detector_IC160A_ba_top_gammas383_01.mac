@@ -10,9 +10,9 @@
 
 # Set GDML file name
 # The bool after the file name turns validation on / off
-/g4simple/setDetectorGDML /lfs/l1/legend/users/aalexander/HADES_detchar/Ba133_analysis/simulations/IC-legend/macro/ba_top/geometry/detector_ba_top_nocoll.gdml #false
-#/g4simple/setDetectorGDML /lfs/l1/legend/users/aalexander/HADES_detchar/Ba133_analysis/simulations/IC-legend/macro/ba_top/geometry/detector_ba_top.gdml #false
-#/g4simple/setDetectorGDML /lfs/l1/legend/users/bianca/IC_geometry/IC-legend/detector_am_top.gdml 
+#/g4simple/setDetectorGDML /lfs/l1/legend/users/aalexander/HADES_detchar/Ba133_analysis/simulations/IC-legend/macro/ba_top/geometry/detector_ba_top_nocoll.gdml #false
+/g4simple/setDetectorGDML /lfs/l1/legend/users/aalexander/HADES_detchar/Ba133_analysis/simulations/IC-legend/macro/ba_top/geometry/detector_ba_top.gdml #false
+
 
 # Set up output. Choose a format:
 #/g4simple/setOutputFormat csv
@@ -25,8 +25,8 @@
 #/g4simple/setOutputOption eventwise #this was unncommented initially - THIS NEEDS TO BE COMMENTED!!
 
 # Change the name of the output file (by default it's g4simple.[ext])
-/analysis/setFileName /lfs/l1/legend/users/aalexander/hdf5_output/detector_IC160A_ba_top_gammas383_01.hdf5 #save hdf5 files in separate location as too big (for github)
-/analysis/setFileName /lfs/l1/legend/users/aalexander/hdf5_output/detector_IC160A_ba_top_gammas_81mm_01.hdf5
+/analysis/setFileName /lfs/l1/legend/users/aalexander/hdf5_output/detector_IC160A_ba_top_gammas383_81mmNEW_01.hdf5 #save hdf5 files in separate location as too big (for github)
+#/analysis/setFileName /lfs/l1/legend/users/aalexander/hdf5_output/detector_IC160A_ba_top_gammas_81mm_01.hdf5
 #/analysis/setFileName root/detector_IC160A_am_top_01.root
 
 #/geometry/test/tolerance 0.01
@@ -70,7 +70,7 @@
 /gps/pos/shape Cylinder
 /gps/pos/radius 0.5 mm
 /gps/pos/halfz 1.0 mm
-/gps/pos/centre -14.1421 -14.1421 -29.8 mm
+/gps/pos/centre 0 0 -81.0 mm #82 mm #source position (81) + source heught/2 (2/2)
 #/gps/direction 0 0 1
 /gps/pos/confine Source_PV
 
@@ -85,7 +85,7 @@
 /gps/pos/shape Cylinder
 /gps/pos/radius 0.5 mm
 /gps/pos/halfz 1.0 mm
-/gps/pos/centre -14.1421 -14.1421 -29.8 mm
+/gps/pos/centre 0 0 -81.0 mm #82 mm #source position (81) + source heught/2 (2/2)
 #/gps/direction 0 0 1
 /gps/pos/confine Source_PV
 
@@ -100,7 +100,7 @@
 /gps/pos/shape Cylinder
 /gps/pos/radius 0.5 mm
 /gps/pos/halfz 1.0 mm
-/gps/pos/centre -14.1421 -14.1421 -29.8 mm
+/gps/pos/centre 0 0 -81.0 mm #82 mm #source position (81) + source heught/2 (2/2)
 #/gps/direction 0 0 1
 /gps/pos/confine Source_PV
 
@@ -115,7 +115,7 @@
 /gps/pos/shape Cylinder
 /gps/pos/radius 0.5 mm
 /gps/pos/halfz 1.0 mm
-/gps/pos/centre -14.1421 -14.1421 -29.8 mm
+/gps/pos/centre 0 0 -81.0 mm #82 mm #source position (81) + source heught/2 (2/2)
 #/gps/direction 0 0 1
 /gps/pos/confine Source_PV
 

@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<!DOCTYPE gdml [
+<!ENTITY define_source SYSTEM "define_source.xml">
+]>
+<gdml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://service-spi.web.cern.ch/service-spi/app/releases/GDML/schema/gdml.xsd">
+
+
+ <define>
+	 <constant name="TWOPI" value="2.*pi"/>
+
+	 &define_source;
+
+	<quantity name="source_z" type="length" value="source_height" unit="mm"/>
+        <quantity name="source_radius" type="length" value="source_width/2" unit="mm"/>
+	
+	<quantity name="source_capsule_z" type="length" value="source_capsule_height" unit="mm"/>
+  	<quantity name="source_capsule_radius" type="length" value="source_capsule_width/2" unit="mm"/>
+
+        <quantity name="source_epoxy_z" type="length" value="source_epoxy_height" unit="mm"/>
+        <quantity name="source_epoxy_radius" type="length" value="source_epoxy_width/2" unit="mm"/>
+	
+	<position name="pos_source_capsule" z="0"/>
+	<position name="pos_source_epoxy" z="(source_capsule_z-source_epoxy_z)/2"/>
+	
+ </define>
+
+
+ <materials>
+         <element Z="7" formula="N" name="Nitrogen" >
+                 <atom value="14.01" />
+         </element>
+         <element Z="8" formula="O" name="Oxygen" >
+                 <atom value="16" />
+         </element>
+         <element Z="1" formula="H" name="Hydrogen" >
+                 <atom value="1" />
+         </element>
+         <element Z="6" formula="C" name="Carbon" >
+                 <atom value="12.01" />
+         </element>
+
+
+        <material name="epoxy_mod" formula="epoxy_mod">
+                <D value="0.711" unit="g/cm3"/>
+                <composite n="41" ref="Carbon" />
+                <composite n="11" ref="Hydrogen" />
+                <composite n="7" ref="Oxygen" />
+                <composite n="3" ref="Nitrogen" />
+        </material>
+ </materials>
+
+
+ <solids>
+         <tube name="source" rmax="source_radius" z="source_z" startphi="0" deltaphi="TWOPI" aunit="rad" />
+	 <tube name="source_capsule" rmax="source_capsule_radius" z="source_capsule_z" startphi="0" deltaphi="TWOPI" aunit="rad" />
+	 <tube name="source_epoxy" rmax="source_epoxy_radius" z="source_epoxy_z" startphi="0" deltaphi="TWOPI" aunit="rad" />
+ </solids>
+
+
+ <structure>
+
+         <volume name="Source">
+                 <materialref ref="G4_SILICON_DIOXIDE"/>
+                 <solidref ref="source"/>
+         </volume>
+
+         <volume name="Source_Epoxy">
+                 <materialref ref="epoxy_mod"/>
+                 <solidref ref="source_epoxy"/>
+         </volume>
+
+	 <volume name="Source_Encapsulated">
+		 <materialref ref="G4_STAINLESS-STEEL"/>
+		 <solidref ref="source_capsule"/>
+		 <physvol>
+			 <volumeref ref="Source"/>
+                         <positionref ref="pos_source_capsule"/>
+                 </physvol>
+	 	 <physvol>
+                         <volumeref ref="Source_Epoxy"/>
+                         <positionref ref="pos_source_epoxy"/>
+                 </physvol>
+	 </volume>
+ </structure>
+
+
+ <setup name="Default" version="1.0">
+	 <world ref="Source_Encapsulated"/>
+ </setup>
+
+</gdml>
+

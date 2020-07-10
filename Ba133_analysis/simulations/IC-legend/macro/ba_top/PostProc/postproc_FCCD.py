@@ -5,7 +5,7 @@ from datetime import datetime
 
 
 
-def main(): 
+def main():  
 
     #print date and time for log:
     now = datetime.now()

@@ -1,6 +1,5 @@
 
-#this was originally define_sourceTh.xml for th uncoll top 
-#using elog: https://elog.legend-exp.org/HADES/9 "top source at 81mm"
+
   <constant name="source_height"   value="1.0" />
   <constant name="source_width"   value="1.0" />
 
@@ -18,4 +17,4 @@
   <constant name="collimator_beam_width"   value="1.0" />
 
 
-  <constant name="position_source_fromAlcap"   value="8.1" />  <!-- edit this, cm -->
+  <constant name="position_source_fromAlcap"   value="4.5" />  <!-- cm -->

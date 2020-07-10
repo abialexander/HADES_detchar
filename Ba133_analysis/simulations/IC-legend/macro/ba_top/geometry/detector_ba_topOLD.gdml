@@ -11,28 +11,33 @@
 	 &define_detector;
 
 	 &define_source;
- 
+
 	 &define_lead_castle;
 
 
-		<!--nb: this file was originally detector_Th_top.gdml for uncoll-->
+	  <quantity name="collimator_z" type="length" value="collimator_height" unit="mm"/>
+	  <quantity name="collimator_beam_z" type="length" value="collimator_beam_height" unit="mm"/> 
+
 	  <quantity name="source_capsule_z" type="length" value="source_capsule_height" unit="mm" />
 
+	  <quantity name="pos_collimator_fromAlcap_z" type="length" value="position_collimator_fromAlcap_z" unit="mm"/>
+	  <quantity name="pos_collimator_fromAlcap_r" type="length" value="position_collimator_fromAlcap_r*cosine" unit="mm"/>
+
+	  <position name="pos_collimator" x="-pos_collimator_fromAlcap_r" y="-pos_collimator_fromAlcap_r"  z="-(pos_collimator_fromAlcap_z + collimator_z/2)" />
+	  <position name="pos_source" x="-pos_collimator_fromAlcap_r" y="-pos_collimator_fromAlcap_r" z="-(pos_collimator_fromAlcap_z + collimator_beam_z+ source_capsule_z/2)" />
+	  
 	  <quantity name="position_vacuum_cavity" type="length" value="position_Alcap_cavity_fromTop" unit="mm" />
 	  <position name="pos_vacuum_cavity" z="position_vacuum_cavity"/>
 
-	  <quantity name="pos_source_fromAlcap" type="length" value="position_source_fromAlcap" unit="cm"/>
 	  <quantity name="pos_crystal_fromTop" type="length" value="(position_crystal_fromTop-position_vacuum_cavity)" unit="mm"/> 
 	  <quantity name="position_wrap" type="length" value="(position_holder_fromTop-position_vacuum_cavity)"  unit="mm"/> 
 	  <quantity name="pos_holder_fromTop" type="length" value="(position_holder_fromTop-position_vacuum_cavity)" unit="mm"/> 
 
-	  <position name="pos_source" z="-pos_source_fromAlcap" />
 	  <position name="pos_crystal" z="pos_crystal_fromTop" />
 	  <position name="pos_wrap" z="position_wrap"/>          
 	  <position name="pos_holder" z="pos_holder_fromTop"  />
 
 	  <quantity name="pos_Alcap" value="position_Alcap_fromBottom" type="length"  unit="mm" /> 
-
 
 	  <quantity name="bottom_plate_z" type="length" value="bottom_plate_height" unit="mm"/>
 	  <position name="pos_bottom_plate_table" z="pos_Alcap+(bottom_plate_z)/2" />
@@ -45,8 +50,6 @@
 
 	  <quantity name="vacuum_cavity_z" type="length" value="(Alcap_height-position_Alcap_cavity_fromTop-position_Alcap_cavity_fromBottom)" unit="mm"/>
 	  <quantity name="vacuum_cavity_radius" type="length" value="(Alcap_width-2*Alcap_thickness)/2" unit="mm"/>
-  
-
 
 
  </define>
@@ -72,14 +75,14 @@
 
 
  <structure>
-        
+
 	<volume name="Vacuum_cavity">
                  <materialref ref="G4_Galactic"/> 
                  <solidref ref="vacuum_cavity"/>
 		 <physvol>
                          <file name="/lfs/l1/legend/users/aalexander/HADES_detchar/Ba133_analysis/simulations/IC-legend/macro/ba_top/geometry/crystal_IC160A.gdml"/>
                          <positionref ref="pos_crystal"/>
-		 </physvol>  
+		 </physvol>
                  <physvol>
                          <file name="/lfs/l1/legend/users/aalexander/HADES_detchar/Ba133_analysis/simulations/IC-legend/macro/ba_top/geometry/teflon_wrap.gdml"/>
                          <positionref ref="pos_wrap"/>
@@ -103,10 +106,14 @@
                          <file name="/lfs/l1/legend/users/aalexander/HADES_detchar/Ba133_analysis/simulations/IC-legend/macro/ba_top/geometry/lead_castle_table1.gdml"/>
 			 <positionref ref="pos_lead_castle_table1"/>
 		 </physvol>
-                 <physvol>
-                         <file name="/lfs/l1/legend/users/aalexander/HADES_detchar/Ba133_analysis/simulations/IC-legend/macro/ba_top/geometry/source_encapsulated_th.gdml"/> <!--eventually rename to Ba-->
+		 <physvol>
+                         <file name="/lfs/l1/legend/users/aalexander/HADES_detchar/Ba133_analysis/simulations/IC-legend/macro/ba_top/geometry/source_encapsulated_ba.gdml"/>  
                          <positionref ref="pos_source"/>
-                 </physvol> 
+                 </physvol>  
+                 <physvol>
+                         <file name="/lfs/l1/legend/users/aalexander/HADES_detchar/Ba133_analysis/simulations/IC-legend/macro/ba_top/geometry/collimator_Cu_top.gdml"/>  
+                         <positionref ref="pos_collimator"/>
+                 </physvol>
 		  <physvol>
 			 <file name="/lfs/l1/legend/users/aalexander/HADES_detchar/Ba133_analysis/simulations/IC-legend/macro/ba_top/geometry/Alcap.gdml"/>
 			 <positionref ref="center"/>

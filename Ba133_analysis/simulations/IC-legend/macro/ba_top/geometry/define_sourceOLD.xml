@@ -1,0 +1,32 @@
+
+  #this was originally /lfs/l1/legend/detector_char/enr/hades/simulations/legend-g4simple-simulation/IC-legend/general_geometry/define_source_am_top.xml, now edited for ba
+  #using elog: https://elog.legend-exp.org/HADES/9 "top source at 81mm"
+  <constant name="source_height"   value="2.0" /> 
+  <constant name="source_width"   value="1.0" />
+
+  <constant name="source_capsule_height"   value="10.0" /> 
+  <constant name="source_capsule_width"   value="2.0" />
+
+  <!-- <constant name = "source_position" value = "81.0" />
+  <constant name = "source_x" value = "0.0" />
+  <constant name = "source_y" value = "0.0" /> -->
+
+
+  <constant name="window_source" value="0.2" /> 
+ 
+  <constant name="collimator_height"   value="65.0" />
+  <constant name="collimator_depth"   value="30.0" />
+  <constant name="collimator_width"   value="30.0" />
+
+  <constant name="collimator_beam_height"   value="25.6" />
+  <constant name="collimator_beam_width"   value="1.0" />
+
+  <constant name="position_collimator_fromAlcap_z"   value="3.0"/>   
+  <constant name="position_collimator_fromAlcap_r"   value="20.0" /> 
+
+  <constant name="position_source_fromAlcap"   value="1" />  <!-- mm -->
+
+
+  <constant name="PI4" value="pi/4"/>
+  <constant name="cosine" value="cos(PI4)" />
+

@@ -1,9 +1,16 @@
 import sys, h5py
 import pandas as pd
 import numpy as np
-
+from datetime import datetime
 
 def main():
+
+    #print date and time for log:
+    now = datetime.now()
+    dt_string = now.strftime("%d/%m/%Y %H:%M:%S") # dd/mm/YY H:M:S
+    print("")
+    print("date and time =", dt_string)	
+    print("")
 
     # Modify this value for different energy resolution
     pctResAt1MeV = 0.15 #0.15 #5#;
