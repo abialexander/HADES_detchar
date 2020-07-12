@@ -12,6 +12,7 @@ import sys
 sys.path.append('/lfs/l1/legend/users/aalexander/HADES_detchar/Ba133_analysis/data/')
 from Ba133_dlt_analysis import * 
 
+#CURRENT CODE - plot spectra, fit, compare with data and deadlayer post processing (currently testing)
 
 def main(): 
 
@@ -65,7 +66,7 @@ def main():
     print("")
     print("Fitting peaks of interest...")
 
-    xmin_356, xmax_356 = 350, 362 #362 #360.5 for gammas #2 #360 #kev 
+    xmin_356, xmax_356 = 350, 360.5 #362 #360.5 for gammas #2 #360 #kev 
     plt.figure()
     counts, bins, bars = plt.hist(energies, bins = bins, histtype = 'step') #, linewidth = '0.35')
     popt, pcov, xfit = fit_peak_356_2("Energy (keV)", bins, counts, xmin_356, xmax_356)
@@ -89,6 +90,7 @@ def main():
     a,b,c,d,e,f,g,h = popt[0],popt[1],popt[2],popt[3],popt[4],popt[5],popt[6],popt[7] 
     plt.xlim(xmin_81, xmax_81) 
     plt.ylim(5*10**2, 5*10**6)
+    #plt.ylim(10**3, 10**7) #gammas_81mmNEW
     plt.yscale("log")
     plt.xlabel("Energy [keV]")
     plt.ylabel("Counts")
@@ -147,8 +149,9 @@ def main():
     calibrated_energy_data = (key_data-c)/m
 
     #plot absolutes
+    bins_data = bins = np.arange(0, 450, binwidth)
     fig, ax = plt.subplots()
-    counts_data, bins_cal_data, bars_data = plt.hist(calibrated_energy_data, bins=bins, label = "data", histtype = 'step', linewidth = '0.35')
+    counts_data, bins_cal_data, bars_data = plt.hist(calibrated_energy_data, bins=bins_data, label = "data", histtype = 'step', linewidth = '0.35')
     counts, bins, bars = plt.hist(energies, bins = bins, label = "MC: No FCCD", histtype = 'step', linewidth = '0.35')
     plt.xlabel("Energy [keV]")
     plt.ylabel("Counts")
@@ -167,7 +170,7 @@ def main():
     R_simdata_356 = amplitude356_sim/amplitude356_data #ratio of sim to data for 356 peak
 
     fig, ax = plt.subplots()
-    counts_data, bins_cal_data, bars_data = plt.hist(calibrated_energy_data, bins=bins, weights=R_simdata_356*np.ones_like(calibrated_energy_data),  label = "data (scaled)", histtype = 'step', linewidth = '0.35')
+    counts_data, bins_cal_data, bars_data = plt.hist(calibrated_energy_data, bins=bins_data, weights=R_simdata_356*np.ones_like(calibrated_energy_data),  label = "data (scaled)", histtype = 'step', linewidth = '0.35')
     counts, bins, bars = plt.hist(energies, bins = bins, label = "MC: No FCCD", histtype = 'step', linewidth = '0.35')
     plt.xlabel("Energy [keV]")
     plt.ylabel("Counts")
@@ -181,7 +184,7 @@ def main():
 
 
 
-    # #_____________PROCESS AND PLOT FCCDS_____________
+    # #_____________PROCESS AND PLOT FCCDS_____________ #in development/testing
 
     # # #graph of all FCCDs
     # # FCCD_list = ['none', 0.25, 0.5, 0.75, 1.0, 1.25, 1.5] #mm

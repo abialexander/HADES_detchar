@@ -74,5 +74,5 @@
 
 /gps/source/list #list the particle sources defined
 
-/run/beamOn 100000000 #300000000
+/run/beamOn 100000000 #10**8 #300000000
 

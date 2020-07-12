@@ -6,6 +6,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 #plt.style.use("mplstyle.txt")
 
+#OLD CODE - plot whole spectrum for a processed...hdf5 file, no deadlayer pos processing
 
 def main(): 
 

@@ -71,7 +71,6 @@
 /gps/pos/radius 0.5 mm
 /gps/pos/halfz 1.0 mm
 /gps/pos/centre 0 0 -81.0 mm #82 mm #source position (81) + source heught/2 (2/2)
-#/gps/direction 0 0 1
 /gps/pos/confine Source_PV
 
 #/gps/source/add 0.53022 
@@ -86,7 +85,6 @@
 /gps/pos/radius 0.5 mm
 /gps/pos/halfz 1.0 mm
 /gps/pos/centre 0 0 -81.0 mm #82 mm #source position (81) + source heught/2 (2/2)
-#/gps/direction 0 0 1
 /gps/pos/confine Source_PV
 
 #/gps/source/add 0.04271
@@ -101,7 +99,6 @@
 /gps/pos/radius 0.5 mm
 /gps/pos/halfz 1.0 mm
 /gps/pos/centre 0 0 -81.0 mm #82 mm #source position (81) + source heught/2 (2/2)
-#/gps/direction 0 0 1
 /gps/pos/confine Source_PV
 
 #/gps/source/add 0.04271
@@ -116,7 +113,6 @@
 /gps/pos/radius 0.5 mm
 /gps/pos/halfz 1.0 mm
 /gps/pos/centre 0 0 -81.0 mm #82 mm #source position (81) + source heught/2 (2/2)
-#/gps/direction 0 0 1
 /gps/pos/confine Source_PV
 
 
@@ -144,5 +140,5 @@
 
 
 
-/run/beamOn 10000000 #10000000 #300000000
+/run/beamOn 100000000 #10**8 #10000000 #300000000
 

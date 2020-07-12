@@ -55,7 +55,7 @@ End of Run User Vis Actions: none
 
 Some /vis commands (optionally) take a string to specify colour.
 "/vis/list" to see available colours.
-CLHEP::HepRandom seed set to: 6640577839286082114
+CLHEP::HepRandom seed set to: 7212324179163137076
 G4PhysListFactory::GetReferencePhysList <Shielding>  EMoption= 0
 <<< Geant4 Physics List simulation engine: Shielding
 <<< Reference Physics List Shielding is built
@@ -1016,13 +1016,13 @@ Opening file /lfs/l1/legend/users/aalexander/hdf5_output/detector_IC160A_ba_top_
 Setting ID for Crystal_PV to 1
  Run terminated.
 Run Summary
-  Number of events processed : 10000000
-  User=1919.850000s Real=1928.606826s Sys=8.570000s [Cpu=100.0%]
+  Number of events processed : 100000000
+  User=19584.710000s Real=19683.273758s Sys=94.380000s [Cpu=100.0%]
 Graphics systems deleted.
 Visualization Manager deleting...
 G4 kernel has come to Quit state.
 ================== Deleting memory pools ===================
 Number of memory pools allocated: 9; of which, static: 0
-Dynamic pools deleted: 9 / Total memory freed: 0.063 MB
+Dynamic pools deleted: 9 / Total memory freed: 0.068 MB
 ============================================================
 RunManagerKernel is deleted. Good bye :)

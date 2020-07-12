@@ -3,6 +3,8 @@ import pandas as pd
 import numpy as np
 from datetime import datetime
 
+#This code generates a "processed_mcid.gdf5" for 1 input hdf5 MC file. No deadlayer post processing done.
+
 def main():
 
     #print date and time for log:
