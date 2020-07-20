@@ -55,13 +55,13 @@ End of Run User Vis Actions: none
 
 Some /vis commands (optionally) take a string to specify colour.
 "/vis/list" to see available colours.
-CLHEP::HepRandom seed set to: 8309875322293555490
+CLHEP::HepRandom seed set to: 1293978095195087680
 G4PhysListFactory::GetReferencePhysList <Shielding>  EMoption= 0
 <<< Geant4 Physics List simulation engine: Shielding
 <<< Reference Physics List Shielding is built
 
 G4GDML: Reading '/lfs/l1/legend/users/aalexander/HADES_detchar/Ba133_analysis/simulations/IC-legend/macro/ba_top/geometry/detector_ba_top.gdml'...
-G4GDML: VALIDATION ERROR! no character data is allowed by content model at line: 3
+G4GDML: VALIDATION ERROR! no character data is allowed by content model at line: 4
 G4GDML: VALIDATION ERROR! ID attribute 'G4_AIR' is referenced but was never declared at line: 128
 G4GDML: VALIDATION ERROR! ID attribute 'G4_Galactic' is referenced but was never declared at line: 128
 G4GDML: Reading definitions...
@@ -109,7 +109,7 @@ G4GDML: Reading structure...
 G4GDML: Reading setup...
 G4GDML: Reading module '/lfs/l1/legend/users/aalexander/HADES_detchar/Ba133_analysis/simulations/IC-legend/macro/ba_top/geometry/lead_castle_table1.gdml' done!
 G4GDML: Reading module '/lfs/l1/legend/users/aalexander/HADES_detchar/Ba133_analysis/simulations/IC-legend/macro/ba_top/geometry/source_encapsulated_th.gdml'...
-G4GDML: VALIDATION ERROR! no character data is allowed by content model at line: 3
+G4GDML: VALIDATION ERROR! no character data is allowed by content model at line: 4
 G4GDML: VALIDATION ERROR! ID attribute 'G4_SILICON_DIOXIDE' is referenced but was never declared at line: 91
 G4GDML: VALIDATION ERROR! ID attribute 'G4_STAINLESS-STEEL' is referenced but was never declared at line: 91
 G4GDML: Reading definitions...
@@ -985,19 +985,16 @@ Index : 8     used in the geometry : Yes
 
 ### Run 0 starts.
 Opening file /lfs/l1/legend/users/aalexander/hdf5_output/detector_IC160A_ba_top_81mmNEW2_01.hdf5
-Setting ID for Crystal_PV to  R Run terminated.
+Setting ID for Crystal_PV to 1
+ Run terminated.
 Run Summary
   Number of events processed : 100000000
-  User=51827.780000s Real=51837.366772s Sys=7.550000s [Cpu=100.0%]
-***** COMMAND NOT FOUND <100000000> *****
-
-***** Batch is interrupted!! *****
+  User=51936.590000s Real=51958.774833s Sys=26.120000s [Cpu=100.0%]
 Graphics systems deleted.
 Visualization Manager deleting...
 G4 kernel has come to Quit state.
 ================== Deleting memory pools ===================
 Number of memory pools allocated: 11; of which, static: 0
-Dynamic pools deleted: 11 / Total memory freed: 0.082 MB
+Dynamic pools deleted: 11 / Total memory freed: 0.08 MB
 ============================================================
 RunManagerKernel is deleted. Good bye :)
-el is deleted. Good bye :)

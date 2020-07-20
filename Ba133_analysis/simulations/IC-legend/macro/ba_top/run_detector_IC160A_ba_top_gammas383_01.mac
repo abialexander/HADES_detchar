@@ -25,9 +25,8 @@
 #/g4simple/setOutputOption eventwise #this was unncommented initially - THIS NEEDS TO BE COMMENTED!!
 
 # Change the name of the output file (by default it's g4simple.[ext])
-/analysis/setFileName /lfs/l1/legend/users/aalexander/hdf5_output/detector_IC160A_ba_top_gammas383_81mmNEW_01.hdf5 #save hdf5 files in separate location as too big (for github)
-#/analysis/setFileName /lfs/l1/legend/users/aalexander/hdf5_output/detector_IC160A_ba_top_gammas_81mm_01.hdf5
-#/analysis/setFileName root/detector_IC160A_am_top_01.root
+#/analysis/setFileName /lfs/l1/legend/users/aalexander/hdf5_output/detector_IC160A_ba_top_gammas383_81mmNEW_01.hdf5 #save hdf5 files in separate location as too big (for github)
+/analysis/setFileName /lfs/l1/legend/users/aalexander/hdf5_output/detector_IC160A_ba_top_gammas383_81mmNEW2_01.hdf5 #no min theta
 
 #/geometry/test/tolerance 0.01
 
@@ -64,8 +63,8 @@
 /gps/particle gamma
 /gps/ene/mono 356.0129 keV
 /gps/ang/type iso
-/gps/ang/mintheta 150 deg
-/gps/ang/maxtheta 180 deg
+#/gps/ang/mintheta 150 deg
+#/gps/ang/maxtheta 180 deg
 /gps/pos/type Volume
 /gps/pos/shape Cylinder
 /gps/pos/radius 0.5 mm
@@ -78,8 +77,8 @@
 /gps/particle gamma
 /gps/ene/mono 80.9979 keV
 /gps/ang/type iso
-/gps/ang/mintheta 150 deg
-/gps/ang/maxtheta 180 deg
+#/gps/ang/mintheta 150 deg
+#/gps/ang/maxtheta 180 deg
 /gps/pos/type Volume
 /gps/pos/shape Cylinder
 /gps/pos/radius 0.5 mm
@@ -92,8 +91,8 @@
 /gps/particle gamma
 /gps/ene/mono 79.6142 keV
 /gps/ang/type iso
-/gps/ang/mintheta 150 deg
-/gps/ang/maxtheta 180 deg
+#/gps/ang/mintheta 150 deg
+#/gps/ang/maxtheta 180 deg
 /gps/pos/type Volume
 /gps/pos/shape Cylinder
 /gps/pos/radius 0.5 mm
@@ -106,8 +105,8 @@
 /gps/particle gamma
 /gps/ene/mono 383.8485 keV
 /gps/ang/type iso
-/gps/ang/mintheta 150 deg
-/gps/ang/maxtheta 180 deg
+#/gps/ang/mintheta 150 deg
+#/gps/ang/maxtheta 180 deg
 /gps/pos/type Volume
 /gps/pos/shape Cylinder
 /gps/pos/radius 0.5 mm

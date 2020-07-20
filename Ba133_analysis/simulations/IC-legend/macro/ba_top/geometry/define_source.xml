@@ -4,7 +4,7 @@
   <constant name="source_height"   value="1.0" />
   <constant name="source_width"   value="1.0" />
 
-  <constant name="source_capsule_height"   value="7.0" />   <!-- which is the height and which the width? -->
+  <constant name="source_capsule_height"   value="7.0" />   
   <constant name="source_capsule_width"   value="2.0" />
 
   <constant name="source_epoxy_height"   value="2.2" />

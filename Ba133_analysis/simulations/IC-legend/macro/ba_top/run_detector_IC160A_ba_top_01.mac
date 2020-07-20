@@ -26,8 +26,8 @@
 
 # Change the name of the output file (by default it's g4simple.[ext])
 #/analysis/setFileName /lfs/l1/legend/users/aalexander/hdf5_output/detector_IC160A_ba_top_01.hdf5 #save hdf5 files in separate location as too big (for github)
-/analysis/setFileName /lfs/l1/legend/users/aalexander/hdf5_output/detector_IC160A_ba_top_81mmNEW_01.hdf5 #with mintheta..
-#/analysis/setFileName /lfs/l1/legend/users/aalexander/hdf5_output/detector_IC160A_ba_top_81mmNEW2_01.hdf5 #without mintheta max theta
+#/analysis/setFileName /lfs/l1/legend/users/aalexander/hdf5_output/detector_IC160A_ba_top_81mmNEW_01.hdf5 #with mintheta..
+/analysis/setFileName /lfs/l1/legend/users/aalexander/hdf5_output/detector_IC160A_ba_top_81mmNEW2_01.hdf5 #without mintheta max theta
 #/analysis/setFileName hdf5/detector_IC160A_ba_top_01.hdf5
 #/analysis/setFileName root/detector_IC160A_am_top_01.root
 
@@ -63,8 +63,8 @@
 /gps/energy    0 MeV
 /grdm/nucleusLimits      133 133 56 56
 /gps/ang/type iso
-/gps/ang/mintheta 150 deg
-/gps/ang/maxtheta 180 deg
+#/gps/ang/mintheta 150 deg
+#/gps/ang/maxtheta 180 deg
 /gps/pos/type Volume
 /gps/pos/shape Cylinder
 /gps/pos/radius 0.5 mm
