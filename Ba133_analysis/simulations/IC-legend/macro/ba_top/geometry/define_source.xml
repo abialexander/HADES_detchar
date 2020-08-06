@@ -1,8 +1,12 @@
 
 #this was originally define_sourceTh.xml for th uncoll top 
-#using elog: https://elog.legend-exp.org/HADES/9 "top source at 81mm"
-  <constant name="source_height"   value="1.0" />
-  <constant name="source_width"   value="1.0" />
+#using elog: https://elog.legend-exp.org/HADES/9 "top source at 81mm, source width 30mm, height 3mm"
+  <!--<constant name="source_height"   value="1.0" />
+  <constant name="source_width"   value="1.0" /> OLD-->
+
+  <constant name="source_height"   value="3.0" />
+  <constant name="source_width"   value="30.0" />
+
 
   <constant name="source_capsule_height"   value="7.0" />   
   <constant name="source_capsule_width"   value="2.0" />
