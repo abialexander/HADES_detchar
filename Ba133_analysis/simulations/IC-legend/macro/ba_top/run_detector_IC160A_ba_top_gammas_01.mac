@@ -67,8 +67,8 @@
 /gps/particle gamma
 /gps/ene/mono 356.0129 keV
 /gps/ang/type iso
-#gps/ang/mintheta 150 deg
-#/gps/ang/maxtheta 180 deg
+/gps/ang/mintheta 150 deg
+/gps/ang/maxtheta 180 deg
 /gps/pos/type Volume
 /gps/pos/shape Cylinder
 /gps/pos/radius 0.5 mm
@@ -83,8 +83,8 @@
 /gps/particle gamma
 /gps/ene/mono 80.9979 keV
 /gps/ang/type iso
-#/gps/ang/mintheta 150 deg
-#/gps/ang/maxtheta 180 deg
+/gps/ang/mintheta 150 deg
+/gps/ang/maxtheta 180 deg
 /gps/pos/type Volume
 /gps/pos/shape Cylinder
 /gps/pos/radius 0.5 mm
