@@ -16,7 +16,7 @@ def main():
     #     print('Usage: drawPostProcessedHdf5.py [processed.hdf5]')
     #     sys.exit()
 
-    
+     
     if(len(sys.argv) != 2):
         print('Usage: drawPostProcessedHdf5.py [IC160A_ba_top_coll_01]')
         sys.exit()

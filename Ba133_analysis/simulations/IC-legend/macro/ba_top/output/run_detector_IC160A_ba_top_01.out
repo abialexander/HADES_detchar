@@ -55,7 +55,7 @@ End of Run User Vis Actions: none
 
 Some /vis commands (optionally) take a string to specify colour.
 "/vis/list" to see available colours.
-CLHEP::HepRandom seed set to: 6453470117736611230
+CLHEP::HepRandom seed set to: 8545077914734501838
 G4PhysListFactory::GetReferencePhysList <Shielding>  EMoption= 0
 <<< Geant4 Physics List simulation engine: Shielding
 <<< Reference Physics List Shielding is built
@@ -129,7 +129,7 @@ G4GDML: Reading module '/lfs/l1/legend/users/aalexander/HADES_detchar/Ba133_anal
 G4GDML: Reading setup...
 G4GDML: Reading '/lfs/l1/legend/users/aalexander/HADES_detchar/Ba133_analysis/simulations/IC-legend/macro/ba_top/geometry/detector_ba_top.gdml' done!
 Stripping off GDML names of materials, solids and volumes ...
-Set file name: /lfs/l1/legend/users/aalexander/hdf5_output/detector_IC160A_ba_top_81mmNEW3_01.hdf5
+Set file name: /lfs/l1/legend/users/aalexander/hdf5_output/detector_IC160A_ba_top_81mmNEW4_01.hdf5
 
  Shielding : threshold between BERT and FTFP is over the interval : 4 to 5 GeV
 
@@ -984,17 +984,17 @@ Index : 8     used in the geometry : Yes
 ====================================================================
 
 ### Run 0 starts.
-Opening file /lfs/l1/legend/users/aalexander/hdf5_output/detector_IC160A_ba_top_81mmNEW3_01.hdf5
+Opening file /lfs/l1/legend/users/aalexander/hdf5_output/detector_IC160A_ba_top_81mmNEW4_01.hdf5
 Setting ID for Crystal_PV to 1
  Run terminated.
 Run Summary
   Number of events processed : 100000000
-  User=55782.570000s Real=68479.245331s Sys=30.440000s [Cpu=81.5%]
+  User=113294.310000s Real=183469.301598s Sys=21.170000s [Cpu=61.8%]
 Graphics systems deleted.
 Visualization Manager deleting...
 G4 kernel has come to Quit state.
 ================== Deleting memory pools ===================
 Number of memory pools allocated: 11; of which, static: 0
-Dynamic pools deleted: 11 / Total memory freed: 0.086 MB
+Dynamic pools deleted: 11 / Total memory freed: 0.08 MB
 ============================================================
 RunManagerKernel is deleted. Good bye :)

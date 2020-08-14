@@ -29,7 +29,7 @@ def main():
     t2_folder = "/lfs/l1/legend/detector_char/enr/hades/char_data/"+detector+"/tier2/ba_HS4_top_dlt/pygama/"
     keys, data = read_all_t2(t2_folder)
 
-    data_size = data.size #all events
+    data_size = data.size #all events 
     print("data_size: ", data_size)
 
     key = "e_ftp"

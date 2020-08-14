@@ -24,7 +24,6 @@ def main():
             sys.exit()
 
     MC_file_id = sys.argv[1]
-    #MC_file = 'detector_IC160A_ba_top_coll_01'
 
     # have to open the input file with h5py (g4 doesn't write pandas-ready hdf5)
     g4sfile = h5py.File(hdf5_path+'detector_'+MC_file_id+'.hdf5', 'r')

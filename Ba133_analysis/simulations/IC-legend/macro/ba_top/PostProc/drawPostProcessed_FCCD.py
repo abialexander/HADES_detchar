@@ -66,7 +66,7 @@ def main():
     print("")
     print("Fitting peaks of interest...")
 
-    xmin_356, xmax_356 = 350, 360.5 #362 #360.5 for gammas #2 #360 #kev 
+    xmin_356, xmax_356 = 350, 362 #362 #360.5 for gammas #2 #360 #kev 
     plt.figure()
     counts, bins, bars = plt.hist(energies, bins = bins, histtype = 'step') #, linewidth = '0.35')
     popt, pcov, xfit = fit_peak_356_2("Energy (keV)", bins, counts, xmin_356, xmax_356)

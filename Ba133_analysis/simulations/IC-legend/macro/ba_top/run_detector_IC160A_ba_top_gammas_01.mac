@@ -29,7 +29,8 @@
 #/analysis/setFileName /lfs/l1/legend/users/aalexander/hdf5_output/detector_IC160A_ba_top_gammas_81mm_01.hdf5
 #/analysis/setFileName /lfs/l1/legend/users/aalexander/hdf5_output/detector_IC160A_ba_top_gammas_81mmNEW_01.hdf5 #with min theta
 #/analysis/setFileName /lfs/l1/legend/users/aalexander/hdf5_output/detector_IC160A_ba_top_gammas_81mmNEW2_01.hdf5 #without min theta
-/analysis/setFileName /lfs/l1/legend/users/aalexander/hdf5_output/detector_IC160A_ba_top_gammas_81mmNEW3_01.hdf5 #with min theta, new geometry
+#/analysis/setFileName /lfs/l1/legend/users/aalexander/hdf5_output/detector_IC160A_ba_top_gammas_81mmNEW3_01.hdf5 #with min theta, new geometry
+/analysis/setFileName /lfs/l1/legend/users/aalexander/hdf5_output/detector_IC160A_ba_top_gammas_81mmNEW4_01.hdf5 #with min theta, new geometry and in macro
 
 
 #/geometry/test/tolerance 0.01
@@ -71,8 +72,8 @@
 /gps/ang/maxtheta 180 deg
 /gps/pos/type Volume
 /gps/pos/shape Cylinder
-/gps/pos/radius 0.5 mm
-/gps/pos/halfz 1.0 mm
+/gps/pos/radius 15.0 mm
+/gps/pos/halfz 1.5 mm
 /gps/pos/centre 0 0 -81.0 mm #82 mm #source position (81) + source heught/2 (2/2)
 #/gps/pos/centre -14.1421 -14.1421 -29.8 mm
 #/gps/direction 0 0 1
@@ -87,8 +88,8 @@
 /gps/ang/maxtheta 180 deg
 /gps/pos/type Volume
 /gps/pos/shape Cylinder
-/gps/pos/radius 0.5 mm
-/gps/pos/halfz 1.0 mm
+/gps/pos/radius 15.0 mm
+/gps/pos/halfz 1.5 mm
 /gps/pos/centre 0 0 -81.0 mm #82 mm #source position (81) + source heught/2 (2/2)
 #/gps/pos/centre -14.1421 -14.1421 -29.8 mm
 #/gps/direction 0 0 1
@@ -103,8 +104,8 @@
 /gps/ang/maxtheta 180 deg
 /gps/pos/type Volume
 /gps/pos/shape Cylinder
-/gps/pos/radius 0.5 mm
-/gps/pos/halfz 1.0 mm
+/gps/pos/radius 15.0 mm
+/gps/pos/halfz 1.5 mm
 /gps/pos/centre 0 0 -81.0 mm #82 mm #source position (81) + source heught/2 (2/2)
 #/gps/pos/centre -14.1421 -14.1421 -29.8 mm
 #/gps/direction 0 0 1

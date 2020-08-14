@@ -28,9 +28,9 @@
 #/analysis/setFileName /lfs/l1/legend/users/aalexander/hdf5_output/detector_IC160A_ba_top_01.hdf5 #save hdf5 files in separate location as too big (for github)
 #/analysis/setFileName /lfs/l1/legend/users/aalexander/hdf5_output/detector_IC160A_ba_top_81mmNEW_01.hdf5 #with mintheta..
 #/analysis/setFileName /lfs/l1/legend/users/aalexander/hdf5_output/detector_IC160A_ba_top_81mmNEW2_01.hdf5 #without mintheta max theta
-/analysis/setFileName /lfs/l1/legend/users/aalexander/hdf5_output/detector_IC160A_ba_top_81mmNEW3_01.hdf5 #with mintheta max theta, source height3mm, width 30mm
-#/analysis/setFileName hdf5/detector_IC160A_ba_top_01.hdf5
-#/analysis/setFileName root/detector_IC160A_am_top_01.root
+#/analysis/setFileName /lfs/l1/legend/users/aalexander/hdf5_output/detector_IC160A_ba_top_81mmNEW3_01.hdf5 #with mintheta max theta, source height3mm, width 30mm
+/analysis/setFileName /lfs/l1/legend/users/aalexander/hdf5_output/detector_IC160A_ba_top_81mmNEW4_01.hdf5 #with mintheta max theta, source height3mm, width 30mm and changed on macro
+
 
 #/geometry/test/tolerance 0.01
 
@@ -68,8 +68,10 @@
 /gps/ang/maxtheta 180 deg
 /gps/pos/type Volume
 /gps/pos/shape Cylinder
-/gps/pos/radius 0.5 mm
-/gps/pos/halfz 1.0 mm
+/gps/pos/radius 30.0 mm #new
+/gps/pos/halfz 1.5 mm
+#/gps/pos/radius 0.5 mm #old
+#/gps/pos/halfz 1.0 mm
 /gps/pos/centre 0 0 -81.0 mm #82 mm #source position (81) + source heught/2 (2/2)
 /gps/pos/confine Source_PV
 
