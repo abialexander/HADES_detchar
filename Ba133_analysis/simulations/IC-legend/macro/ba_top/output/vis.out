@@ -55,7 +55,7 @@ End of Run User Vis Actions: none
 
 Some /vis commands (optionally) take a string to specify colour.
 "/vis/list" to see available colours.
-CLHEP::HepRandom seed set to: 4883624974479062390
+CLHEP::HepRandom seed set to: 8181181056523683080
 G4PhysListFactory::GetReferencePhysList <Shielding>  EMoption= 0
 <<< Geant4 Physics List simulation engine: Shielding
 <<< Reference Physics List Shielding is built
@@ -154,14 +154,8 @@ NeutronHP: /Inelastic file for Z = 6, A = 12 is not found and NeutronHP will use
 NeutronHP: /Capture file for Z = 6, A = 13 is not found and NeutronHP will use /opt/geant4/share/Geant4-10.5.1/data/G4NDL4.5/Capture/CrossSection/6_nat_Carbon
 NeutronHP: /Elastic file for Z = 6, A = 13 is not found and NeutronHP will use /opt/geant4/share/Geant4-10.5.1/data/G4NDL4.5/Elastic/CrossSection/6_nat_Carbon
 NeutronHP: /Inelastic file for Z = 6, A = 13 is not found and NeutronHP will use /opt/geant4/share/Geant4-10.5.1/data/G4NDL4.5/Inelastic/CrossSection/6_nat_Carbon
-G4RTXScanner::Initialize(): cannot get display.
-G4RayTracerXViewer::Initialise: No scanner
-ERROR in G4VisManager::CreateViewer during RayTracerX viewer initialisation.
-  No action taken.
-WARNING: No viewer created.
-ERROR: G4VisCommandsViewerSet::SetNewValue: no current viewer.
-ERROR: G4VisCommandsViewerSet::SetNewValue: no current viewer.
-WARNING: No current viewer.
+Issue /vis/viewer/refresh or flush to see effect.
+Issue /vis/viewer/refresh or flush to see effect.
 /tracking/storeTrajectory 2
 Attributes available for modeling and filtering with
   "/vis/modeling/trajectories/create/drawByAttribute" and
@@ -184,44 +178,6 @@ G4SmoothTrajectoryPoint:
   Step Position (Pos): G4BestUnit (G4ThreeVector)
 WARNING: Trajectory storing has been requested.  This action may be
   reversed with "/tracking/storeTrajectory 0".
-WARNING: No current viewer.
-WARNING: No current viewer.
-WARNING: No current viewer.
-WARNING: No current viewer.
-WARNING: No current viewer.
-WARNING: No current viewer.
-WARNING: No current viewer.
-WARNING: No current viewer.
-WARNING: No current viewer.
-WARNING: No current viewer.
-WARNING: No current viewer.
-WARNING: No current viewer.
-WARNING: No current viewer.
-WARNING: No current viewer.
-WARNING: No current viewer.
-WARNING: No current viewer.
-WARNING: No current viewer.
-WARNING: No current viewer.
-WARNING: No current viewer.
-WARNING: No current viewer.
-WARNING: No current viewer.
-WARNING: No current viewer.
-WARNING: No current viewer.
-WARNING: No current viewer.
-WARNING: No current viewer.
-WARNING: No current viewer.
-WARNING: No current viewer.
-WARNING: No current viewer.
-WARNING: No current viewer.
-WARNING: No current viewer.
-WARNING: No current viewer.
-WARNING: No current viewer.
-WARNING: No current viewer.
-WARNING: No current viewer.
-WARNING: No current viewer.
-WARNING: No current viewer.
-WARNING: No current viewer.
-WARNING: No current viewer.
 Physical volumes:
 Crystal_PV 0
 Teflon_wrap_PV 0
@@ -234,11 +190,6 @@ Source_Encapsulated_PV 0
 AlCap_PV 0
 Vacuum_cavity_PV 0
 World_PV 0
-ERROR: Volume "target" not found.
-WARNING: For some reason, possibly mentioned above, it has not been
-  possible to add to the scene.
-ERROR: Viewer "none" not found - "/vis/viewer/list"
-  to see possibilities.
 WARNING: The vis manager will keep up to 10 events.
   This may use a lot of memory.
   It may be changed with, e.g., "/vis/scene/endOfEventAction accumulate 10".
@@ -1050,78 +1001,29 @@ Index : 8     used in the geometry : Yes
 
 ====================================================================
 
-WARNING: No current viewer.
-WARNING: No current viewer.
-WARNING: No current viewer.
 ### Run 0 starts.
 Opening file /lfs/l1/legend/users/aalexander/hdf5_output/detector_IC160A_ba_top_81mmNEW4_01_vis.hdf5
-ERROR: G4VisManager::IsValidView(): Current view is not valid.
-ERROR: G4VisManager::PrintInvalidPointers:
-  Graphics system is RayTracerX but:
-  Null viewer pointer. Use "/vis/viewer/create".
+ERROR: No HepRepDefaults, trying to get value for: IKE
 Setting ID for Crystal_PV to 1
-ERROR: G4VisManager::IsValidView(): Current view is not valid.
-ERROR: G4VisManager::PrintInvalidPointers:
-  Graphics system is RayTracerX but:
-  Null viewer pointer. Use "/vis/viewer/create".
-ERROR: G4VisManager::IsValidView(): Current view is not valid.
-ERROR: G4VisManager::PrintInvalidPointers:
-  Graphics system is RayTracerX but:
-  Null viewer pointer. Use "/vis/viewer/create".
-ERROR: G4VisManager::IsValidView(): Current view is not valid.
-ERROR: G4VisManager::PrintInvalidPointers:
-  Graphics system is RayTracerX but:
-  Null viewer pointer. Use "/vis/viewer/create".
-ERROR: G4VisManager::IsValidView(): Current view is not valid.
-ERROR: G4VisManager::PrintInvalidPointers:
-  Graphics system is RayTracerX but:
-  Null viewer pointer. Use "/vis/viewer/create".
-ERROR: G4VisManager::IsValidView(): Current view is not valid.
-ERROR: G4VisManager::PrintInvalidPointers:
-  Graphics system is RayTracerX but:
-  Null viewer pointer. Use "/vis/viewer/create".
-ERROR: G4VisManager::IsValidView(): Current view is not valid.
-ERROR: G4VisManager::PrintInvalidPointers:
-  Graphics system is RayTracerX but:
-  Null viewer pointer. Use "/vis/viewer/create".
-ERROR: G4VisManager::IsValidView(): Current view is not valid.
-ERROR: G4VisManager::PrintInvalidPointers:
-  Graphics system is RayTracerX but:
-  Null viewer pointer. Use "/vis/viewer/create".
-ERROR: G4VisManager::IsValidView(): Current view is not valid.
-ERROR: G4VisManager::PrintInvalidPointers:
-  Graphics system is RayTracerX but:
-  Null viewer pointer. Use "/vis/viewer/create".
-ERROR: G4VisManager::IsValidView(): Current view is not valid.
-ERROR: G4VisManager::PrintInvalidPointers:
-  Graphics system is RayTracerX but:
-  Null viewer pointer. Use "/vis/viewer/create".
  Run terminated.
 Run Summary
   Number of events processed : 10
-  User=0.020000s Real=0.081879s Sys=0.030000s [Cpu=61.1%]
-ERROR: G4VisManager::IsValidView(): Current view is not valid.
-ERROR: G4VisManager::PrintInvalidPointers:
-  Graphics system is RayTracerX but:
-  Null viewer pointer. Use "/vis/viewer/create".
-ERROR: G4VisManager::IsValidView(): Current view is not valid.
-ERROR: G4VisManager::PrintInvalidPointers:
-  Graphics system is RayTracerX but:
-  Null viewer pointer. Use "/vis/viewer/create".
-ERROR: G4VisManager::IsValidView(): Current view is not valid.
-ERROR: G4VisManager::PrintInvalidPointers:
-  Graphics system is RayTracerX but:
-  Null viewer pointer. Use "/vis/viewer/create".
-G4VisManager::Enable: WARNING: visualization remains disabled for
-  above reasons.  Rectifying with valid vis commands will
-  automatically enable.
-ERROR: Viewer "none" not found - "/vis/viewer/list"
-  to see possibilities.
+  User=0.090000s Real=0.143962s Sys=0.030000s [Cpu=83.4%]
+WARNING: 10 events have been kept for refreshing and/or reviewing.
+
+  "/vis/reviewKeptEvents" to review them one by one.
+  "/vis/enable", then "/vis/viewer/flush" or "/vis/viewer/rebuild" to see them accumulated.
+There are 10 kept events.
+  "/vis/reviewKeptEvents" to review them one by one.
+  "/vis/viewer/flush" or "/vis/viewer/rebuild" to see them accumulated.
+ERROR: No HepRepDefaults, trying to get value for: IKE
+WARNING: viewer-0 (G4HepRep) is NOT auto-refesh by default
+  so cannot be set to auto-refresh.
 Graphics systems deleted.
 Visualization Manager deleting...
 G4 kernel has come to Quit state.
 ================== Deleting memory pools ===================
 Number of memory pools allocated: 14; of which, static: 0
-Dynamic pools deleted: 14 / Total memory freed: 0.063 MB
+Dynamic pools deleted: 14 / Total memory freed: 0.19 MB
 ============================================================
 RunManagerKernel is deleted. Good bye :)

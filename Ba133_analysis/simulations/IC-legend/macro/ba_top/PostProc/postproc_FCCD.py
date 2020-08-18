@@ -21,7 +21,7 @@ def main():
     hdf5_path = "/lfs/l1/legend/users/aalexander/hdf5_output/"
 
     if(len(sys.argv) != 2):
-        print('Usage: postprochdf5.py [IC160A_ba_top_coll_01]')
+        print('Usage: postprochdf5.py [IC160A_ba_top_81mmNEW4_01]')
         sys.exit()
 
     MC_file_id = sys.argv[1]
@@ -47,7 +47,7 @@ def main():
     print(detector_hits)
     keys = detector_hits.keys()
     no_events =  len(detector_hits) #73565535 rows x 8 columns, len = 73565535, size = 73565535x8
-
+    print(no_events)
 
     #first save original file, i.e. no FCCD
     # procdf = pd.DataFrame(detector_hits.groupby(['event','volID','iRep'], as_index=False)['Edep'].sum())
@@ -59,16 +59,18 @@ def main():
     #procdf.to_hdf(hdf5_path+'processed/processed_detector_'+MC_file_id+'.hdf5', key='procdf', mode='w')
 
     
-    #detector_hits_FCCD = FCCD_cut(1, detector_hits) #test
+    # detector_hits_FCCD = FCCD_cut(1, detector_hits) #test
+    # print('done') #test 
 
     #apply FCCD cuts
-    #FCCD_list = [0.25]
-    FCCD_list = [0.25, 0.5, 0.75, 1.0, 1.25, 1.5, 3] #mm
+    # #FCCD_list = [0.25, 0.5]
+    #FCCD_list = [0.25, 0.5, 0.75, 1.0, 1.25, 1.5, 3] #mm
+    FCCD_list = [0.568] #extrapolated amount
 
     for FCCD in FCCD_list:
 
         detector_hits_FCCD = FCCD_cut(FCCD, detector_hits)
-        print(str(FCCD))
+        print('FCCD: ', str(FCCD))
         print(detector_hits_FCCD.size)
         
         procdf = pd.DataFrame(detector_hits_FCCD.groupby(['event','volID','iRep'], as_index=False)['Edep'].sum())
@@ -76,10 +78,11 @@ def main():
         # apply energy resolution function
         procdf['energy'] = procdf['energy'] + np.sqrt(procdf['energy'])*pctResAt1MeV/100.*np.random.randn(len(procdf['energy']))
         print(procdf.size)
-        procdf.to_hdf(hdf5_path+'processed/processed_FCCD'+str(FCCD)+'mm_detector_'+MC_file_id+'.hdf5', key='procdf', mode='w')
+        procdf.to_hdf(hdf5_path+'processed/processed_detector_'+MC_file_id+'_FCCD'+str(FCCD)+'mm.hdf5', key='procdf', mode='w')
         #procdf.to_hdf(hdf5_path+'processed/processed_FCCD'+str(FCCD)+'mm_detector_'+MC_file_id+'TEST.hdf5', key='procdf', mode='w')
 
 
+    print("done")
 
 def FCCD_cut(FCCD, detector_hits):
 
@@ -116,43 +119,70 @@ def FCCD_cut(FCCD, detector_hits):
 
     #divide detector volume into 3 different regions
 
-    #detector_hits_FCCD = pd.DataFrame(columns=['event', 'step', 'Edep', 'volID','iRep', 'x', 'y', 'z'])
-    detector_hits_FCCD_LIST = []
+    detector_hits_1 = detector_hits.loc[(detector_hits.z<l+H)&(detector_hits.z>H)]#region 1
+    print("len region 1: ", len(detector_hits_1))
+    detector_hits_FCCD_1 = detector_hits_1.loc[((detector_hits_1.x)**2 + (detector_hits_1.y)**2 < (r**2/h**2)*(detector_hits_1.z-z0)**2)&((detector_hits_1.x)**2 + (detector_hits_1.y)**2 > r_cylinder**2)]
+    
 
-    for i in range(len(detector_hits)):
-    #for i in range(int(len(detector_hits)/10000)): #test time
+    detector_hits_2 = detector_hits.loc[(detector_hits.z<l2+l+H)&(detector_hits.z>l+H)]#region 2
+    print("len region 2: ", len(detector_hits_2))
+    detector_hits_FCCD_2 = detector_hits_2.loc[((detector_hits_2.x)**2 + (detector_hits_2.y)**2 < B**2)&((detector_hits_2.x)**2 + (detector_hits_2.y)**2 > r_cylinder**2)]
 
-        x_list, y_list, z_list = detector_hits['x'].to_numpy(), detector_hits['y'].to_numpy(), detector_hits['z'].to_numpy()
-        x, y, z = x_list[i], y_list[i], z_list[i]
-      
-        #REGION 1
-        if z < l+H and z > H:
-            #cone equation and cylinder equation
-            if (x**2 + y**2 < (r**2/h**2)*(z-z0)**2) and (x**2 + y**2 > r_cylinder**2):
-                df = detector_hits.iloc[[i],:]
-                detector_hits_FCCD_LIST.append(df)
+    detector_hits_3 = detector_hits.loc[(detector_hits.z<l+H+l2+l3)&(detector_hits.z>l+H+l2)]#region 3
+    print("len region 3: ", len(detector_hits_3))
+    detector_hits_FCCD_3 = detector_hits_3.loc[((detector_hits_3.x)**2 + (detector_hits_3.y)**2 < B**2)]
 
-        #REGION 2
-        elif z < l2+l+H and z > l+H:
-            #2 cylinder equations
-            if (x**2 + y**2 < B**2) and (x**2 + y**2 > r_cylinder**2):
-                df = detector_hits.iloc[[i],:]
-                detector_hits_FCCD_LIST.append(df)
+    detector_hits_FCCD_LIST = [detector_hits_FCCD_1, detector_hits_FCCD_2, detector_hits_FCCD_3]
 
-        #REGION 3
-        elif z < l+H+l2+l3 and z > l+H+l2:
-            #1 cylinder equation
-            if (x**2 + y**2 < B**2):
-                df = detector_hits.iloc[[i],:]
-                detector_hits_FCCD_LIST.append(df)
-
-
-
-    #detector_hits_FCCD = pd.DataFrame(detector_hits_FCCD_LIST)
     detector_hits_FCCD = pd.concat(detector_hits_FCCD_LIST, axis=0, ignore_index=True)
     print(detector_hits_FCCD)
     return detector_hits_FCCD
 
+
+
+    #_____old code with for loops________
+    ##detector_hits_FCCD = pd.DataFrame(columns=['event', 'step', 'Edep', 'volID','iRep', 'x', 'y', 'z'])
+    #detector_hits_FCCD_LIST = []
+
+    #____slower code______
+    # x_list, y_list, z_list = detector_hits['x'].to_numpy(), detector_hits['y'].to_numpy(), detector_hits['z'].to_numpy()
+  
+    # for i in range(len(detector_hits)):
+    # #for i in range(int(len(detector_hits)/10000)): #test time
+
+    #     x, y, z = x_list[i], y_list[i], z_list[i]
+      
+    #     #REGION 1
+    #     if z < l+H and z > H:
+    #         #cone equation and cylinder equation
+    #         if (x**2 + y**2 < (r**2/h**2)*(z-z0)**2) and (x**2 + y**2 > r_cylinder**2):
+    #             df = detector_hits.iloc[[i],:]
+    #             detector_hits_FCCD_LIST.append(df)
+
+    #     #REGION 2
+    #     elif z < l2+l+H and z > l+H:
+    #         #2 cylinder equations
+    #         if (x**2 + y**2 < B**2) and (x**2 + y**2 > r_cylinder**2):
+    #             df = detector_hits.iloc[[i],:]
+    #             detector_hits_FCCD_LIST.append(df)
+
+    #     #REGION 3
+    #     elif z < l+H+l2+l3 and z > l+H+l2:
+    #         #1 cylinder equation
+    #         if (x**2 + y**2 < B**2):
+    #             df = detector_hits.iloc[[i],:]
+    #             detector_hits_FCCD_LIST.append(df)
+
+
+    #faster old code - but still shit
+    #old code
+    #x_list, y_list, z_list = detector_hits_1['x'].to_numpy(), detector_hits_1['y'].to_numpy(), detector_hits_1['z'].to_numpy()
+    # for i in range(len(detector_hits_1)):
+    #     x, y, z = x_list[i], y_list[i], z_list[i]
+    #     #cone equation and cylinder equation
+    #     if (x**2 + y**2 < (r**2/h**2)*(z-z0)**2) and (x**2 + y**2 > r_cylinder**2):
+    #         df = detector_hits_1.iloc[[i],:]
+    #         detector_hits_FCCD_LIST.append(df)
 
 
 if __name__ == "__main__":

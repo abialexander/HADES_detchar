@@ -47,8 +47,8 @@
 
 #/vis/open OGLSQt
 #/vis/open OGLIX
-/vis/open RayTracerX
-#/vis/open HepRepXML
+#/vis/open RayTracerX
+/vis/open HepRepXML
 /vis/scene/create g4simple_ba_top
 /vis/viewer/set/autoRefresh false
 /vis/sceneHandler/attach
@@ -143,14 +143,14 @@
 
 
 #from example vis.mac, for raytracer option only
-/vis/drawVolume target
-/vis/drawVolume 
-/vis/viewer/flush
+#/vis/drawVolume target
+#/vis/drawVolume 
+#/vis/viewer/flush
 
 /vis/scene/endOfEventAction accumulate 10
 /run/beamOn 10
 /vis/enable #for raytracer only
 /vis/viewer/flush
-#/vis/viewer/set/autoRefresh true - not for raytracer
+/vis/viewer/set/autoRefresh true #- not for raytracer
 
 

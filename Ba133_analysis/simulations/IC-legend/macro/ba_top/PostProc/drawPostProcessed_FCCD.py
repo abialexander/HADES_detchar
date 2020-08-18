@@ -27,7 +27,7 @@ def main():
     hdf5_path = "/lfs/l1/legend/users/aalexander/hdf5_output/processed/"
 
     if(len(sys.argv) != 2):
-        print('Usage: drawPostProcessed_FCCD.py [e.g. IC160A_ba_top_coll_01]')
+        print('Usage: drawPostProcessed_FCCD.py [e.g. IC160A_ba_top_81mmNEW4_01]')
         sys.exit()
 
     MC_file_id = sys.argv[1] #MC_file_id = 'IC160A_ba_top_coll_01'
@@ -37,8 +37,6 @@ def main():
 
     #____________PLOT Spectra _________
 
-    #no FCCD
-    print("No FCCD:")
     print("plotting whole simulated spectrum...")
     
     # plot full spectrum
@@ -194,10 +192,7 @@ def main():
     # # #repeat for just none and 1.5 - FCCDs2
     # # FCCD_list = ['none', 1.5] #mm, FCCDS2
     # # process_FCCDs(MC_file_id, FCCD_list, binwidth)
-    # # plt.savefig("/lfs/l1/legend/users/aalexander/HADES_detchar/Ba133_analysis/simulations/IC-legend/macro/ba_top/PostProc/plots/FCCDs2_"+MC_file_id+'.png')
-
-
-    #plt.show() 
+    # # plt.savefig("/lfs/l1/legend/users/aalexander/HADES_detchar/Ba133_analysis/simulations/IC-legend/macro/ba_top/PostProc/plots/FCCDs2_"+MC_file_id+'.png') 
     
     print("done")
 
