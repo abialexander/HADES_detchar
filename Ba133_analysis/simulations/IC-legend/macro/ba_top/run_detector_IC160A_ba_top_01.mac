@@ -70,12 +70,18 @@
 /gps/pos/shape Cylinder
 /gps/pos/radius 30.0 mm #new
 /gps/pos/halfz 1.5 mm
-#/gps/pos/radius 0.5 mm #old
-#/gps/pos/halfz 1.0 mm
-/gps/pos/centre 0 0 -81.0 mm #82 mm #source position (81) + source heught/2 (2/2)
+/gps/pos/centre 0 0 -81.0 mm #82 mm                                   #source position (81) + source heught/2 (2/2)
 /gps/pos/confine Source_PV
 
 /gps/source/list #list the particle sources defined
 
-/run/beamOn 100000000 #10**8 #300000000
+/run/beamOn 100000000 #=10**8 
+
+
+
+
+
+#/gps/pos/radius 0.5 mm #old
+#/gps/pos/halfz 1.0 mm
+#300000000
 

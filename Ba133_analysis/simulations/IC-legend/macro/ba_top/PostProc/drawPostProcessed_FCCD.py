@@ -64,7 +64,7 @@ def main():
     print("")
     print("Fitting peaks of interest...")
 
-    xmin_356, xmax_356 = 350, 362 #362 #360.5 for gammas #2 #360 #kev 
+    xmin_356, xmax_356 = 350, 360.5 #362 #360.5 for gammas #2 #360 #kev 
     plt.figure()
     counts, bins, bars = plt.hist(energies, bins = bins, histtype = 'step') #, linewidth = '0.35')
     popt, pcov, xfit = fit_peak_356_2("Energy (keV)", bins, counts, xmin_356, xmax_356)
@@ -87,8 +87,8 @@ def main():
     popt, pcov, xfit = fit_double_peak_81("Energy (keV)", bins, counts, xmin_81, xmax_81)
     a,b,c,d,e,f,g,h = popt[0],popt[1],popt[2],popt[3],popt[4],popt[5],popt[6],popt[7] 
     plt.xlim(xmin_81, xmax_81) 
-    plt.ylim(5*10**2, 5*10**6)
-    #plt.ylim(10**3, 10**7) #gammas_81mmNEW
+    #plt.ylim(5*10**2, 5*10**6)
+    plt.ylim(10**3, 10**7) #gammas_81mmNEW
     plt.yscale("log")
     plt.xlabel("Energy [keV]")
     plt.ylabel("Counts")
