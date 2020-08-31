@@ -80,7 +80,7 @@ def main():
     plt.errorbar(xdata, ydata, xerr=0, yerr =yerr, label = "simulations", elinewidth = 1, fmt='x', ms = 3.0, mew = 3.0)
     xfit = np.linspace(min(xdata), max(xdata), 1000)
     yfit = exponential_decay(xfit,*popt)
-    plt.plot(xfit, yfit, "g", label = "fit: a*exp(-bx)") 
+    plt.plot(xfit, yfit, "g", label = "fit: a*exp(-bx)+c") 
 
     #calculate FCCD of data - invert eq
     FCCD_data = (1/b)*np.log(a/(O_Ba133_data-c))
