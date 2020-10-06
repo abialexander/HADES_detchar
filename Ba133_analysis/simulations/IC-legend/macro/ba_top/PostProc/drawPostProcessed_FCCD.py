@@ -64,7 +64,7 @@ def main():
     print("")
     print("Fitting peaks of interest...")
 
-    xmin_356, xmax_356 = 350, 360.5 #362 #360.5 for gammas #2 #360 #kev 
+    xmin_356, xmax_356 = 350, 362 #362 #360.5 for gammas #2 #360 #kev 
     plt.figure()
     counts, bins, bars = plt.hist(energies, bins = bins, histtype = 'step') #, linewidth = '0.35')
     popt, pcov, xfit = fit_peak_356_2("Energy (keV)", bins, counts, xmin_356, xmax_356)
@@ -87,8 +87,8 @@ def main():
     popt, pcov, xfit = fit_double_peak_81("Energy (keV)", bins, counts, xmin_81, xmax_81)
     a,b,c,d,e,f,g,h = popt[0],popt[1],popt[2],popt[3],popt[4],popt[5],popt[6],popt[7] 
     plt.xlim(xmin_81, xmax_81) 
-    #plt.ylim(5*10**2, 5*10**6)
-    plt.ylim(10**3, 10**7) #gammas_81mmNEW
+    plt.ylim(5*10**2, 5*10**6)
+    #plt.ylim(10**3, 10**7) #gammas_81mmNEW
     plt.yscale("log")
     plt.xlabel("Energy [keV]")
     plt.ylabel("Counts")
@@ -150,8 +150,8 @@ def main():
     bins_data = bins = np.arange(0, 450, binwidth)
     fig, ax = plt.subplots()
     counts_data, bins_cal_data, bars_data = plt.hist(calibrated_energy_data, bins=bins_data, label = "data", histtype = 'step', linewidth = '0.35')
-    #counts, bins, bars = plt.hist(energies, bins = bins, label = "MC: No FCCD", histtype = 'step', linewidth = '0.35')
-    counts, bins, bars = plt.hist(energies, bins = bins, label = "MC: FCCD 0.568mm", histtype = 'step', linewidth = '0.35')
+    counts, bins, bars = plt.hist(energies, bins = bins, label = "MC: No FCCD", histtype = 'step', linewidth = '0.35')
+    #counts, bins, bars = plt.hist(energies, bins = bins, label = "MC: FCCD 0.568mm", histtype = 'step', linewidth = '0.35')
     plt.xlabel("Energy [keV]")
     plt.ylabel("Counts")
     plt.xlim(0, 450)
@@ -170,8 +170,8 @@ def main():
 
     fig, ax = plt.subplots()
     counts_data, bins_cal_data, bars_data = plt.hist(calibrated_energy_data, bins=bins_data, weights=R_simdata_356*np.ones_like(calibrated_energy_data),  label = "data (scaled)", histtype = 'step', linewidth = '0.35')
-    #counts, bins, bars = plt.hist(energies, bins = bins, label = "MC: No FCCD", histtype = 'step', linewidth = '0.35')
-    counts, bins, bars = plt.hist(energies, bins = bins, label = "MC:FCCD 0.568mm", histtype = 'step', linewidth = '0.35')
+    counts, bins, bars = plt.hist(energies, bins = bins, label = "MC: No FCCD", histtype = 'step', linewidth = '0.35')
+    #counts, bins, bars = plt.hist(energies, bins = bins, label = "MC:FCCD 0.568mm", histtype = 'step', linewidth = '0.35')
     plt.xlabel("Energy [keV]")
     plt.ylabel("Counts")
     plt.xlim(0, 450)
@@ -181,6 +181,32 @@ def main():
     #ax.text(0.67, 0.97, info_str, transform=ax.transAxes, fontsize=10,verticalalignment='top', bbox=props)
     plt.legend(loc = "lower left")
     plt.savefig("/lfs/l1/legend/users/aalexander/HADES_detchar/Ba133_analysis/simulations/IC-legend/macro/ba_top/PostProc/plots/"+MC_file_id+'_DATAcomparison_scaled.png')
+
+    #calculate DATA/MC for each energy bin and export
+    print("")
+    print("calculating data/MC ratios...")
+
+    Data_MC_ratios = []
+    print(len(counts_data))
+    print(len(bins_data))
+    for index, bin in enumerate(bins_data[1:]):
+        data = counts_data[index]
+        MC = counts[index]
+        if MC == 0:
+            ratio = 0.
+        else:
+            try: 
+                ratio = data/MC
+            except:
+                ratio = 0 #if MC=0 and dividing by 0
+        Data_MC_ratios.append(ratio)
+
+    Data_MC_ratios_df = pd.DataFrame({'ratio': Data_MC_ratios})
+    Data_MC_ratios_df['bin'] = bins_data[1:]
+    print(Data_MC_ratios_df)
+    Data_MC_ratios_df.to_csv("/lfs/l1/legend/users/aalexander/HADES_detchar/Ba133_analysis/simulations/IC-legend/macro/ba_top/PostProc/"+MC_file_id+"_DataMCRatios.csv", index=False)
+    
+
 
 
 
