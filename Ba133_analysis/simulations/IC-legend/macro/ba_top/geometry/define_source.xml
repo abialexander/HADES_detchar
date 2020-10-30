@@ -1,25 +1,33 @@
-
 #this was originally define_sourceTh.xml for th uncoll top 
 #using elog: https://elog.legend-exp.org/HADES/9 "top source at 81mm, source width 30mm, height 3mm"
   <!--<constant name="source_height"   value="1.0" />
   <constant name="source_width"   value="1.0" /> OLD-->
 
-  <constant name="source_height"   value="3.0" />
-  <constant name="source_width"   value="30.0" />
+  <constant name="source_height"   value="0.1" /> 
+  <constant name="source_width"   value="5" />
 
+  <constant name="source_capsule_height"   value="3" />   
+  <constant name="source_capsule_width_max"   value="30" />  
+   <constant name="source_capsule_width_min"   value="0" />
+  <!--<constant name="source_capsule_width_min"   value="26" />-->
 
-  <constant name="source_capsule_height"   value="7.0" />   
-  <constant name="source_capsule_width"   value="2.0" />
+  <!--<constant name="source_epoxy_height"   value="2.2" />
+  <constant name="source_epoxy_width"   value="1.6" />-->
 
-  <constant name="source_epoxy_height"   value="2.2" />
-  <constant name="source_epoxy_width"   value="1.6" />
-
-  <constant name="collimator_height"   value="65.0" />
+  <!--<constant name="collimator_height"   value="65.0" />
   <constant name="collimator_depth"   value="30.0" />
   <constant name="collimator_width"   value="30.0" />
-
   <constant name="collimator_beam_height"   value="25.6" />
-  <constant name="collimator_beam_width"   value="1.0" />
+  <constant name="collimator_beam_width"   value="1.0" />-->
 
 
-  <constant name="position_source_fromAlcap"   value="8.1" />  <!-- edit this, cm -->
+  #added 13/10/20, similar to define_source_th.xml
+  <!--<constant name="source_holder_height"   value="30.0" /> 
+  <constant name="source_holder_width"   value="32.0" /> 
+  <constant name="source_holder_cavity_width"   value="3.0" /> 
+  <constant name="source_holder_bottom_height"   value="3.0" /> 
+  <constant name="source_holder_bottom_width"   value="50.0" /> -->
+
+
+  <!--<constant name="position_source_fromAlcap"   value="8.1" /> -->
+  <constant name="position_source_fromcryostat"   value="8.1" />  <!-- edit this, cm -->

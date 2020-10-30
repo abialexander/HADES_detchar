@@ -103,7 +103,7 @@ def main():
     plt.xlim(0,3)
     #plt.title("")
     plt.legend(loc="upper right", fontsize=8)
-    plt.savefig(hdf5_path+"plots/FCCD_OBa133.png")
+    plt.savefig(hdf5_path+"plots/"+MC_file_id+"_FCCD_OBa133.png")
     
 
 

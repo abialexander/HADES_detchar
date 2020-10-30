@@ -121,7 +121,7 @@ def main():
         json.dump(dlt_observables, outfile)
 
 
-    # #__________compare against real data__________
+    #__________compare against real data__________
     print("")
     print("plotting simulation against actual data...")
 
@@ -162,6 +162,8 @@ def main():
     plt.legend(loc = "lower left")
     plt.savefig("/lfs/l1/legend/users/aalexander/HADES_detchar/Ba133_analysis/simulations/IC-legend/macro/ba_top/PostProc/plots/"+MC_file_id+'_DATAcomparison.png')
 
+    plt.close("all")
+
     #scale up data to same amplitude 356 peak as simulation
     amplitude356_data = gaussian_and_bkg_2(356, 4.6*10**4, 356, 0.423, 2.64, 205) #from old plots
     print("amplitude 356keV data: ", amplitude356_data)
@@ -183,79 +185,200 @@ def main():
     plt.savefig("/lfs/l1/legend/users/aalexander/HADES_detchar/Ba133_analysis/simulations/IC-legend/macro/ba_top/PostProc/plots/"+MC_file_id+'_DATAcomparison_scaled.png')
 
     #calculate DATA/MC for each energy bin and export
+    # print("")
+    # print("calculating data/MC ratios...")
+
+    # Data_MC_ratios = []
+    # print(len(counts_data))
+    # print(len(bins_data))
+    # for index, bin in enumerate(bins_data[1:]):
+    #     data = counts_data[index]
+    #     MC = counts[index]
+    #     if MC == 0:
+    #         ratio = 0.
+    #     else:
+    #         try: 
+    #             ratio = data/MC
+    #         except:
+    #             ratio = 0 #if MC=0 and dividing by 0
+    #     Data_MC_ratios.append(ratio)
+
+    # Data_MC_ratios_df = pd.DataFrame({'ratio': Data_MC_ratios})
+    # Data_MC_ratios_df['bin'] = bins_data[1:]
+    # print(Data_MC_ratios_df)
+    # Data_MC_ratios_df.to_csv("/lfs/l1/legend/users/aalexander/HADES_detchar/Ba133_analysis/simulations/IC-legend/macro/ba_top/PostProc/"+MC_file_id+"_DataMCRatios.csv", index=False)
+    
+    #plt.show()
+
+    #_____________PROCESS AND PLOT FCCDS_____________ 
+
     print("")
-    print("calculating data/MC ratios...")
+    print("Repeat process for each DLT...")
 
-    Data_MC_ratios = []
-    print(len(counts_data))
-    print(len(bins_data))
-    for index, bin in enumerate(bins_data[1:]):
-        data = counts_data[index]
-        MC = counts[index]
-        if MC == 0:
-            ratio = 0.
-        else:
-            try: 
-                ratio = data/MC
-            except:
-                ratio = 0 #if MC=0 and dividing by 0
-        Data_MC_ratios.append(ratio)
+    FCCD_list = [0.25, 0.5, 0.75, 1.0, 1.25, 1.5, 3]
+    for FCCD in FCCD_list:
+        print("")
+        print("FCCD: ", FCCD)
+        process_FCCDs(MC_file_id, FCCD, binwidth)
 
-    Data_MC_ratios_df = pd.DataFrame({'ratio': Data_MC_ratios})
-    Data_MC_ratios_df['bin'] = bins_data[1:]
-    print(Data_MC_ratios_df)
-    Data_MC_ratios_df.to_csv("/lfs/l1/legend/users/aalexander/HADES_detchar/Ba133_analysis/simulations/IC-legend/macro/ba_top/PostProc/"+MC_file_id+"_DataMCRatios.csv", index=False)
-    
-
-
-
-
-    # #_____________PROCESS AND PLOT FCCDS_____________ #in development/testing
-
-    # # #graph of all FCCDs
-    # # FCCD_list = ['none', 0.25, 0.5, 0.75, 1.0, 1.25, 1.5] #mm
-    # # process_FCCDs(MC_file_id, FCCD_list, binwidth)
-    # # plt.savefig("/lfs/l1/legend/users/aalexander/HADES_detchar/Ba133_analysis/simulations/IC-legend/macro/ba_top/PostProc/plots/FCCDs_"+MC_file_id+'.png')
-    
-    # # #repeat for just none and 1.5 - FCCDs2
-    # # FCCD_list = ['none', 1.5] #mm, FCCDS2
-    # # process_FCCDs(MC_file_id, FCCD_list, binwidth)
-    # # plt.savefig("/lfs/l1/legend/users/aalexander/HADES_detchar/Ba133_analysis/simulations/IC-legend/macro/ba_top/PostProc/plots/FCCDs2_"+MC_file_id+'.png') 
-    
     print("done")
 
 
-def process_FCCDs(MC_file_id, FCCD_list, binwidth):
+def process_FCCDs(MC_file_id, FCCD, binwidth):
     "process and plot for a list of different FCCDs"
 
     hdf5_path = "/lfs/l1/legend/users/aalexander/hdf5_output/processed/"
 
+    #_______plot full spectrum___________
+    print("plotting whole simulated spectrum...")
+
+    MC_file = hdf5_path+"processed_detector_"+MC_file_id+'_FCCD'+str(FCCD)+'mm.hdf5'
+    df =  pd.read_hdf(MC_file, key="procdf")
+    energies = df['energy']
+    energies = energies*1000
+    no_events = energies.size #=sum(counts)
+    print("No. events: ", no_events) 
+    bins = np.arange(min(energies), max(energies) + binwidth, binwidth)
+
     fig, ax = plt.subplots()
-    #binwidth = 0.15 #5 #0.1 kev = rough min resolution
-    
-    for FCCD in FCCD_list:
-
-        if FCCD == 'none':
-            df =  pd.read_hdf(hdf5_path+"processed_detector_"+MC_file_id+'.hdf5', key="procdf")
-        else: 
-            df =  pd.read_hdf(hdf5_path+"processed_FCCD"+str(FCCD)+"mm_detector_"+MC_file_id+'.hdf5', key="procdf")
-        
-        energies = df['energy']
-        energies = energies*1000
-        counts, bins, bars = plt.hist(energies, bins = np.arange(min(energies), max(energies) + binwidth, binwidth), label = 'FCCD: '+str(FCCD)+' mm', histtype = 'step', linewidth = '0.35')
-        no_events = energies.size #=sum(counts)
-        print("No. events: ", no_events) 
-
+    counts, bins, bars = plt.hist(energies, bins = bins) #, linewidth = '0.35')
     plt.xlabel("Energy [keV]")
     plt.ylabel("Counts")
     plt.xlim(0, 450)
     plt.yscale("log")
-    #plt.ylim(1,10**7)  
     props = dict(boxstyle='round', facecolor='wheat', alpha=0.5)
-    info_str = r'binwidth = $%.2f$ keV' % (binwidth)
+    info_str = '\n'.join((r'# events = $%.0f$' % (no_events), r'binwidth = $%.2f$ keV' % (binwidth)))
     ax.text(0.67, 0.97, info_str, transform=ax.transAxes, fontsize=10,verticalalignment='top', bbox=props)
-    plt.legend(loc='lower left', fontsize = 7.5)
-    #plt.savefig("/lfs/l1/legend/users/aalexander/HADES_detchar/Ba133_analysis/simulations/IC-legend/macro/ba_top/PostProc/plots/FCCDs_"+MC_file_id+'.png')
+    plt.savefig("/lfs/l1/legend/users/aalexander/HADES_detchar/Ba133_analysis/simulations/IC-legend/macro/ba_top/PostProc/plots/"+MC_file_id+'_FCCD'+str(FCCD)+'mm.png')
+
+
+    #________Fit peaks of interest_______
+    print("")
+    print("Fitting peaks of interest...")
+
+    xmin_356, xmax_356 = 350, 362 #362 #360.5 for gammas #2 #360 #kev 
+    plt.figure()
+    counts, bins, bars = plt.hist(energies, bins = bins, histtype = 'step') #, linewidth = '0.35')
+    popt, pcov, xfit = fit_peak_356_2("Energy (keV)", bins, counts, xmin_356, xmax_356)
+    a,b,c,d,e = popt[0],popt[1],popt[2],popt[3],popt[4]
+    amplitude356_sim = gaussian_and_bkg_2(b, a, b, c, d, e)
+    plt.xlim(xmin_356, xmax_356) 
+    plt.ylim(10, 10**7)
+    plt.yscale("log")
+    plt.xlabel("Energy [keV]")
+    plt.ylabel("Counts")
+    plt.savefig("/lfs/l1/legend/users/aalexander/HADES_detchar/Ba133_analysis/simulations/IC-legend/macro/ba_top/PostProc/plots/"+MC_file_id+'_FCCD'+str(FCCD)+'mm_356keV.png')
+
+    C_356, C_356_err = gauss_count(a, c, np.sqrt(pcov[0][0]), np.sqrt(pcov[2][2]), binwidth)
+    print("gauss count 356keV: ", C_356, " +/- ", C_356_err )
+
+
+    xmin_81, xmax_81 = 77, 84
+    plt.figure()
+    counts, bins, bars = plt.hist(energies, bins = bins, histtype = 'step') #, linewidth = '0.35')
+    popt, pcov, xfit = fit_double_peak_81("Energy (keV)", bins, counts, xmin_81, xmax_81)
+    a,b,c,d,e,f,g,h = popt[0],popt[1],popt[2],popt[3],popt[4],popt[5],popt[6],popt[7] 
+    plt.xlim(xmin_81, xmax_81) 
+    plt.ylim(5*10**2, 5*10**6)
+    #plt.ylim(10**3, 10**7) #gammas_81mmNEW
+    plt.yscale("log")
+    plt.xlabel("Energy [keV]")
+    plt.ylabel("Counts")
+    plt.savefig("/lfs/l1/legend/users/aalexander/HADES_detchar/Ba133_analysis/simulations/IC-legend/macro/ba_top/PostProc/plots/"+MC_file_id+'_FCCD'+str(FCCD)+'mm_81keV.png')
+
+    R = 2.65/32.9
+    C_81, C_81_err = gauss_count(a, c, np.sqrt(pcov[0][0]), np.sqrt(pcov[2][2]), binwidth)
+    C_79, C_79_err = gauss_count(R*a, e, R*np.sqrt(pcov[0][0]), np.sqrt(pcov[4][4]), binwidth)
+    print("gauss count 81: ", C_81, " +/- ", C_81_err )
+    print("gauss count 79.6: ", C_79, " +/- ", C_79_err )
+
+    print("")
+    O_Ba133 = (C_79 + C_81)/C_356
+    O_Ba133_err = O_Ba133*np.sqrt((C_79_err**2 + C_81_err**2)/(C_79+C_81)**2 + (C_356_err/C_356)**2)
+    print("O_BA133 = " , O_Ba133, " +/- ", O_Ba133_err)
+
+
+    #Save count values to json file
+    dlt_observables = {
+        "C_356": C_356,
+        "C_356_err" : C_356_err,
+        "C_81" : C_81,
+        "C_81_err" : C_81_err,
+        "C_79" : C_79,
+        "C_79_err" : C_79_err,
+        "O_Ba133" : O_Ba133,
+        "O_Ba133_err" : O_Ba133_err
+    }
+    with open("/lfs/l1/legend/users/aalexander/HADES_detchar/Ba133_analysis/simulations/IC-legend/macro/ba_top/PostProc/"+MC_file_id+"_FCCD"+str(FCCD)+"mm_dlt_observables.json", "w") as outfile: 
+        json.dump(dlt_observables, outfile)
+
+    plt.close('all')
+    #__________compare against real data__________
+    print("")
+    print("plotting simulation against actual data...")
+
+    #this code below is from Ba133_dlt_analysis.py
+    detector = "I02160A" #read tier 2 runs for Ba data
+    t2_folder = "/lfs/l1/legend/detector_char/enr/hades/char_data/"+detector+"/tier2/ba_HS4_top_dlt/pygama/"
+    keys, data = read_all_t2(t2_folder)
+    data_size = data.size #all events
+    key_data = obtain_key_data(data, keys, "e_ftp", data_size)
+    with open('/lfs/l1/legend/users/aalexander/HADES_detchar/Ba133_analysis/data/calibration_coef.json') as json_file:
+        calibration_coefs = json.load(json_file)
+        m = calibration_coefs['m']
+        m_err = calibration_coefs['m_err']
+        c = calibration_coefs['c']
+        c_err = calibration_coefs['c_err']
+        # a_quad = calibration_coefs['a_quad']
+        # a_quad_err = calibration_coefs['a_quad_err']
+        # b_quad = calibration_coefs['b_quad']
+        # b_quad_err = calibration_coefs['b_quad_err']
+        # c_quad = calibration_coefs['c_quad']
+        # c_quad_err = calibration_coefs['c_quad_err']
+
+    calibrated_energy_data = (key_data-c)/m
+
+    #plot absolutes
+    bins_data = bins = np.arange(0, 450, binwidth)
+    fig, ax = plt.subplots()
+    counts_data, bins_cal_data, bars_data = plt.hist(calibrated_energy_data, bins=bins_data, label = "data", histtype = 'step', linewidth = '0.35')
+    counts, bins, bars = plt.hist(energies, bins = bins, label = "MC: FCCD "+str(FCCD)+"mm", histtype = 'step', linewidth = '0.35')
+    plt.xlabel("Energy [keV]")
+    plt.ylabel("Counts")
+    plt.xlim(0, 450)
+    plt.yscale("log")
+    plt.legend(loc = "lower left")
+    plt.savefig("/lfs/l1/legend/users/aalexander/HADES_detchar/Ba133_analysis/simulations/IC-legend/macro/ba_top/PostProc/plots/"+MC_file_id+"_FCCD"+str(FCCD)+"mm_DATAcomparison.png")
+
+    #scale up data to same amplitude 356 peak as simulation
+    amplitude356_data = gaussian_and_bkg_2(356, 4.6*10**4, 356, 0.423, 2.64, 205) #from old plots
+    print("amplitude 356keV data: ", amplitude356_data)
+    print("amplitude 356keV simulation: ", amplitude356_sim)
+    R_simdata_356 = amplitude356_sim/amplitude356_data #ratio of sim to data for 356 peak
+
+    fig, ax = plt.subplots()
+    counts_data, bins_cal_data, bars_data = plt.hist(calibrated_energy_data, bins=bins_data, weights=R_simdata_356*np.ones_like(calibrated_energy_data),  label = "data (scaled)", histtype = 'step', linewidth = '0.35')
+    counts, bins, bars = plt.hist(energies, bins = bins, label = "MC: FCCD "+str(FCCD)+"mm", histtype = 'step', linewidth = '0.35')
+    plt.xlabel("Energy [keV]")
+    plt.ylabel("Counts")
+    plt.xlim(0, 450)
+    plt.yscale("log")
+    plt.legend(loc = "lower left")
+    plt.savefig("/lfs/l1/legend/users/aalexander/HADES_detchar/Ba133_analysis/simulations/IC-legend/macro/ba_top/PostProc/plots/"+MC_file_id+"_FCCD"+str(FCCD)+"mm_DATAcomparison_scaled.png")
+
+    plt.close('all')
+
+
+    # plt.xlabel("Energy [keV]")
+    # plt.ylabel("Counts")
+    # plt.xlim(0, 450)
+    # plt.yscale("log")
+    # #plt.ylim(1,10**7)  
+    # props = dict(boxstyle='round', facecolor='wheat', alpha=0.5)
+    # info_str = r'binwidth = $%.2f$ keV' % (binwidth)
+    # ax.text(0.67, 0.97, info_str, transform=ax.transAxes, fontsize=10,verticalalignment='top', bbox=props)
+    # plt.legend(loc='lower left', fontsize = 7.5)
+    # #plt.savefig("/lfs/l1/legend/users/aalexander/HADES_detchar/Ba133_analysis/simulations/IC-legend/macro/ba_top/PostProc/plots/FCCDs_"+MC_file_id+'.png')
     
 
 

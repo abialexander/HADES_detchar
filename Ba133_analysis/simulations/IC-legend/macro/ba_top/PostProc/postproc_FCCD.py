@@ -64,8 +64,8 @@ def main():
 
     #apply FCCD cuts
     # #FCCD_list = [0.25, 0.5]
-    #FCCD_list = [0.25, 0.5, 0.75, 1.0, 1.25, 1.5, 3] #mm
-    FCCD_list = [0.568] #extrapolated amount
+    FCCD_list = [0.25, 0.5, 0.75, 1.0, 1.25, 1.5, 3] #mm
+    #FCCD_list = [0.568] #extrapolated amount
 
     for FCCD in FCCD_list:
 
@@ -76,9 +76,12 @@ def main():
         procdf = pd.DataFrame(detector_hits_FCCD.groupby(['event','volID','iRep'], as_index=False)['Edep'].sum())
         procdf = procdf.rename(columns={'iRep':'detID', 'Edep':'energy'})
         # apply energy resolution function
-        procdf['energy'] = procdf['energy'] + np.sqrt(procdf['energy'])*pctResAt1MeV/100.*np.random.randn(len(procdf['energy']))
+        #procdf['energy'] = procdf['energy'] + np.sqrt(procdf['energy'])*pctResAt1MeV/100.*np.random.randn(len(procdf['energy']))
+        A,c = 0.039, 287.446 #/1000 #coeficcients from Ba133 resolution graph, keV
+        procdf['energy'] = procdf['energy'] + (1/1000)*A*np.sqrt(1000*procdf['energy']+c)*np.random.randn(len(procdf['energy']))/2.355
         print(procdf.size)
-        procdf.to_hdf(hdf5_path+'processed/processed_detector_'+MC_file_id+'_FCCD'+str(FCCD)+'mm.hdf5', key='procdf', mode='w')
+        #procdf.to_hdf(hdf5_path+'processed/processed_detector_'+MC_file_id+'_FCCD'+str(FCCD)+'mm.hdf5', key='procdf', mode='w')
+        procdf.to_hdf(hdf5_path+'processed/processed_detector_'+MC_file_id+'_newresolution_FCCD'+str(FCCD)+'mm.hdf5', key='procdf', mode='w')
         #procdf.to_hdf(hdf5_path+'processed/processed_FCCD'+str(FCCD)+'mm_detector_'+MC_file_id+'TEST.hdf5', key='procdf', mode='w')
 
 
@@ -87,7 +90,7 @@ def main():
 def FCCD_cut(FCCD, detector_hits):
 
     #define geometry
-    position_crystal_from_top = 7.0 #all in mm, tajen from gdml files
+    position_crystal_from_top = 7.0 #all in mm, taken from gdml files
     crystal_height = 65.4
     bottom_height = 45.3
     cavity_height = 33.7

@@ -55,15 +55,18 @@ End of Run User Vis Actions: none
 
 Some /vis commands (optionally) take a string to specify colour.
 "/vis/list" to see available colours.
-CLHEP::HepRandom seed set to: 8545077914734501838
-G4PhysListFactory::GetReferencePhysList <Shielding>  EMoption= 0
-<<< Geant4 Physics List simulation engine: Shielding
-<<< Reference Physics List Shielding is built
+CLHEP::HepRandom seed set to: 2286554734166466020
+G4PhysListFactory::GetReferencePhysList <LBE>  EMoption= 0
+You are using the simulation engine: LBE 5.3
+
+
+<<< Reference Physics List LBE is built
 
 G4GDML: Reading '/lfs/l1/legend/users/aalexander/HADES_detchar/Ba133_analysis/simulations/IC-legend/macro/ba_top/geometry/detector_ba_top.gdml'...
-G4GDML: VALIDATION ERROR! no character data is allowed by content model at line: 4
-G4GDML: VALIDATION ERROR! ID attribute 'G4_AIR' is referenced but was never declared at line: 128
-G4GDML: VALIDATION ERROR! ID attribute 'G4_Galactic' is referenced but was never declared at line: 128
+G4GDML: VALIDATION ERROR! no character data is allowed by content model at line: 3
+G4GDML: VALIDATION ERROR! no character data is allowed by content model at line: 25
+G4GDML: VALIDATION ERROR! ID attribute 'G4_AIR' is referenced but was never declared at line: 130
+G4GDML: VALIDATION ERROR! ID attribute 'G4_Galactic' is referenced but was never declared at line: 130
 G4GDML: Reading definitions...
 G4GDML: Reading materials...
 G4GDML: Reading solids...
@@ -76,16 +79,16 @@ G4GDML: Reading solids...
 G4GDML: Reading structure...
 G4GDML: Reading setup...
 G4GDML: Reading module '/lfs/l1/legend/users/aalexander/HADES_detchar/Ba133_analysis/simulations/IC-legend/macro/ba_top/geometry/crystal_IC160A.gdml' done!
-G4GDML: Reading module '/lfs/l1/legend/users/aalexander/HADES_detchar/Ba133_analysis/simulations/IC-legend/macro/ba_top/geometry/teflon_wrap.gdml'...
-G4GDML: VALIDATION ERROR! ID attribute 'G4_TEFLON' is referenced but was never declared at line: 53
+G4GDML: Reading module '/lfs/l1/legend/users/aalexander/HADES_detchar/Ba133_analysis/simulations/IC-legend/macro/ba_top/geometry/wrap.gdml'...
+G4GDML: VALIDATION ERROR! ID attribute 'G4_POLYETHYLENE' is referenced but was never declared at line: 52
+G4GDML: VALIDATION ERROR! ID attribute 'wrap_outer_height-wrap_inner_height' is referenced but was never declared at line: 52
 G4GDML: Reading definitions...
 G4GDML: Reading materials...
 G4GDML: Reading solids...
 G4GDML: Reading structure...
 G4GDML: Reading setup...
-G4GDML: Reading module '/lfs/l1/legend/users/aalexander/HADES_detchar/Ba133_analysis/simulations/IC-legend/macro/ba_top/geometry/teflon_wrap.gdml' done!
+G4GDML: Reading module '/lfs/l1/legend/users/aalexander/HADES_detchar/Ba133_analysis/simulations/IC-legend/macro/ba_top/geometry/wrap.gdml' done!
 G4GDML: Reading module '/lfs/l1/legend/users/aalexander/HADES_detchar/Ba133_analysis/simulations/IC-legend/macro/ba_top/geometry/holder.gdml'...
-G4GDML: VALIDATION ERROR! ID attribute 'G4_Al' is referenced but was never declared at line: 82
 G4GDML: Reading definitions...
 G4GDML: Reading materials...
 G4GDML: Reading solids...
@@ -108,31 +111,29 @@ G4GDML: Reading solids...
 G4GDML: Reading structure...
 G4GDML: Reading setup...
 G4GDML: Reading module '/lfs/l1/legend/users/aalexander/HADES_detchar/Ba133_analysis/simulations/IC-legend/macro/ba_top/geometry/lead_castle_table1.gdml' done!
-G4GDML: Reading module '/lfs/l1/legend/users/aalexander/HADES_detchar/Ba133_analysis/simulations/IC-legend/macro/ba_top/geometry/source_encapsulated_th.gdml'...
-G4GDML: VALIDATION ERROR! no character data is allowed by content model at line: 4
-G4GDML: VALIDATION ERROR! ID attribute 'G4_SILICON_DIOXIDE' is referenced but was never declared at line: 91
-G4GDML: VALIDATION ERROR! ID attribute 'G4_STAINLESS-STEEL' is referenced but was never declared at line: 91
+G4GDML: Reading module '/lfs/l1/legend/users/aalexander/HADES_detchar/Ba133_analysis/simulations/IC-legend/macro/ba_top/geometry/source_encapsulated_ba.gdml'...
+G4GDML: VALIDATION ERROR! no character data is allowed by content model at line: 3
+G4GDML: VALIDATION ERROR! no character data is allowed by content model at line: 25
+G4GDML: VALIDATION ERROR! ID attribute 'G4_POLYETHYLENE' is referenced but was never declared at line: 70
+G4GDML: VALIDATION ERROR! ID attribute 'G4_Al' is referenced but was never declared at line: 70
 G4GDML: Reading definitions...
 G4GDML: Reading materials...
 G4GDML: Reading solids...
 G4GDML: Reading structure...
 G4GDML: Reading setup...
-G4GDML: Reading module '/lfs/l1/legend/users/aalexander/HADES_detchar/Ba133_analysis/simulations/IC-legend/macro/ba_top/geometry/source_encapsulated_th.gdml' done!
-G4GDML: Reading module '/lfs/l1/legend/users/aalexander/HADES_detchar/Ba133_analysis/simulations/IC-legend/macro/ba_top/geometry/Alcap.gdml'...
-G4GDML: VALIDATION ERROR! ID attribute 'G4_Al' is referenced but was never declared at line: 56
+G4GDML: Reading module '/lfs/l1/legend/users/aalexander/HADES_detchar/Ba133_analysis/simulations/IC-legend/macro/ba_top/geometry/source_encapsulated_ba.gdml' done!
+G4GDML: Reading module '/lfs/l1/legend/users/aalexander/HADES_detchar/Ba133_analysis/simulations/IC-legend/macro/ba_top/geometry/cryostat.gdml'...
 G4GDML: Reading definitions...
 G4GDML: Reading materials...
+G4Material WARNING: duplicate name of material EN_AW-2011T8
 G4GDML: Reading solids...
 G4GDML: Reading structure...
 G4GDML: Reading setup...
-G4GDML: Reading module '/lfs/l1/legend/users/aalexander/HADES_detchar/Ba133_analysis/simulations/IC-legend/macro/ba_top/geometry/Alcap.gdml' done!
+G4GDML: Reading module '/lfs/l1/legend/users/aalexander/HADES_detchar/Ba133_analysis/simulations/IC-legend/macro/ba_top/geometry/cryostat.gdml' done!
 G4GDML: Reading setup...
 G4GDML: Reading '/lfs/l1/legend/users/aalexander/HADES_detchar/Ba133_analysis/simulations/IC-legend/macro/ba_top/geometry/detector_ba_top.gdml' done!
 Stripping off GDML names of materials, solids and volumes ...
-Set file name: /lfs/l1/legend/users/aalexander/hdf5_output/detector_IC160A_ba_top_81mmNEW4_01.hdf5
-
- Shielding : threshold between BERT and FTFP is over the interval : 4 to 5 GeV
-
+Set file name: /lfs/l1/legend/users/aalexander/hdf5_output/detector_IC160A_ba_top_81mmNEW7_01.hdf5
 /opt/geant4/share/Geant4-10.5.1/data/G4NDL4.5
 @@@ G4ParticleHPInelastic instantiated for particle neutron data directory variable is G4NEUTRONHPDATA pointing to /opt/geant4/share/Geant4-10.5.1/data/G4NDL4.5/Inelastic
 @@@ G4ParticleHPInelasticData instantiated for particle neutron data directory variable is G4NEUTRONHPDATA pointing to /opt/geant4/share/Geant4-10.5.1/data/G4NDL4.5
@@ -145,25 +146,20 @@ NeutronHP: /Inelastic file for Z = 6, A = 13 is not found and NeutronHP will use
 NeutronHP: /Capture file for Z = 8, A = 18 is not found and NeutronHP will use /opt/geant4/share/Geant4-10.5.1/data/G4NDL4.5/Capture/CrossSection/8_17_Oxygen
 NeutronHP: /Elastic file for Z = 8, A = 18 is not found and NeutronHP will use /opt/geant4/share/Geant4-10.5.1/data/G4NDL4.5/Elastic/CrossSection/8_17_Oxygen
 NeutronHP: /Inelastic file for Z = 8, A = 18 is not found and NeutronHP will use /opt/geant4/share/Geant4-10.5.1/data/G4NDL4.5/Inelastic/CrossSection/8_17_Oxygen
-NeutronHP: /Capture file for Z = 8, A = 18 is not found and NeutronHP will use /opt/geant4/share/Geant4-10.5.1/data/G4NDL4.5/Capture/CrossSection/8_17_Oxygen
-NeutronHP: /Elastic file for Z = 8, A = 18 is not found and NeutronHP will use /opt/geant4/share/Geant4-10.5.1/data/G4NDL4.5/Elastic/CrossSection/8_17_Oxygen
-NeutronHP: /Inelastic file for Z = 8, A = 18 is not found and NeutronHP will use /opt/geant4/share/Geant4-10.5.1/data/G4NDL4.5/Inelastic/CrossSection/8_17_Oxygen
-NeutronHP: /Capture file for Z = 6, A = 12 is not found and NeutronHP will use /opt/geant4/share/Geant4-10.5.1/data/G4NDL4.5/Capture/CrossSection/6_nat_Carbon
-NeutronHP: /Elastic file for Z = 6, A = 12 is not found and NeutronHP will use /opt/geant4/share/Geant4-10.5.1/data/G4NDL4.5/Elastic/CrossSection/6_nat_Carbon
-NeutronHP: /Inelastic file for Z = 6, A = 12 is not found and NeutronHP will use /opt/geant4/share/Geant4-10.5.1/data/G4NDL4.5/Inelastic/CrossSection/6_nat_Carbon
-NeutronHP: /Capture file for Z = 6, A = 13 is not found and NeutronHP will use /opt/geant4/share/Geant4-10.5.1/data/G4NDL4.5/Capture/CrossSection/6_nat_Carbon
-NeutronHP: /Elastic file for Z = 6, A = 13 is not found and NeutronHP will use /opt/geant4/share/Geant4-10.5.1/data/G4NDL4.5/Elastic/CrossSection/6_nat_Carbon
-NeutronHP: /Inelastic file for Z = 6, A = 13 is not found and NeutronHP will use /opt/geant4/share/Geant4-10.5.1/data/G4NDL4.5/Inelastic/CrossSection/6_nat_Carbon
+
+### ===  Deexcitation model UAtomDeexcitation is activated for 1 region:
+### ===  Auger cascade flag: 1
+### ===  Ignore cuts flag:   0
+LBE::SetCuts:CutLength : 1 um 
 Physical volumes:
 Crystal_PV 0
-Teflon_wrap_PV 0
+Wrap_PV 0
 Holder_PV 0
 Bottom_plate_PV 0
 Lead_castle_PV 0
 Source_PV 0
-Source_Epoxy_PV 0
 Source_Encapsulated_PV 0
-AlCap_PV 0
+Cryostat_PV 0
 Vacuum_cavity_PV 0
 World_PV 0
 The number of particle sources is: 1
@@ -179,68 +175,66 @@ The number of particle sources is: 1
 ### ===  Deexcitation model UAtomDeexcitation is activated for 1 region:
           DefaultRegionForTheWorld  1  1  0
 ### ===  Auger cascade flag: 1
-### ===  Ignore cuts flag:   1
+### ===  Ignore cuts flag:   0
 
 phot:  for gamma SubType=12 BuildTable=0
       LambdaPrime table from 200 keV to 100 TeV in 61 bins 
       ===== EM models for the G4Region  DefaultRegionForTheWorld ======
- LivermorePhElectric : Emin=    0 eV  Emax=  100 TeV  SauterGavrila Fluo
+ LivermorePhElectric : Emin=    0 eV  Emax=   20 MeV  SauterGavrila Fluo
+       PhotoElectric : Emin=   20 MeV Emax=  100 TeV  SauterGavrila Fluo
 
 compt:  for gamma SubType=13 BuildTable=1
       Lambda table from 100 eV  to 1 MeV, 7 bins/decade, spline: 1
       LambdaPrime table from 1 MeV to 100 TeV in 56 bins 
       ===== EM models for the G4Region  DefaultRegionForTheWorld ======
-       Klein-Nishina : Emin=    0 eV  Emax=  100 TeV
+    LivermoreCompton : Emin=    0 eV  Emax=   20 MeV Fluo
+       Klein-Nishina : Emin=   20 MeV Emax=  100 TeV
 
 conv:  for gamma SubType=14 BuildTable=1
       Lambda table from 1.022 MeV to 100 TeV, 18 bins/decade, spline: 1
       ===== EM models for the G4Region  DefaultRegionForTheWorld ======
-        BetheHeitler : Emin=    0 eV  Emax=   80 GeV  ModifiedTsai
+ LivermoreConversion : Emin=    0 eV  Emax=   20 MeV
+        BetheHeitler : Emin=   20 MeV Emax=   80 GeV  ModifiedTsai
      BetheHeitlerLPM : Emin=   80 GeV Emax=  100 TeV  ModifiedTsai
 
 Rayl:  for gamma SubType=11 BuildTable=1
       Lambda table from 100 eV  to 100 keV, 7 bins/decade, spline: 0
       LambdaPrime table from 100 keV to 100 TeV in 63 bins 
       ===== EM models for the G4Region  DefaultRegionForTheWorld ======
-   LivermoreRayleigh : Emin=    0 eV  Emax=  100 TeV  CullenGenerator
+   LivermoreRayleigh : Emin=    0 eV  Emax=   20 MeV  CullenGenerator
+   LivermoreRayleigh : Emin=   20 MeV Emax=  100 TeV  CullenGenerator
 
 msc:  for e-  SubType= 10
-      RangeFactor= 0.04, stepLimType: 1, latDisp: 1
+      RangeFactor= 0.04, stepLimType: 3, latDisp: 1, skin= 1, geomFactor= 2.5
       ===== EM models for the G4Region  DefaultRegionForTheWorld ======
-            UrbanMsc : Emin=    0 eV  Emax=  100 MeV Nbins=42 100 eV  - 100 MeV
-        WentzelVIUni : Emin=  100 MeV Emax=  100 TeV Nbins=42 100 MeV - 100 TeV
+            UrbanMsc : Emin=    0 eV  Emax=  100 TeV Nbins=84 100 eV  - 100 TeV
 
 eIoni:  for e-  SubType=2
       dE/dx and range tables from 100 eV  to 100 TeV in 84 bins
       Lambda tables from threshold to 100 TeV, 7 bins/decade, spline: 1
-      StepFunction=(0.2, 1 mm), integ: 1, fluct: 1, linLossLim= 0.01
+      StepFunction=(0.2, 0.1 mm), integ: 1, fluct: 1, linLossLim= 0.01
       ===== EM models for the G4Region  DefaultRegionForTheWorld ======
-        MollerBhabha : Emin=    0 eV  Emax=  100 TeV
+       LowEnergyIoni : Emin=    0 eV  Emax=    1 MeV  deltaVI
+        MollerBhabha : Emin=    1 MeV Emax=  100 TeV
 
 eBrem:  for e-  SubType=3
       dE/dx and range tables from 100 eV  to 100 TeV in 84 bins
       Lambda tables from threshold to 100 TeV, 7 bins/decade, spline: 1
       LPM flag: 1 for E > 1 GeV,  VertexHighEnergyTh(GeV)= 100000
       ===== EM models for the G4Region  DefaultRegionForTheWorld ======
-             eBremSB : Emin=    0 eV  Emax=    1 GeV  ModifiedTsai
+           LowEnBrem : Emin=    0 eV  Emax=   20 MeV  AngularGen2BS
+             eBremSB : Emin=   20 MeV Emax=    1 GeV  ModifiedTsai
             eBremLPM : Emin=    1 GeV Emax=  100 TeV  ModifiedTsai
 
-CoulombScat:  for e-, integral:1  SubType=1 BuildTable=1
-      Lambda table from 100 MeV to 100 TeV, 7 bins/decade, spline: 1
-      ThetaMin(p) < Theta(degree) < 180; pLimit(GeV^1)= 0.139531
-      ===== EM models for the G4Region  DefaultRegionForTheWorld ======
-  eCoulombScattering : Emin=  100 MeV Emax=  100 TeV
-
 msc:  for e+  SubType= 10
-      RangeFactor= 0.04, stepLimType: 1, latDisp: 1
+      RangeFactor= 0.04, stepLimType: 3, latDisp: 1, skin= 1, geomFactor= 2.5
       ===== EM models for the G4Region  DefaultRegionForTheWorld ======
-            UrbanMsc : Emin=    0 eV  Emax=  100 MeV Nbins=42 100 eV  - 100 MeV
-        WentzelVIUni : Emin=  100 MeV Emax=  100 TeV Nbins=42 100 MeV - 100 TeV
+            UrbanMsc : Emin=    0 eV  Emax=  100 TeV Nbins=84 100 eV  - 100 TeV
 
 eIoni:  for e+  SubType=2
       dE/dx and range tables from 100 eV  to 100 TeV in 84 bins
       Lambda tables from threshold to 100 TeV, 7 bins/decade, spline: 1
-      StepFunction=(0.2, 1 mm), integ: 1, fluct: 1, linLossLim= 0.01
+      StepFunction=(0.2, 0.1 mm), integ: 1, fluct: 1, linLossLim= 0.01
       ===== EM models for the G4Region  DefaultRegionForTheWorld ======
         MollerBhabha : Emin=    0 eV  Emax=  100 TeV
 
@@ -256,21 +250,15 @@ annihil:  for e+, integral:1  SubType=5 BuildTable=0
       ===== EM models for the G4Region  DefaultRegionForTheWorld ======
             eplus2gg : Emin=    0 eV  Emax=  100 TeV
 
-CoulombScat:  for e+, integral:1  SubType=1 BuildTable=1
-      Lambda table from 100 MeV to 100 TeV, 7 bins/decade, spline: 1
-      ThetaMin(p) < Theta(degree) < 180; pLimit(GeV^1)= 0.139531
-      ===== EM models for the G4Region  DefaultRegionForTheWorld ======
-  eCoulombScattering : Emin=  100 MeV Emax=  100 TeV
-
 msc:  for proton  SubType= 10
       RangeFactor= 0.2, stepLimType: 0, latDisp: 0
       ===== EM models for the G4Region  DefaultRegionForTheWorld ======
-        WentzelVIUni : Emin=    0 eV  Emax=  100 TeV Nbins=84 100 eV  - 100 TeV
+            UrbanMsc : Emin=    0 eV  Emax=  100 TeV Nbins=84 100 eV  - 100 TeV
 
 hIoni:  for proton  SubType=2
       dE/dx and range tables from 100 eV  to 100 TeV in 84 bins
       Lambda tables from threshold to 100 TeV, 7 bins/decade, spline: 1
-      StepFunction=(0.2, 0.1 mm), integ: 1, fluct: 1, linLossLim= 0.01
+      StepFunction=(0.2, 0.05 mm), integ: 1, fluct: 1, linLossLim= 0.01
       ===== EM models for the G4Region  DefaultRegionForTheWorld ======
                Bragg : Emin=    0 eV  Emax=    2 MeV
           BetheBloch : Emin=    2 MeV Emax=  100 TeV
@@ -280,19 +268,7 @@ hBrems:  for proton  SubType=3
       Lambda tables from threshold to 100 TeV, 7 bins/decade, spline: 1
       ===== EM models for the G4Region  DefaultRegionForTheWorld ======
                hBrem : Emin=    0 eV  Emax=  100 TeV
-
-hPairProd:  for proton  SubType=4
-      dE/dx and range tables from 100 eV  to 100 TeV in 84 bins
-      Lambda tables from threshold to 100 TeV, 7 bins/decade, spline: 1
-      Sampling table 17x1001; from 7.50618 GeV to 100 TeV 
-      ===== EM models for the G4Region  DefaultRegionForTheWorld ======
-           hPairProd : Emin=    0 eV  Emax=  100 TeV
-
-CoulombScat:  for proton, integral:1  SubType=1 BuildTable=1
-      Lambda table from threshold  to 100 TeV, 7 bins/decade, spline: 1
-      ThetaMin(p) < Theta(degree) < 180; pLimit(GeV^1)= 0.139531
-      ===== EM models for the G4Region  DefaultRegionForTheWorld ======
-  eCoulombScattering : Emin=    0 eV  Emax=  100 TeV
+      ===== Limit on energy threshold has been applied 
 
 msc:  for GenericIon  SubType= 10
       RangeFactor= 0.2, stepLimType: 0, latDisp: 0
@@ -302,25 +278,69 @@ msc:  for GenericIon  SubType= 10
 ionIoni:  for GenericIon  SubType=2
       dE/dx and range tables from 100 eV  to 100 TeV in 84 bins
       Lambda tables from threshold to 100 TeV, 7 bins/decade, spline: 1
-      StepFunction=(0.2, 0.1 mm), integ: 1, fluct: 1, linLossLim= 0.02
-      Stopping Power data for 17 ion/material pairs
+      StepFunction=(0.1, 0.01 mm), integ: 1, fluct: 1, linLossLim= 0.02
       ===== EM models for the G4Region  DefaultRegionForTheWorld ======
-            BraggIon : Emin=    0 eV  Emax=    2 MeV
-          BetheBloch : Emin=    2 MeV Emax=  100 TeV
+         ParamICRU73 : Emin=    0 eV  Emax=  100 TeV  deltaVI
+
+nuclearStopping:  for GenericIon SubType=8 BuildTable=0
+      ===== EM models for the G4Region  DefaultRegionForTheWorld ======
+   ICRU49NucStopping : Emin=    0 eV  Emax=   10 GeV
 =======================================================================
 ======       Radioactive Decay Physics Parameters              ========
 =======================================================================
-Max life time                                     1.4427e+06 ps
+Max life time                                     1e+15 ps
 Internal e- conversion flag                       1
-Stored internal conversion coefficients           1
+Stored internal conversion coefficients           0
 Enable correlated gamma emission                  0
 Max 2J for sampling of angular correlations       10
 Atomic de-excitation enabled                      1
 Auger electron emission enabled                   1
 Auger cascade enabled                             1
-Check EM cuts disabled for atomic de-excitation   1
+Check EM cuts disabled for atomic de-excitation   0
 Use Bearden atomic level energies                 0
 =======================================================================
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(N(1440)+) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(N(1440)0) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(N(1520)+) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(N(1520)0) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(N(1535)+) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(N(1535)0) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(N(1650)+) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(N(1650)0) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(N(1675)+) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(N(1675)0) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(N(1680)+) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(N(1680)0) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(N(1700)+) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(N(1700)0) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(N(1710)+) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(N(1710)0) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(N(1720)+) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(N(1720)0) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(N(1900)+) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(N(1900)0) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(N(1990)+) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(N(1990)0) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(N(2090)+) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(N(2090)0) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(N(2190)+) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(N(2190)0) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(N(2220)+) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(N(2220)0) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(N(2250)+) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(N(2250)0) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(a0(1450)+) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(a0(1450)-) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(a0(1450)0) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(a0(980)+) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(a0(980)-) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(a0(980)0) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(a1(1260)+) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(a1(1260)-) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(a1(1260)0) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(a2(1320)+) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(a2(1320)-) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(a2(1320)0) skipped...
 
 msc:  for alpha  SubType= 10
       RangeFactor= 0.2, stepLimType: 0, latDisp: 0
@@ -330,15 +350,116 @@ msc:  for alpha  SubType= 10
 ionIoni:  for alpha  SubType=2
       dE/dx and range tables from 100 eV  to 100 TeV in 84 bins
       Lambda tables from threshold to 100 TeV, 7 bins/decade, spline: 1
-      StepFunction=(0.2, 0.1 mm), integ: 1, fluct: 1, linLossLim= 0.02
+      StepFunction=(0.1, 0.02 mm), integ: 1, fluct: 1, linLossLim= 0.02
       ===== EM models for the G4Region  DefaultRegionForTheWorld ======
             BraggIon : Emin=    0 eV  Emax=7.9452 MeV
           BetheBloch : Emin=7.9452 MeV Emax=  100 TeV
 
+nuclearStopping:  for alpha SubType=8 BuildTable=0
+      ===== EM models for the G4Region  DefaultRegionForTheWorld ======
+   ICRU49NucStopping : Emin=    0 eV  Emax=   10 GeV
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_N(1440)+) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_N(1440)0) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_N(1520)+) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_N(1520)0) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_N(1535)+) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_N(1535)0) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_N(1650)+) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_N(1650)0) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_N(1675)+) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_N(1675)0) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_N(1680)+) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_N(1680)0) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_N(1700)+) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_N(1700)0) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_N(1710)+) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_N(1710)0) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_N(1720)+) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_N(1720)0) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_N(1900)+) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_N(1900)0) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_N(1990)+) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_N(1990)0) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_N(2090)+) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_N(2090)0) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_N(2190)+) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_N(2190)0) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_N(2220)+) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_N(2220)0) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_N(2250)+) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_N(2250)0) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_b_quark) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_c_quark) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_d_quark) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_dd1_diquark) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_delta(1600)+) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_delta(1600)++) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_delta(1600)-) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_delta(1600)0) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_delta(1620)+) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_delta(1620)++) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_delta(1620)-) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_delta(1620)0) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_delta(1700)+) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_delta(1700)++) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_delta(1700)-) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_delta(1700)0) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_delta(1900)+) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_delta(1900)++) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_delta(1900)-) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_delta(1900)0) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_delta(1905)+) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_delta(1905)++) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_delta(1905)-) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_delta(1905)0) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_delta(1910)+) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_delta(1910)++) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_delta(1910)-) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_delta(1910)0) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_delta(1920)+) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_delta(1920)++) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_delta(1920)-) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_delta(1920)0) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_delta(1930)+) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_delta(1930)++) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_delta(1930)-) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_delta(1930)0) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_delta(1950)+) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_delta(1950)++) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_delta(1950)-) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_delta(1950)0) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_delta+) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_delta++) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_delta-) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_delta0) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_k(1460)0) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_k0_star(1430)0) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_k1(1270)0) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_k1(1400)0) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_k2(1770)0) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_k2_star(1430)0) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_k2_star(1980)0) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_k3_star(1780)0) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_k_star(1410)0) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_k_star(1680)0) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_k_star0) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_lambda(1405)) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_lambda(1520)) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_lambda(1600)) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_lambda(1670)) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_lambda(1690)) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_lambda(1800)) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_lambda(1810)) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_lambda(1820)) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_lambda(1830)) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_lambda(1890)) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_lambda(2100)) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_lambda(2110)) skipped...
+
 msc:  for anti_proton  SubType= 10
       RangeFactor= 0.2, stepLimType: 0, latDisp: 0
       ===== EM models for the G4Region  DefaultRegionForTheWorld ======
-        WentzelVIUni : Emin=    0 eV  Emax=  100 TeV Nbins=84 100 eV  - 100 TeV
+            UrbanMsc : Emin=    0 eV  Emax=  100 TeV Nbins=84 100 eV  - 100 TeV
 
 hIoni:  for anti_proton  SubType=2
       dE/dx and range tables from 100 eV  to 100 TeV in 84 bins
@@ -347,35 +468,160 @@ hIoni:  for anti_proton  SubType=2
       ===== EM models for the G4Region  DefaultRegionForTheWorld ======
             ICRU73QO : Emin=    0 eV  Emax=    2 MeV
           BetheBloch : Emin=    2 MeV Emax=  100 TeV
-
-hBrems:  for anti_proton  SubType=3
-      dE/dx and range tables from 100 eV  to 100 TeV in 84 bins
-      Lambda tables from threshold to 100 TeV, 7 bins/decade, spline: 1
-      ===== EM models for the G4Region  DefaultRegionForTheWorld ======
-               hBrem : Emin=    0 eV  Emax=  100 TeV
-
-hPairProd:  for anti_proton  SubType=4
-      dE/dx and range tables from 100 eV  to 100 TeV in 84 bins
-      Lambda tables from threshold to 100 TeV, 7 bins/decade, spline: 1
-      Sampling table 17x1001; from 7.50618 GeV to 100 TeV 
-      ===== EM models for the G4Region  DefaultRegionForTheWorld ======
-           hPairProd : Emin=    0 eV  Emax=  100 TeV
-
-CoulombScat:  for anti_proton, integral:1  SubType=1 BuildTable=1
-      Lambda table from threshold  to 100 TeV, 7 bins/decade, spline: 1
-      ThetaMin(p) < Theta(degree) < 180; pLimit(GeV^1)= 0.139531
-      ===== EM models for the G4Region  DefaultRegionForTheWorld ======
-  eCoulombScattering : Emin=    0 eV  Emax=  100 TeV
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_s_quark) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_sd0_diquark) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_sd1_diquark) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_sigma(1385)+) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_sigma(1385)-) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_sigma(1385)0) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_sigma(1660)+) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_sigma(1660)-) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_sigma(1660)0) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_sigma(1670)+) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_sigma(1670)-) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_sigma(1670)0) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_sigma(1750)+) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_sigma(1750)-) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_sigma(1750)0) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_sigma(1775)+) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_sigma(1775)-) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_sigma(1775)0) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_sigma(1915)+) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_sigma(1915)-) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_sigma(1915)0) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_sigma(1940)+) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_sigma(1940)-) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_sigma(1940)0) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_sigma(2030)+) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_sigma(2030)-) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_sigma(2030)0) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_ss1_diquark) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_su0_diquark) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_su1_diquark) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_t_quark) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_u_quark) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_ud0_diquark) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_ud1_diquark) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_uu1_diquark) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_xi(1530)-) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_xi(1530)0) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_xi(1690)-) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_xi(1690)0) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_xi(1820)-) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_xi(1820)0) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_xi(1950)-) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_xi(1950)0) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_xi(2030)-) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_xi(2030)0) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(b1(1235)+) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(b1(1235)-) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(b1(1235)0) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(b_quark) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(c_quark) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(d_quark) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(dd1_diquark) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(delta(1600)+) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(delta(1600)++) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(delta(1600)-) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(delta(1600)0) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(delta(1620)+) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(delta(1620)++) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(delta(1620)-) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(delta(1620)0) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(delta(1700)+) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(delta(1700)++) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(delta(1700)-) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(delta(1700)0) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(delta(1900)+) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(delta(1900)++) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(delta(1900)-) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(delta(1900)0) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(delta(1905)+) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(delta(1905)++) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(delta(1905)-) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(delta(1905)0) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(delta(1910)+) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(delta(1910)++) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(delta(1910)-) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(delta(1910)0) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(delta(1920)+) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(delta(1920)++) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(delta(1920)-) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(delta(1920)0) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(delta(1930)+) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(delta(1930)++) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(delta(1930)-) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(delta(1930)0) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(delta(1950)+) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(delta(1950)++) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(delta(1950)-) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(delta(1950)0) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(delta+) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(delta++) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(delta-) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(delta0) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(eta(1295)) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(eta(1405)) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(eta(1475)) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(eta2(1645)) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(eta2(1870)) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(f0(1370)) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(f0(1500)) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(f0(1710)) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(f0(500)) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(f0(980)) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(f1(1285)) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(f1(1420)) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(f2(1270)) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(f2(1810)) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(f2(2010)) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(f2_prime(1525)) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(gluon) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(h1(1170)) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(h1(1380)) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(k(1460)+) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(k(1460)-) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(k(1460)0) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(k0_star(1430)+) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(k0_star(1430)-) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(k0_star(1430)0) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(k1(1270)+) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(k1(1270)-) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(k1(1270)0) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(k1(1400)+) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(k1(1400)-) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(k1(1400)0) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(k2(1770)+) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(k2(1770)-) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(k2(1770)0) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(k2_star(1430)+) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(k2_star(1430)-) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(k2_star(1430)0) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(k2_star(1980)+) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(k2_star(1980)-) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(k2_star(1980)0) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(k3_star(1780)+) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(k3_star(1780)-) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(k3_star(1780)0) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(k_star(1410)+) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(k_star(1410)-) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(k_star(1410)0) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(k_star(1680)+) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(k_star(1680)-) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(k_star(1680)0) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(k_star+) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(k_star-) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(k_star0) skipped...
 
 msc:  for kaon+  SubType= 10
       RangeFactor= 0.2, stepLimType: 0, latDisp: 0
       ===== EM models for the G4Region  DefaultRegionForTheWorld ======
-        WentzelVIUni : Emin=    0 eV  Emax=  100 TeV Nbins=84 100 eV  - 100 TeV
+            UrbanMsc : Emin=    0 eV  Emax=  100 TeV Nbins=84 100 eV  - 100 TeV
 
 hIoni:  for kaon+  SubType=2
       dE/dx and range tables from 100 eV  to 100 TeV in 84 bins
       Lambda tables from threshold to 100 TeV, 7 bins/decade, spline: 1
-      StepFunction=(0.2, 0.1 mm), integ: 1, fluct: 1, linLossLim= 0.01
+      StepFunction=(0.2, 0.05 mm), integ: 1, fluct: 1, linLossLim= 0.01
       ===== EM models for the G4Region  DefaultRegionForTheWorld ======
                Bragg : Emin=    0 eV  Emax=1.05231 MeV
           BetheBloch : Emin=1.05231 MeV Emax=  100 TeV
@@ -385,29 +631,17 @@ hBrems:  for kaon+  SubType=3
       Lambda tables from threshold to 100 TeV, 7 bins/decade, spline: 1
       ===== EM models for the G4Region  DefaultRegionForTheWorld ======
                hBrem : Emin=    0 eV  Emax=  100 TeV
-
-hPairProd:  for kaon+  SubType=4
-      dE/dx and range tables from 100 eV  to 100 TeV in 84 bins
-      Lambda tables from threshold to 100 TeV, 7 bins/decade, spline: 1
-      Sampling table 18x1001; from 3.94942 GeV to 100 TeV 
-      ===== EM models for the G4Region  DefaultRegionForTheWorld ======
-           hPairProd : Emin=    0 eV  Emax=  100 TeV
-
-CoulombScat:  for kaon+, integral:1  SubType=1 BuildTable=1
-      Lambda table from threshold  to 100 TeV, 7 bins/decade, spline: 1
-      ThetaMin(p) < Theta(degree) < 180; pLimit(GeV^1)= 0.139531
-      ===== EM models for the G4Region  DefaultRegionForTheWorld ======
-  eCoulombScattering : Emin=    0 eV  Emax=  100 TeV
+      ===== Limit on energy threshold has been applied 
 
 msc:  for kaon-  SubType= 10
       RangeFactor= 0.2, stepLimType: 0, latDisp: 0
       ===== EM models for the G4Region  DefaultRegionForTheWorld ======
-        WentzelVIUni : Emin=    0 eV  Emax=  100 TeV Nbins=84 100 eV  - 100 TeV
+            UrbanMsc : Emin=    0 eV  Emax=  100 TeV Nbins=84 100 eV  - 100 TeV
 
 hIoni:  for kaon-  SubType=2
       dE/dx and range tables from 100 eV  to 100 TeV in 84 bins
       Lambda tables from threshold to 100 TeV, 7 bins/decade, spline: 1
-      StepFunction=(0.2, 0.1 mm), integ: 1, fluct: 1, linLossLim= 0.01
+      StepFunction=(0.2, 0.05 mm), integ: 1, fluct: 1, linLossLim= 0.01
       ===== EM models for the G4Region  DefaultRegionForTheWorld ======
             ICRU73QO : Emin=    0 eV  Emax=1.05231 MeV
           BetheBloch : Emin=1.05231 MeV Emax=  100 TeV
@@ -417,24 +651,24 @@ hBrems:  for kaon-  SubType=3
       Lambda tables from threshold to 100 TeV, 7 bins/decade, spline: 1
       ===== EM models for the G4Region  DefaultRegionForTheWorld ======
                hBrem : Emin=    0 eV  Emax=  100 TeV
-
-hPairProd:  for kaon-  SubType=4
-      dE/dx and range tables from 100 eV  to 100 TeV in 84 bins
-      Lambda tables from threshold to 100 TeV, 7 bins/decade, spline: 1
-      Sampling table 18x1001; from 3.94942 GeV to 100 TeV 
-      ===== EM models for the G4Region  DefaultRegionForTheWorld ======
-           hPairProd : Emin=    0 eV  Emax=  100 TeV
-
-CoulombScat:  for kaon-, integral:1  SubType=1 BuildTable=1
-      Used Lambda table of kaon+
-      ThetaMin(p) < Theta(degree) < 180; pLimit(GeV^1)= 0.139531
-      ===== EM models for the G4Region  DefaultRegionForTheWorld ======
-  eCoulombScattering : Emin=    0 eV  Emax=  100 TeV
+      ===== Limit on energy threshold has been applied 
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(lambda(1405)) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(lambda(1520)) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(lambda(1600)) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(lambda(1670)) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(lambda(1690)) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(lambda(1800)) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(lambda(1810)) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(lambda(1820)) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(lambda(1830)) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(lambda(1890)) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(lambda(2100)) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(lambda(2110)) skipped...
 
 msc:  for mu+  SubType= 10
       RangeFactor= 0.2, stepLimType: 0, latDisp: 0, polarAngLim(deg)= 180
       ===== EM models for the G4Region  DefaultRegionForTheWorld ======
-        WentzelVIUni : Emin=    0 eV  Emax=  100 TeV Nbins=84 100 eV  - 100 TeV
+            UrbanMsc : Emin=    0 eV  Emax=  100 TeV Nbins=84 100 eV  - 100 TeV
 
 muIoni:  for mu+  SubType=2
       dE/dx and range tables from 100 eV  to 100 TeV in 84 bins
@@ -450,6 +684,7 @@ muBrems:  for mu+  SubType=3
       Lambda tables from threshold to 100 TeV, 7 bins/decade, spline: 1
       ===== EM models for the G4Region  DefaultRegionForTheWorld ======
               MuBrem : Emin=    0 eV  Emax=  100 TeV
+      ===== Limit on energy threshold has been applied 
 
 muPairProd:  for mu+  SubType=4
       dE/dx and range tables from 100 eV  to 100 TeV in 84 bins
@@ -458,16 +693,10 @@ muPairProd:  for mu+  SubType=4
       ===== EM models for the G4Region  DefaultRegionForTheWorld ======
           muPairProd : Emin=    0 eV  Emax=  100 TeV
 
-CoulombScat:  for mu+, integral:1  SubType=1 BuildTable=1
-      Lambda table from threshold  to 100 TeV, 7 bins/decade, spline: 1
-      ThetaMin(p) < Theta(degree) < 180; pLimit(GeV^1)= 0.139531
-      ===== EM models for the G4Region  DefaultRegionForTheWorld ======
-  eCoulombScattering : Emin=    0 eV  Emax=  100 TeV
-
 msc:  for mu-  SubType= 10
       RangeFactor= 0.2, stepLimType: 0, latDisp: 0, polarAngLim(deg)= 180
       ===== EM models for the G4Region  DefaultRegionForTheWorld ======
-        WentzelVIUni : Emin=    0 eV  Emax=  100 TeV Nbins=84 100 eV  - 100 TeV
+            UrbanMsc : Emin=    0 eV  Emax=  100 TeV Nbins=84 100 eV  - 100 TeV
 
 muIoni:  for mu-  SubType=2
       dE/dx and range tables from 100 eV  to 100 TeV in 84 bins
@@ -483,6 +712,7 @@ muBrems:  for mu-  SubType=3
       Lambda tables from threshold to 100 TeV, 7 bins/decade, spline: 1
       ===== EM models for the G4Region  DefaultRegionForTheWorld ======
               MuBrem : Emin=    0 eV  Emax=  100 TeV
+      ===== Limit on energy threshold has been applied 
 
 muPairProd:  for mu-  SubType=4
       dE/dx and range tables from 100 eV  to 100 TeV in 84 bins
@@ -490,12 +720,6 @@ muPairProd:  for mu-  SubType=4
       Sampling table 21x1001; from 1 GeV to 100 TeV 
       ===== EM models for the G4Region  DefaultRegionForTheWorld ======
           muPairProd : Emin=    0 eV  Emax=  100 TeV
-
-CoulombScat:  for mu-, integral:1  SubType=1 BuildTable=1
-      Used Lambda table of mu+
-      ThetaMin(p) < Theta(degree) < 180; pLimit(GeV^1)= 0.139531
-      ===== EM models for the G4Region  DefaultRegionForTheWorld ======
-  eCoulombScattering : Emin=    0 eV  Emax=  100 TeV
 NeutronHP: /Capture file for Z = 6, A = 12 is not found and NeutronHP will use /opt/geant4/share/Geant4-10.5.1/data/G4NDL4.5/Capture/CrossSection/6_nat_Carbon
 NeutronHP: /Elastic file for Z = 6, A = 12 is not found and NeutronHP will use /opt/geant4/share/Geant4-10.5.1/data/G4NDL4.5/Elastic/CrossSection/6_nat_Carbon
 NeutronHP: /Inelastic file for Z = 6, A = 12 is not found and NeutronHP will use /opt/geant4/share/Geant4-10.5.1/data/G4NDL4.5/Inelastic/CrossSection/6_nat_Carbon
@@ -505,38 +729,33 @@ NeutronHP: /Inelastic file for Z = 6, A = 13 is not found and NeutronHP will use
 NeutronHP: /Capture file for Z = 8, A = 18 is not found and NeutronHP will use /opt/geant4/share/Geant4-10.5.1/data/G4NDL4.5/Capture/CrossSection/8_17_Oxygen
 NeutronHP: /Elastic file for Z = 8, A = 18 is not found and NeutronHP will use /opt/geant4/share/Geant4-10.5.1/data/G4NDL4.5/Elastic/CrossSection/8_17_Oxygen
 NeutronHP: /Inelastic file for Z = 8, A = 18 is not found and NeutronHP will use /opt/geant4/share/Geant4-10.5.1/data/G4NDL4.5/Inelastic/CrossSection/8_17_Oxygen
-NeutronHP: /Capture file for Z = 8, A = 18 is not found and NeutronHP will use /opt/geant4/share/Geant4-10.5.1/data/G4NDL4.5/Capture/CrossSection/8_17_Oxygen
-NeutronHP: /Elastic file for Z = 8, A = 18 is not found and NeutronHP will use /opt/geant4/share/Geant4-10.5.1/data/G4NDL4.5/Elastic/CrossSection/8_17_Oxygen
-NeutronHP: /Inelastic file for Z = 8, A = 18 is not found and NeutronHP will use /opt/geant4/share/Geant4-10.5.1/data/G4NDL4.5/Inelastic/CrossSection/8_17_Oxygen
-NeutronHP: /Capture file for Z = 6, A = 12 is not found and NeutronHP will use /opt/geant4/share/Geant4-10.5.1/data/G4NDL4.5/Capture/CrossSection/6_nat_Carbon
-NeutronHP: /Elastic file for Z = 6, A = 12 is not found and NeutronHP will use /opt/geant4/share/Geant4-10.5.1/data/G4NDL4.5/Elastic/CrossSection/6_nat_Carbon
-NeutronHP: /Inelastic file for Z = 6, A = 12 is not found and NeutronHP will use /opt/geant4/share/Geant4-10.5.1/data/G4NDL4.5/Inelastic/CrossSection/6_nat_Carbon
-NeutronHP: /Capture file for Z = 6, A = 13 is not found and NeutronHP will use /opt/geant4/share/Geant4-10.5.1/data/G4NDL4.5/Capture/CrossSection/6_nat_Carbon
-NeutronHP: /Elastic file for Z = 6, A = 13 is not found and NeutronHP will use /opt/geant4/share/Geant4-10.5.1/data/G4NDL4.5/Elastic/CrossSection/6_nat_Carbon
-NeutronHP: /Inelastic file for Z = 6, A = 13 is not found and NeutronHP will use /opt/geant4/share/Geant4-10.5.1/data/G4NDL4.5/Inelastic/CrossSection/6_nat_Carbon
 NeutronHP: /Elastic file for Z = 6, A = 12 is not found and NeutronHP will use /opt/geant4/share/Geant4-10.5.1/data/G4NDL4.5/Elastic/CrossSection/6_nat_Carbon
 NeutronHP: /Elastic file for Z = 6, A = 13 is not found and NeutronHP will use /opt/geant4/share/Geant4-10.5.1/data/G4NDL4.5/Elastic/CrossSection/6_nat_Carbon
 NeutronHP: /Elastic file for Z = 8, A = 18 is not found and NeutronHP will use /opt/geant4/share/Geant4-10.5.1/data/G4NDL4.5/Elastic/CrossSection/8_17_Oxygen
-NeutronHP: /Elastic file for Z = 8, A = 18 is not found and NeutronHP will use /opt/geant4/share/Geant4-10.5.1/data/G4NDL4.5/Elastic/CrossSection/8_17_Oxygen
-NeutronHP: /Elastic file for Z = 6, A = 12 is not found and NeutronHP will use /opt/geant4/share/Geant4-10.5.1/data/G4NDL4.5/Elastic/CrossSection/6_nat_Carbon
-NeutronHP: /Elastic file for Z = 6, A = 13 is not found and NeutronHP will use /opt/geant4/share/Geant4-10.5.1/data/G4NDL4.5/Elastic/CrossSection/6_nat_Carbon
 @@@ G4ParticleHPInelastic instantiated for particle neutron data directory variable is G4NEUTRONHPDATA pointing to /opt/geant4/share/Geant4-10.5.1/data/G4NDL4.5/Inelastic
 NeutronHP: /Capture file for Z = 6, A = 12 is not found and NeutronHP will use /opt/geant4/share/Geant4-10.5.1/data/G4NDL4.5/Capture/CrossSection/6_nat_Carbon
 NeutronHP: /Capture file for Z = 6, A = 13 is not found and NeutronHP will use /opt/geant4/share/Geant4-10.5.1/data/G4NDL4.5/Capture/CrossSection/6_nat_Carbon
 NeutronHP: /Capture file for Z = 8, A = 18 is not found and NeutronHP will use /opt/geant4/share/Geant4-10.5.1/data/G4NDL4.5/Capture/CrossSection/8_17_Oxygen
-NeutronHP: /Capture file for Z = 8, A = 18 is not found and NeutronHP will use /opt/geant4/share/Geant4-10.5.1/data/G4NDL4.5/Capture/CrossSection/8_17_Oxygen
-NeutronHP: /Capture file for Z = 6, A = 12 is not found and NeutronHP will use /opt/geant4/share/Geant4-10.5.1/data/G4NDL4.5/Capture/CrossSection/6_nat_Carbon
-NeutronHP: /Capture file for Z = 6, A = 13 is not found and NeutronHP will use /opt/geant4/share/Geant4-10.5.1/data/G4NDL4.5/Capture/CrossSection/6_nat_Carbon
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(omega) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(omega(1420)) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(omega(1650)) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(omega3(1670)) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(phi) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(phi(1680)) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(phi3(1850)) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(pi(1300)+) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(pi(1300)-) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(pi(1300)0) skipped...
 
 msc:  for pi+  SubType= 10
       RangeFactor= 0.2, stepLimType: 0, latDisp: 0
       ===== EM models for the G4Region  DefaultRegionForTheWorld ======
-        WentzelVIUni : Emin=    0 eV  Emax=  100 TeV Nbins=84 100 eV  - 100 TeV
+            UrbanMsc : Emin=    0 eV  Emax=  100 TeV Nbins=84 100 eV  - 100 TeV
 
 hIoni:  for pi+  SubType=2
       dE/dx and range tables from 100 eV  to 100 TeV in 84 bins
       Lambda tables from threshold to 100 TeV, 7 bins/decade, spline: 1
-      StepFunction=(0.2, 0.1 mm), integ: 1, fluct: 1, linLossLim= 0.01
+      StepFunction=(0.2, 0.05 mm), integ: 1, fluct: 1, linLossLim= 0.01
       ===== EM models for the G4Region  DefaultRegionForTheWorld ======
                Bragg : Emin=    0 eV  Emax=297.505 keV
           BetheBloch : Emin=297.505 keV Emax=  100 TeV
@@ -546,29 +765,17 @@ hBrems:  for pi+  SubType=3
       Lambda tables from threshold to 100 TeV, 7 bins/decade, spline: 1
       ===== EM models for the G4Region  DefaultRegionForTheWorld ======
                hBrem : Emin=    0 eV  Emax=  100 TeV
-
-hPairProd:  for pi+  SubType=4
-      dE/dx and range tables from 100 eV  to 100 TeV in 84 bins
-      Lambda tables from threshold to 100 TeV, 7 bins/decade, spline: 1
-      Sampling table 20x1001; from 1.11656 GeV to 100 TeV 
-      ===== EM models for the G4Region  DefaultRegionForTheWorld ======
-           hPairProd : Emin=    0 eV  Emax=  100 TeV
-
-CoulombScat:  for pi+, integral:1  SubType=1 BuildTable=1
-      Lambda table from threshold  to 100 TeV, 7 bins/decade, spline: 1
-      ThetaMin(p) < Theta(degree) < 180; pLimit(GeV^1)= 0.139531
-      ===== EM models for the G4Region  DefaultRegionForTheWorld ======
-  eCoulombScattering : Emin=    0 eV  Emax=  100 TeV
+      ===== Limit on energy threshold has been applied 
 
 msc:  for pi-  SubType= 10
       RangeFactor= 0.2, stepLimType: 0, latDisp: 0
       ===== EM models for the G4Region  DefaultRegionForTheWorld ======
-        WentzelVIUni : Emin=    0 eV  Emax=  100 TeV Nbins=84 100 eV  - 100 TeV
+            UrbanMsc : Emin=    0 eV  Emax=  100 TeV Nbins=84 100 eV  - 100 TeV
 
 hIoni:  for pi-  SubType=2
       dE/dx and range tables from 100 eV  to 100 TeV in 84 bins
       Lambda tables from threshold to 100 TeV, 7 bins/decade, spline: 1
-      StepFunction=(0.2, 0.1 mm), integ: 1, fluct: 1, linLossLim= 0.01
+      StepFunction=(0.2, 0.05 mm), integ: 1, fluct: 1, linLossLim= 0.01
       ===== EM models for the G4Region  DefaultRegionForTheWorld ======
             ICRU73QO : Emin=    0 eV  Emax=297.505 keV
           BetheBloch : Emin=297.505 keV Emax=  100 TeV
@@ -578,113 +785,96 @@ hBrems:  for pi-  SubType=3
       Lambda tables from threshold to 100 TeV, 7 bins/decade, spline: 1
       ===== EM models for the G4Region  DefaultRegionForTheWorld ======
                hBrem : Emin=    0 eV  Emax=  100 TeV
-
-hPairProd:  for pi-  SubType=4
-      dE/dx and range tables from 100 eV  to 100 TeV in 84 bins
-      Lambda tables from threshold to 100 TeV, 7 bins/decade, spline: 1
-      Sampling table 20x1001; from 1.11656 GeV to 100 TeV 
-      ===== EM models for the G4Region  DefaultRegionForTheWorld ======
-           hPairProd : Emin=    0 eV  Emax=  100 TeV
-
-CoulombScat:  for pi-, integral:1  SubType=1 BuildTable=1
-      Used Lambda table of pi+
-      ThetaMin(p) < Theta(degree) < 180; pLimit(GeV^1)= 0.139531
-      ===== EM models for the G4Region  DefaultRegionForTheWorld ======
-  eCoulombScattering : Emin=    0 eV  Emax=  100 TeV
+      ===== Limit on energy threshold has been applied 
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(pi2(1670)+) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(pi2(1670)-) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(pi2(1670)0) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(rho(1450)+) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(rho(1450)-) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(rho(1450)0) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(rho(1700)+) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(rho(1700)-) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(rho(1700)0) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(rho+) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(rho-) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(rho0) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(rho3(1690)+) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(rho3(1690)-) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(rho3(1690)0) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(s_quark) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(sd0_diquark) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(sd1_diquark) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(sigma(1385)+) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(sigma(1385)-) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(sigma(1385)0) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(sigma(1660)+) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(sigma(1660)-) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(sigma(1660)0) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(sigma(1670)+) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(sigma(1670)-) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(sigma(1670)0) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(sigma(1750)+) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(sigma(1750)-) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(sigma(1750)0) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(sigma(1775)+) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(sigma(1775)-) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(sigma(1775)0) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(sigma(1915)+) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(sigma(1915)-) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(sigma(1915)0) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(sigma(1940)+) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(sigma(1940)-) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(sigma(1940)0) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(sigma(2030)+) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(sigma(2030)-) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(sigma(2030)0) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(ss1_diquark) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(su0_diquark) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(su1_diquark) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(t_quark) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(u_quark) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(ud0_diquark) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(ud1_diquark) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(uu1_diquark) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(xi(1530)-) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(xi(1530)0) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(xi(1690)-) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(xi(1690)0) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(xi(1820)-) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(xi(1820)0) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(xi(1950)-) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(xi(1950)0) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(xi(2030)-) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(xi(2030)0) skipped...
 
 ====================================================================
                   HADRONIC PROCESSES SUMMARY (verbose level 1)
-
----------------------------------------------------
-                           Hadronic Processes for GenericIon
-
-  Process: ionElastic
-        Model:          NNDiffuseElastic: 0 eV /n ---> 100 TeV/n
-     Cr_sctns:  Glauber-Gribov Nucl-nucl: 0 eV  ---> 100 TeV
-     Cr_sctns:            GheishaElastic: 0 eV  ---> 100 TeV
-
-  Process: ionInelastic
-        Model:  Binary Light Ion Cascade: 0 eV /n ---> 110 MeV/n
-        Model:                  QMDModel: 100 MeV/n ---> 10 GeV/n
-        Model:                      FTFP: 9.99 GeV/n ---> 100 TeV/n
-     Cr_sctns:  Glauber-Gribov Nucl-nucl: 0 eV  ---> 100 TeV
-     Cr_sctns:          GheishaInelastic: 0 eV  ---> 100 TeV
-
----------------------------------------------------
-                           Hadronic Processes for He3
-
-  Process: hadElastic
-        Model:              hElasticLHEP: 0 eV /n ---> 100 TeV/n
-     Cr_sctns:  Glauber-Gribov Nucl-nucl: 0 eV  ---> 100 TeV
-     Cr_sctns:            GheishaElastic: 0 eV  ---> 100 TeV
-
-  Process: He3Inelastic
-        Model:  Binary Light Ion Cascade: 0 eV /n ---> 110 MeV/n
-        Model:                  QMDModel: 100 MeV/n ---> 10 GeV/n
-        Model:                      FTFP: 9.99 GeV/n ---> 100 TeV/n
-     Cr_sctns:  Glauber-Gribov Nucl-nucl: 0 eV  ---> 100 TeV
-     Cr_sctns:          GheishaInelastic: 0 eV  ---> 100 TeV
 
 ---------------------------------------------------
                            Hadronic Processes for alpha
 
   Process: hadElastic
         Model:              hElasticLHEP: 0 eV /n ---> 100 TeV/n
-     Cr_sctns:  Glauber-Gribov Nucl-nucl: 0 eV  ---> 100 TeV
      Cr_sctns:            GheishaElastic: 0 eV  ---> 100 TeV
 
-  Process: alphaInelastic
-        Model:  Binary Light Ion Cascade: 0 eV /n ---> 110 MeV/n
-        Model:                  QMDModel: 100 MeV/n ---> 10 GeV/n
-        Model:                      FTFP: 9.99 GeV/n ---> 100 TeV/n
+  Process: inelastic
+        Model:                      FTFP: 4 GeV/n ---> 100 TeV/n
+        Model:  Binary Light Ion Cascade: 0 eV /n ---> 5 GeV/n
      Cr_sctns:  Glauber-Gribov Nucl-nucl: 0 eV  ---> 100 TeV
      Cr_sctns:          GheishaInelastic: 0 eV  ---> 100 TeV
 
 ---------------------------------------------------
                            Hadronic Processes for anti_He3
 
-  Process: hadElastic
-        Model:              hElasticLHEP: 0 eV /n ---> 100.1 MeV/n
-        Model:              AntiAElastic: 100 MeV/n ---> 100 TeV/n
-     Cr_sctns:              AntiAGlauber: 0 eV  ---> 100 TeV
-     Cr_sctns:            GheishaElastic: 0 eV  ---> 100 TeV
-
-  Process: anti_He3Inelastic
-        Model:                      FTFP: 0 eV /n ---> 100 TeV/n
-     Cr_sctns:              AntiAGlauber: 0 eV  ---> 100 TeV
-     Cr_sctns:          GheishaInelastic: 0 eV  ---> 100 TeV
-
   Process: hFritiofCaptureAtRest
 
 ---------------------------------------------------
                            Hadronic Processes for anti_alpha
 
-  Process: hadElastic
-        Model:              hElasticLHEP: 0 eV /n ---> 100.1 MeV/n
-        Model:              AntiAElastic: 100 MeV/n ---> 100 TeV/n
-     Cr_sctns:              AntiAGlauber: 0 eV  ---> 100 TeV
-     Cr_sctns:            GheishaElastic: 0 eV  ---> 100 TeV
-
-  Process: anti_alphaInelastic
-        Model:                      FTFP: 0 eV /n ---> 100 TeV/n
-     Cr_sctns:              AntiAGlauber: 0 eV  ---> 100 TeV
-     Cr_sctns:          GheishaInelastic: 0 eV  ---> 100 TeV
-
   Process: hFritiofCaptureAtRest
 
 ---------------------------------------------------
                            Hadronic Processes for anti_deuteron
-
-  Process: hadElastic
-        Model:              hElasticLHEP: 0 eV /n ---> 100.1 MeV/n
-        Model:              AntiAElastic: 100 MeV/n ---> 100 TeV/n
-     Cr_sctns:              AntiAGlauber: 0 eV  ---> 100 TeV
-     Cr_sctns:            GheishaElastic: 0 eV  ---> 100 TeV
-
-  Process: anti_deuteronInelastic
-        Model:                      FTFP: 0 eV /n ---> 100 TeV/n
-     Cr_sctns:              AntiAGlauber: 0 eV  ---> 100 TeV
-     Cr_sctns:          GheishaInelastic: 0 eV  ---> 100 TeV
 
   Process: hFritiofCaptureAtRest
 
@@ -695,7 +885,7 @@ CoulombScat:  for pi-, integral:1  SubType=1 BuildTable=1
         Model:              hElasticLHEP: 0 eV  ---> 100 TeV
      Cr_sctns:            GheishaElastic: 0 eV  ---> 100 TeV
 
-  Process: anti_neutronInelastic
+  Process: inelastic
         Model:                      FTFP: 0 eV  ---> 100 TeV
      Cr_sctns:              AntiAGlauber: 0 eV  ---> 100 TeV
      Cr_sctns:          GheishaInelastic: 0 eV  ---> 100 TeV
@@ -704,12 +894,12 @@ CoulombScat:  for pi-, integral:1  SubType=1 BuildTable=1
                            Hadronic Processes for anti_proton
 
   Process: hadElastic
-        Model:              hElasticLHEP: 0 eV  ---> 100.1 MeV
+        Model:              hElasticLHEP: 0 eV  ---> 100 MeV
         Model:              AntiAElastic: 100 MeV ---> 100 TeV
      Cr_sctns:              AntiAGlauber: 0 eV  ---> 100 TeV
      Cr_sctns:            GheishaElastic: 0 eV  ---> 100 TeV
 
-  Process: anti_protonInelastic
+  Process: inelastic
         Model:                      FTFP: 0 eV  ---> 100 TeV
      Cr_sctns:              AntiAGlauber: 0 eV  ---> 100 TeV
      Cr_sctns:          GheishaInelastic: 0 eV  ---> 100 TeV
@@ -719,17 +909,6 @@ CoulombScat:  for pi-, integral:1  SubType=1 BuildTable=1
 ---------------------------------------------------
                            Hadronic Processes for anti_triton
 
-  Process: hadElastic
-        Model:              hElasticLHEP: 0 eV /n ---> 100.1 MeV/n
-        Model:              AntiAElastic: 100 MeV/n ---> 100 TeV/n
-     Cr_sctns:              AntiAGlauber: 0 eV  ---> 100 TeV
-     Cr_sctns:            GheishaElastic: 0 eV  ---> 100 TeV
-
-  Process: anti_tritonInelastic
-        Model:                      FTFP: 0 eV /n ---> 100 TeV/n
-     Cr_sctns:              AntiAGlauber: 0 eV  ---> 100 TeV
-     Cr_sctns:          GheishaInelastic: 0 eV  ---> 100 TeV
-
   Process: hFritiofCaptureAtRest
 
 ---------------------------------------------------
@@ -737,50 +916,24 @@ CoulombScat:  for pi-, integral:1  SubType=1 BuildTable=1
 
   Process: hadElastic
         Model:              hElasticLHEP: 0 eV /n ---> 100 TeV/n
-     Cr_sctns:  Glauber-Gribov Nucl-nucl: 0 eV  ---> 100 TeV
      Cr_sctns:            GheishaElastic: 0 eV  ---> 100 TeV
 
-  Process: dInelastic
-        Model:  Binary Light Ion Cascade: 0 eV /n ---> 110 MeV/n
-        Model:                  QMDModel: 100 MeV/n ---> 10 GeV/n
-        Model:                      FTFP: 9.99 GeV/n ---> 100 TeV/n
+  Process: inelastic
+        Model:                      FTFP: 4 GeV/n ---> 100 TeV/n
+        Model:  Binary Light Ion Cascade: 0 eV /n ---> 5 GeV/n
      Cr_sctns:  Glauber-Gribov Nucl-nucl: 0 eV  ---> 100 TeV
      Cr_sctns:          GheishaInelastic: 0 eV  ---> 100 TeV
-
----------------------------------------------------
-                           Hadronic Processes for e+
-
-  Process: positronNuclear
-        Model:   G4ElectroVDNuclearModel: 0 eV  ---> 1 PeV
-     Cr_sctns:          ElectroNuclearXS: 0 eV  ---> 100 TeV
-
----------------------------------------------------
-                           Hadronic Processes for e-
-
-  Process: electronNuclear
-        Model:   G4ElectroVDNuclearModel: 0 eV  ---> 1 PeV
-     Cr_sctns:          ElectroNuclearXS: 0 eV  ---> 100 TeV
-
----------------------------------------------------
-                           Hadronic Processes for gamma
-
-  Process: photonNuclear
-        Model:            BertiniCascade: 0 eV  ---> 3.5 GeV
-        Model:           TheoFSGenerator: 3 GeV ---> 100 TeV
-     Cr_sctns:            PhotoNuclearXS: 0 eV  ---> 100 TeV
 
 ---------------------------------------------------
                            Hadronic Processes for kaon+
 
   Process: hadElastic
         Model:              hElasticLHEP: 0 eV  ---> 100 TeV
-     Cr_sctns:            Glauber-Gribov: 0 eV  ---> 100 TeV
      Cr_sctns:            GheishaElastic: 0 eV  ---> 100 TeV
 
-  Process: kaon+Inelastic
+  Process: inelastic
         Model:                      FTFP: 4 GeV ---> 100 TeV
         Model:            BertiniCascade: 0 eV  ---> 5 GeV
-     Cr_sctns:            Glauber-Gribov: 0 eV  ---> 100 TeV
      Cr_sctns:  ChipsKaonPlusInelasticXS: 0 eV  ---> 100 TeV
      Cr_sctns:          GheishaInelastic: 0 eV  ---> 100 TeV
 
@@ -789,44 +942,20 @@ CoulombScat:  for pi-, integral:1  SubType=1 BuildTable=1
 
   Process: hadElastic
         Model:              hElasticLHEP: 0 eV  ---> 100 TeV
-     Cr_sctns:            Glauber-Gribov: 0 eV  ---> 100 TeV
      Cr_sctns:            GheishaElastic: 0 eV  ---> 100 TeV
 
-  Process: kaon-Inelastic
+  Process: inelastic
         Model:                      FTFP: 4 GeV ---> 100 TeV
         Model:            BertiniCascade: 0 eV  ---> 5 GeV
-     Cr_sctns:            Glauber-Gribov: 0 eV  ---> 100 TeV
      Cr_sctns: ChipsKaonMinusInelasticXS: 0 eV  ---> 100 TeV
      Cr_sctns:          GheishaInelastic: 0 eV  ---> 100 TeV
 
   Process: hBertiniCaptureAtRest
 
 ---------------------------------------------------
-                           Hadronic Processes for lambda
-
-  Process: hadElastic
-        Model:              hElasticLHEP: 0 eV  ---> 100 TeV
-     Cr_sctns:            GheishaElastic: 0 eV  ---> 100 TeV
-
-  Process: lambdaInelastic
-        Model:            BertiniCascade: 0 eV  ---> 6 GeV
-        Model:                      FTFP: 2 GeV ---> 100 TeV
-     Cr_sctns:   ChipsHyperonInelasticXS: 0 eV  ---> 100 TeV
-     Cr_sctns:          GheishaInelastic: 0 eV  ---> 100 TeV
-
----------------------------------------------------
-                           Hadronic Processes for mu+
-
-  Process: muonNuclear
-        Model:      G4MuonVDNuclearModel: 0 eV  ---> 1 PeV
-     Cr_sctns:     KokoulinMuonNuclearXS: 0 eV  ---> 100 TeV
-
----------------------------------------------------
                            Hadronic Processes for mu-
 
-  Process: muonNuclear
-        Model:      G4MuonVDNuclearModel: 0 eV  ---> 1 PeV
-     Cr_sctns:     KokoulinMuonNuclearXS: 0 eV  ---> 100 TeV
+  Process: muMinusCaptureAtRest
 
   Process: muMinusCaptureAtRest
 
@@ -834,56 +963,57 @@ CoulombScat:  for pi-, integral:1  SubType=1 BuildTable=1
                            Hadronic Processes for neutron
 
   Process: hadElastic
-        Model:             hElasticCHIPS: 19.5 MeV ---> 100 TeV
+        Model:             hElasticCHIPS: 19 MeV ---> 100 TeV
         Model:          NeutronHPElastic: 0 eV  ---> 20 MeV
      Cr_sctns:        NeutronHPElasticXS: 0 eV  ---> 20 MeV
-     Cr_sctns:        G4NeutronElasticXS: 0 eV  ---> 100 TeV
+     Cr_sctns:     ChipsNeutronElasticXS: 0 eV  ---> 100 TeV
+     Cr_sctns:            GheishaElastic: 0 eV  ---> 100 TeV
 
-  Process: neutronInelastic
+  Process: inelastic
         Model:                      FTFP: 4 GeV ---> 100 TeV
-        Model:            BertiniCascade: 19.9 MeV ---> 5 GeV
+        Model:            BertiniCascade: 19 MeV ---> 5 GeV
         Model:        NeutronHPInelastic: 0 eV  ---> 20 MeV
      Cr_sctns:      NeutronHPInelasticXS: 0 eV  ---> 20 MeV
-     Cr_sctns: JENDLHEInelasticCrossSection: 0 eV  ---> 100 TeV
      Cr_sctns:       Barashenkov-Glauber: 0 eV  ---> 100 TeV
 
   Process: nCapture
         Model:          NeutronHPCapture: 0 eV  ---> 20 MeV
-        Model:               nRadCapture: 19.9 MeV ---> 100 TeV
+        Model:               nRadCapture: 19.8 MeV ---> 100 TeV
+     Cr_sctns:        G4NeutronCaptureXS: 0 eV  ---> 100 TeV
      Cr_sctns:        NeutronHPCaptureXS: 0 eV  ---> 20 MeV
      Cr_sctns:        G4NeutronCaptureXS: 0 eV  ---> 100 TeV
-
-  Process: nFission
-        Model:          NeutronHPFission: 0 eV  ---> 20 MeV
-        Model:                G4LFission: 19.9 MeV ---> 100 TeV
-     Cr_sctns:        NeutronHPFissionXS: 0 eV  ---> 20 MeV
-     Cr_sctns:          GheishaFissionXS: 0 eV  ---> 100 TeV
 
 ---------------------------------------------------
                            Hadronic Processes for pi+
 
   Process: hadElastic
-        Model:              hElasticLHEP: 0 eV  ---> 1.0001 GeV
+        Model:              hElasticLHEP: 0 eV  ---> 1 GeV
         Model:           hElasticGlauber: 1 GeV ---> 100 TeV
      Cr_sctns:       Barashenkov-Glauber: 0 eV  ---> 100 TeV
 
-  Process: pi+Inelastic
+  Process: inelastic
         Model:                      FTFP: 4 GeV ---> 100 TeV
         Model:            BertiniCascade: 0 eV  ---> 5 GeV
-     Cr_sctns: Barashenkov-Glauber-Gribov: 0 eV  ---> 100 TeV
+     Cr_sctns:      G4CrossSectionPairGG: 0 eV  ---> 100 TeV
+                         G4CrossSectionPairGG: G4PiNuclearCrossSection cross sections 
+                           below 91 GeV, Glauber-Gribov above 
+     Cr_sctns:          GheishaInelastic: 0 eV  ---> 100 TeV
 
 ---------------------------------------------------
                            Hadronic Processes for pi-
 
   Process: hadElastic
-        Model:              hElasticLHEP: 0 eV  ---> 1.0001 GeV
+        Model:              hElasticLHEP: 0 eV  ---> 1 GeV
         Model:           hElasticGlauber: 1 GeV ---> 100 TeV
      Cr_sctns:       Barashenkov-Glauber: 0 eV  ---> 100 TeV
 
-  Process: pi-Inelastic
+  Process: inelastic
         Model:                      FTFP: 4 GeV ---> 100 TeV
         Model:            BertiniCascade: 0 eV  ---> 5 GeV
-     Cr_sctns: Barashenkov-Glauber-Gribov: 0 eV  ---> 100 TeV
+     Cr_sctns:      G4CrossSectionPairGG: 0 eV  ---> 100 TeV
+                         G4CrossSectionPairGG: G4PiNuclearCrossSection cross sections 
+                           below 91 GeV, Glauber-Gribov above 
+     Cr_sctns:          GheishaInelastic: 0 eV  ---> 100 TeV
 
   Process: hBertiniCaptureAtRest
 
@@ -892,9 +1022,10 @@ CoulombScat:  for pi-, integral:1  SubType=1 BuildTable=1
 
   Process: hadElastic
         Model:             hElasticCHIPS: 0 eV  ---> 100 TeV
-     Cr_sctns:       Barashenkov-Glauber: 0 eV  ---> 100 TeV
+     Cr_sctns:      ChipsProtonElasticXS: 0 eV  ---> 100 TeV
+     Cr_sctns:            GheishaElastic: 0 eV  ---> 100 TeV
 
-  Process: protonInelastic
+  Process: inelastic
         Model:                      FTFP: 4 GeV ---> 100 TeV
         Model:            BertiniCascade: 0 eV  ---> 5 GeV
      Cr_sctns:       Barashenkov-Glauber: 0 eV  ---> 100 TeV
@@ -904,13 +1035,11 @@ CoulombScat:  for pi-, integral:1  SubType=1 BuildTable=1
 
   Process: hadElastic
         Model:              hElasticLHEP: 0 eV /n ---> 100 TeV/n
-     Cr_sctns:  Glauber-Gribov Nucl-nucl: 0 eV  ---> 100 TeV
      Cr_sctns:            GheishaElastic: 0 eV  ---> 100 TeV
 
-  Process: tInelastic
-        Model:  Binary Light Ion Cascade: 0 eV /n ---> 110 MeV/n
-        Model:                  QMDModel: 100 MeV/n ---> 10 GeV/n
-        Model:                      FTFP: 9.99 GeV/n ---> 100 TeV/n
+  Process: inelastic
+        Model:                      FTFP: 4 GeV/n ---> 100 TeV/n
+        Model:  Binary Light Ion Cascade: 0 eV /n ---> 5 GeV/n
      Cr_sctns:  Glauber-Gribov Nucl-nucl: 0 eV  ---> 100 TeV
      Cr_sctns:          GheishaInelastic: 0 eV  ---> 100 TeV
 
@@ -920,81 +1049,55 @@ CoulombScat:  for pi-, integral:1  SubType=1 BuildTable=1
 
 Index : 0     used in the geometry : Yes
  Material : G4_AIR
- Range cuts        :  gamma  700 um     e-  700 um     e+  700 um  proton 0 fm 
- Energy thresholds :  gamma  990 eV     e-  990 eV     e+  990 eV  proton 0 eV 
+ Range cuts        :  gamma  1 um     e-  1 um     e+  1 um  proton 1 um 
+ Energy thresholds :  gamma  250 eV     e-  250 eV     e+  250 eV  proton 100 eV 
  Region(s) which use this couple : 
     DefaultRegionForTheWorld
 
 Index : 1     used in the geometry : Yes
  Material : G4_Al
- Range cuts        :  gamma  700 um     e-  700 um     e+  700 um  proton 0 fm 
- Energy thresholds :  gamma  5.85564 keV    e-  460.395 keV    e+  442.201 keV proton 0 eV 
+ Range cuts        :  gamma  1 um     e-  1 um     e+  1 um  proton 1 um 
+ Energy thresholds :  gamma  250 eV     e-  1.09668 keV    e+  1.08603 keV proton 100 eV 
  Region(s) which use this couple : 
     DefaultRegionForTheWorld
 
 Index : 2     used in the geometry : Yes
  Material : G4_Pb
- Range cuts        :  gamma  700 um     e-  700 um     e+  700 um  proton 0 fm 
- Energy thresholds :  gamma  94.5861 keV    e-  1.00386 MeV    e+  951.321 keV proton 0 eV 
+ Range cuts        :  gamma  1 um     e-  1 um     e+  1 um  proton 1 um 
+ Energy thresholds :  gamma  1.22592 keV    e-  6.72879 keV    e+  6.51351 keV proton 100 eV 
  Region(s) which use this couple : 
     DefaultRegionForTheWorld
 
 Index : 3     used in the geometry : Yes
- Material : G4_STAINLESS-STEEL
- Range cuts        :  gamma  700 um     e-  700 um     e+  700 um  proton 0 fm 
- Energy thresholds :  gamma  17.3344 keV    e-  970.695 keV    e+  926.09 keV proton 0 eV 
+ Material : G4_POLYETHYLENE
+ Range cuts        :  gamma  1 um     e-  1 um     e+  1 um  proton 1 um 
+ Energy thresholds :  gamma  250 eV     e-  250 eV     e+  250 eV  proton 100 eV 
  Region(s) which use this couple : 
     DefaultRegionForTheWorld
 
 Index : 4     used in the geometry : Yes
- Material : G4_SILICON_DIOXIDE
- Range cuts        :  gamma  700 um     e-  700 um     e+  700 um  proton 0 fm 
- Energy thresholds :  gamma  4.83501 keV    e-  433.376 keV    e+  419.056 keV proton 0 eV 
+ Material : EN_AW-2011T8
+ Range cuts        :  gamma  1 um     e-  1 um     e+  1 um  proton 1 um 
+ Energy thresholds :  gamma  250 eV     e-  1.16878 keV    e+  1.16878 keV proton 100 eV 
  Region(s) which use this couple : 
     DefaultRegionForTheWorld
 
 Index : 5     used in the geometry : Yes
- Material : epoxy_mod
- Range cuts        :  gamma  700 um     e-  700 um     e+  700 um  proton 0 fm 
- Energy thresholds :  gamma  1.96481 keV    e-  208.329 keV    e+  205.548 keV proton 0 eV 
+ Material : G4_Galactic
+ Range cuts        :  gamma  1 um     e-  1 um     e+  1 um  proton 1 um 
+ Energy thresholds :  gamma  250 eV     e-  250 eV     e+  250 eV  proton 100 eV 
  Region(s) which use this couple : 
     DefaultRegionForTheWorld
 
 Index : 6     used in the geometry : Yes
- Material : G4_Galactic
- Range cuts        :  gamma  700 um     e-  700 um     e+  700 um  proton 0 fm 
- Energy thresholds :  gamma  990 eV     e-  990 eV     e+  990 eV  proton 0 eV 
- Region(s) which use this couple : 
-    DefaultRegionForTheWorld
-
-Index : 7     used in the geometry : Yes
  Material : enriched_germanium
- Range cuts        :  gamma  700 um     e-  700 um     e+  700 um  proton 0 fm 
- Energy thresholds :  gamma  17.0457 keV    e-  652.968 keV    e+  631.393 keV proton 0 eV 
- Region(s) which use this couple : 
-    DefaultRegionForTheWorld
-
-Index : 8     used in the geometry : Yes
- Material : G4_TEFLON
- Range cuts        :  gamma  700 um     e-  700 um     e+  700 um  proton 0 fm 
- Energy thresholds :  gamma  3.74537 keV    e-  413.461 keV    e+  402.496 keV proton 0 eV 
+ Range cuts        :  gamma  1 um     e-  1 um     e+  1 um  proton 1 um 
+ Energy thresholds :  gamma  250 eV     e-  2.82816 keV    e+  2.77015 keV proton 100 eV 
  Region(s) which use this couple : 
     DefaultRegionForTheWorld
 
 ====================================================================
 
 ### Run 0 starts.
-Opening file /lfs/l1/legend/users/aalexander/hdf5_output/detector_IC160A_ba_top_81mmNEW4_01.hdf5
+Opening file /lfs/l1/legend/users/aalexander/hdf5_output/detector_IC160A_ba_top_81mmNEW7_01.hdf5
 Setting ID for Crystal_PV to 1
- Run terminated.
-Run Summary
-  Number of events processed : 100000000
-  User=113294.310000s Real=183469.301598s Sys=21.170000s [Cpu=61.8%]
-Graphics systems deleted.
-Visualization Manager deleting...
-G4 kernel has come to Quit state.
-================== Deleting memory pools ===================
-Number of memory pools allocated: 11; of which, static: 0
-Dynamic pools deleted: 11 / Total memory freed: 0.08 MB
-============================================================
-RunManagerKernel is deleted. Good bye :)

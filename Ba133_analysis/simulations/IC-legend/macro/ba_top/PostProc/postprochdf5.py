@@ -46,10 +46,17 @@ def main():
     print(procdf.size)
 
     # apply energy resolution function
-    procdf['energy'] = procdf['energy'] + np.sqrt(procdf['energy'])*pctResAt1MeV/100.*np.random.randn(len(procdf['energy']))
+    #procdf['energy'] = procdf['energy'] + np.sqrt(procdf['energy'])*pctResAt1MeV/100.*np.random.randn(len(procdf['energy']))
+    A,c = 0.039, 287.446 #/1000 #coeficcients from Ba133 resolution graph, keV
+    #procdf['energy'] = procdf['energy'] + A*(10*np.sqrt(10))*np.sqrt(procdf['energy']+1000*c)*np.random.randn(len(procdf['energy']))/2.355
+    procdf['energy'] = procdf['energy'] + (1/1000)*A*np.sqrt(1000*procdf['energy']+c)*np.random.randn(len(procdf['energy']))/2.355
+    # procdf['energy'] = procdf['energy']*1000 #now in keV
+    #procdf['energy'] = procdf['energy'] + A*np.sqrt(procdf['energy']+c)*np.random.randn(len(procdf['energy']))/2.355
+    
 
     # write to output file
-    procdf.to_hdf(hdf5_path+'processed/processed_detector_'+MC_file_id+'.hdf5', key='procdf', mode='w')
+    procdf.to_hdf(hdf5_path+'processed/processed_detector_'+MC_file_id+'_newresolution.hdf5', key='procdf', mode='w')
+    #procdf.to_hdf(hdf5_path+'processed/processed_detector_'+MC_file_id+'_newresolutionkeV.hdf5', key='procdf', mode='w')
 
 if __name__ == "__main__":
     main()

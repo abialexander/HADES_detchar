@@ -1,18 +1,19 @@
 /run/verbose 1
 #/event/verbose 1
-#/tracking/verbose 1
+#/tracking/verbose 1 #uncomment for geantino
 
 /g4simple/setRandomSeed true
 #/random/setSeed 12345678
 
 # Need to set the physics list before we can do some of the other commands. 
-/g4simple/setReferencePhysList Shielding
+#/g4simple/setReferencePhysList Shielding
+/g4simple/setReferencePhysList LBE #NEW5
+
 
 # Set GDML file name
 # The bool after the file name turns validation on / off
 #/g4simple/setDetectorGDML /lfs/l1/legend/users/aalexander/HADES_detchar/Ba133_analysis/simulations/IC-legend/macro/ba_top/geometry/detector_ba_top_nocoll.gdml #false
 /g4simple/setDetectorGDML /lfs/l1/legend/users/aalexander/HADES_detchar/Ba133_analysis/simulations/IC-legend/macro/ba_top/geometry/detector_ba_top.gdml #false
-#/g4simple/setDetectorGDML /lfs/l1/legend/users/bianca/IC_geometry/IC-legend/detector_am_top.gdml 
 
 # Set up output. Choose a format:
 #/g4simple/setOutputFormat csv
@@ -29,7 +30,11 @@
 #/analysis/setFileName /lfs/l1/legend/users/aalexander/hdf5_output/detector_IC160A_ba_top_81mmNEW_01.hdf5 #with mintheta..
 #/analysis/setFileName /lfs/l1/legend/users/aalexander/hdf5_output/detector_IC160A_ba_top_81mmNEW2_01.hdf5 #without mintheta max theta
 #/analysis/setFileName /lfs/l1/legend/users/aalexander/hdf5_output/detector_IC160A_ba_top_81mmNEW3_01.hdf5 #with mintheta max theta, source height3mm, width 30mm
-/analysis/setFileName /lfs/l1/legend/users/aalexander/hdf5_output/detector_IC160A_ba_top_81mmNEW4_01.hdf5 #with mintheta max theta, source height3mm, width 30mm and changed on macro
+#/analysis/setFileName /lfs/l1/legend/users/aalexander/hdf5_output/detector_IC160A_ba_top_81mmNEW4_01.hdf5 #with mintheta max theta, source height3mm, width 30mm and changed on macro
+#/analysis/setFileName /lfs/l1/legend/users/aalexander/hdf5_output/detector_IC160A_ba_top_81mmNEW5_01.hdf5 #new5 has new physics list lBE, wrap instead of teflon wrap, and new source_encapsulated_th.gdml file 12/10/20
+#/analysis/setFileName /lfs/l1/legend/users/aalexander/hdf5_output/detector_IC160A_ba_top_81mmNEW5_geantino356_01.hdf5 #new5 has wrap instead of teflon wrap, and new source_encapsulated_th.gdml file 12/10/20
+#/analysis/setFileName /lfs/l1/legend/users/aalexander/hdf5_output/detector_IC160A_ba_top_81mmNEW6_01.hdf5 #ba source geometry, no source_holder 22/10/20
+/analysis/setFileName /lfs/l1/legend/users/aalexander/hdf5_output/detector_IC160A_ba_top_81mmNEW7_01.hdf5 #ba source geometry aluminium ring, no source_holder 28/10/20
 
 
 #/geometry/test/tolerance 0.01
@@ -68,10 +73,18 @@
 /gps/ang/maxtheta 180 deg
 /gps/pos/type Volume
 /gps/pos/shape Cylinder
-/gps/pos/radius 30.0 mm #new
-/gps/pos/halfz 1.5 mm
+/gps/pos/radius 1 mm #new
+/gps/pos/halfz 1 mm
 /gps/pos/centre 0 0 -81.0 mm #82 mm                                   #source position (81) + source heught/2 (2/2)
 /gps/pos/confine Source_PV
+
+#geantino test
+##/gps/source/intensity 1
+#/gps/particle geantino
+#/gps/ene/mono 356.0134 keV
+#/gps/pos/centre 0.0 0.0 -81.0 mm
+#/gps/direction 0 0 1
+
 
 /gps/source/list #list the particle sources defined
 

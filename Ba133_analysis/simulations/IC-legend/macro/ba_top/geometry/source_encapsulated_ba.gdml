@@ -14,34 +14,48 @@
         <quantity name="source_radius" type="length" value="source_width/2" unit="mm"/>
 	
 	<quantity name="source_capsule_z" type="length" value="source_capsule_height" unit="mm"/>
-  	<quantity name="source_capsule_radius" type="length" value="source_capsule_width/2" unit="mm"/>
+  	<!--<quantity name="source_capsule_radius" type="length" value="source_capsule_width/2" unit="mm"/>-->
+	<quantity name="source_capsule_radius_min" type="length" value="source_capsule_width_min/2" unit="mm"/>
+	<quantity name="source_capsule_radius_max" type="length" value="source_capsule_width_max/2" unit="mm"/>
 
-	<quantity name="window" type="length" value="window_source" unit="mm" />
-	<position name="pos_source_capsule" z="(source_capsule_z-source_z)/2-window"/>
+	<!--<quantity name="window" type="length" value="window_source" unit="mm" />-->
+
+	<position name="pos_source_capsule" z="0"/>
 		
  </define>
 
+
+ <!--<materials>-->
 
  <materials/>
          
 
  <solids>
-         <tube name="source" rmax="source_radius" z="source_z" startphi="0" deltaphi="TWOPI" aunit="rad" />
-	 <tube name="source_capsule" rmax="source_capsule_radius" z="source_capsule_z" startphi="0" deltaphi="TWOPI" aunit="rad" />
+     <tube name="source" rmax="source_radius" z="source_z" startphi="0" deltaphi="TWOPI" aunit="rad" />
+	 <!--<tube name="source_capsule" rmax="source_capsule_radius" z="source_capsule_z" startphi="0" deltaphi="TWOPI" aunit="rad" />-->
+	 <tube name="source_capsule" rmin = "source_capsule_radius_min" rmax="source_capsule_radius_max" z="source_capsule_z" startphi="0" deltaphi="TWOPI" aunit="rad" />
+	<!--<tube name="source_foil"  rmax="source_capsule_radius_min" z="source_z" startphi="0" deltaphi="TWOPI" aunit="rad" />-->
+ 
  </solids>
 
 
  <structure>
 
-         <volume name="Source">
-                 <materialref ref="G4_SILICON_DIOXIDE"/>
+         <volume name="Source"> 
+                 <!--<materialref ref="G4_POLYVINYL_ACETATE"/>-->
+				 <materialref ref="G4_POLYETHYLENE"/>
                  <solidref ref="source"/>
          </volume>
 
 	 <volume name="Source_Encapsulated">
-		 <materialref ref="G4_STAINLESS-STEEL"/>
+		 <!--<materialref ref="G4_POLYVINYL_ACETATE"/>-->
+		 <materialref ref="G4_Al"/>
 		 <solidref ref="source_capsule"/>
 		 <physvol>
+		 	<!--<physvol>
+		 	<volumeref ref="source_foil"/>
+                         <positionref ref="pos_source_capsule"/>
+                 </physvol>-->
 			 <volumeref ref="Source"/>
                          <positionref ref="pos_source_capsule"/>
                  </physvol>
